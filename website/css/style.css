@@ -2,7 +2,7 @@
 
 
 .background-img{
-    background-image: url(../img/home_page_image.jpg);
+    background-image: url(../pictures/home_page_image.jpg);
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
@@ -28,6 +28,10 @@
     font-weight: bolder;
 }
 
+white.div.categoryProducts{
+    padding-top: 0;
+    padding-bottom: 0;
+}
 .smaller-padding {
     padding-top: 0vh;
 }
