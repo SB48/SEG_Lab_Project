@@ -28,16 +28,20 @@
     font-weight: bolder;
 }
 
+/*
 white.div.categoryProducts{
     padding-top: 0;
     padding-bottom: 0;
 }
+*/
 .smaller-padding {
     padding-top: 0vh;
 }
 
 .smaller-text{
+    padding-left: 40%;
     font-size: 15px;
+    text-align: center;
 }
 
 .larger-text{
