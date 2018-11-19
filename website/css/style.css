@@ -13,6 +13,16 @@
     color: white;
 }
 
+.white-text-center{
+    color: white;
+    text-align: center;
+    padding-top: 12vh;
+    padding-bottom: 2vh;
+}
+.padding{
+    padding-top: 12vh;
+    padding-bottom: 2vh;
+}
 
 .text-header{
     color: white;
@@ -23,7 +33,7 @@
 
 .white{
     padding-top: 12vh;
-    padding-bottom: 12vh;
+    padding-bottom: 2vh;
     color: white;
     text-align: center;
     font-family: 'Roboto', sans-serif;
@@ -61,9 +71,116 @@ white.div.categoryProducts{
 
 .link {color: black;}
 
-
-
 .copyright{
     text-align: left;
 }
 
+.button-new {
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 21px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button-new:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+.white-text{
+    color: white;
+}
+.dropbtn {
+    background-color: white;
+    color: black;
+    padding: 21px 60px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+#myInput {
+    border-box: box-sizing;
+    background-image: url('searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+#myInput2 {
+    border-box: box-sizing;
+    background-image: url('searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+#myInput2:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+#customers tr:nth-child(odd){background-color: white;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
