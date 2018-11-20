@@ -1,3 +1,4 @@
+
 create database GameSoc;
 use GameSoc;
 
@@ -9,13 +10,14 @@ create table Member (
     dob DATE NOT NULL CHECK (dob < CURDATE()),
     damageBan BOOLEAN DEFAULT FALSE,
     banBeginDate DATE DEFAULT NULL
-    );
+);
     
 create table Game (
     gameID VARCHAR(12) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     ageRating ENUM('PG','3','7','12','16','18'),
     genre VARCHAR(20),
+    description VARCHAR(255),
     copies TINYINT,
     url VARCHAR(150),
     platform VARCHAR(50)
@@ -23,10 +25,12 @@ create table Game (
 
 create table Staff (
     staffID VARCHAR(12) PRIMARY KEY,
+    firstName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    fullName VARCHAR(100) AS (concat_ws(' ', firstName, lastName)),
     password VARCHAR(50) NOT NULL,
-    privelegeLevel VARCHAR(15) NOT NULL DEFAULT 'Volunteer' 
+    privelegeLevel ENUM('Secretary', 'Volunteer') NOT NULL DEFAULT 'Volunteer' 
 );
-
 
 create table Rental (
     rentalID VARCHAR(12) PRIMARY KEY,
@@ -57,10 +61,12 @@ VALUES ('rentalPeriod', 2),
 create table Actions (
      
      staffID VARCHAR(12) PRIMARY KEY,
+     memberID VARCHAR(12),
      dateOfAction DATE NOT NULL,
      actionTaken VARCHAR(50) NOT NULL,
      
      FOREIGN KEY (staffID) REFERENCES Staff(staffID) ON DELETE RESTRICT ON UPDATE CASCADE
+     FOREIGN KEY (memberID) REFERENCES Member(memberID) ON DELETE RESTRICT ON UPDATE CASCADE
           
 );
 
