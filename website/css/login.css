@@ -1,7 +1,7 @@
 
-
 div.loginSmallDiv{
-    position:fixed;
+    padding-left: 100px;
+    position:relative;
     top: 30%;
     left: 35%;
 	width: 350px;
@@ -13,7 +13,7 @@ div.login_acount_text{
 	font-weight: bold;
 }
 div.loginInput{
-	border: 1px solid #CBCBCB;
+/*	border: 1px solid #CBCBCB;*/
 	margin: 20px 0px;
 }
 div.loginInput span.loginInputIcon{
