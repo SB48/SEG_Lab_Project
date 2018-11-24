@@ -56,7 +56,7 @@ create table Actions (
      dateOfAction DATE NOT NULL,
      actionTaken VARCHAR(50) NOT NULL,
      
-     FOREIGN KEY (staffID) REFERENCES Staff(staffID) ON DELETE RESTRICT ON UPDATE CASCADE
+     FOREIGN KEY (staffID) REFERENCES Staff(staffID) ON DELETE RESTRICT ON UPDATE CASCADE,
      FOREIGN KEY (memberID) REFERENCES Member(memberID) ON DELETE RESTRICT ON UPDATE CASCADE
           
 );
