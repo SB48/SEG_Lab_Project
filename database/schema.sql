@@ -24,8 +24,11 @@ create table Game (
 
 create table Staff (
     staffID VARCHAR(12) PRIMARY KEY,
+    firstName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    fullName VARCHAR(100) AS (concat_ws(' ', firstName, lastName)),
     password VARCHAR(50) NOT NULL,
-    privelegeLevel VARCHAR(15) NOT NULL DEFAULT 'Volunteer' 
+    privelegeLevel ENUM('Secretary', 'Volunteer') NOT NULL DEFAULT 'Volunteer' 
 );
 
 
