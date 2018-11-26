@@ -19,7 +19,8 @@ create table Game (
     description VARCHAR(255),
     copies TINYINT,
     url VARCHAR(150),
-    platform VARCHAR(50)
+    platform VARCHAR(50),
+    price TINYINT
 );
 
 create table Staff (
