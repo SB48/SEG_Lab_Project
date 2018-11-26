@@ -4,11 +4,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/selection.css">
-    <title>Computer Gaming Society</title>
+    <link rel="stylesheet" href="../css/selection.css">
+    <title>Member</title>
 </head>
 <body class="background-img">
 <div class="container">
@@ -24,10 +24,10 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="home_page.html">Home</a>
-                        <a class="dropdown-item" href="collection.html">Collection</a>
+                        <a class="dropdown-item" href="../home_page.html">Home</a>
+                        <a class="dropdown-item" href="../collection.html">Collection</a>
                         <a class="dropdown-item" href="#">Dummy</a>
-                        <a class="dropdown-item" href="login.html">Log In</a>
+                        <a class="dropdown-item" href="../login.html">Log In</a>
                     </div>
                 </li>
             </ul>
@@ -37,32 +37,73 @@
     <div class="row white">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h1>Secretary's Platform</h1>
+            <h1>member_name</h1>
         </div>
         <div class="col-md-3"></div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="white">CURRENTLY RENTING:</p>
+        </div>
+        <div class="col-md-6">
+            <p class="white-text-center">2[from PHP] out of 5[from PHP] possible</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="white">IS BANNED:</p>
+        </div>
+        <div class="col-md-6">
+            <p class="white-text-center">[from PHP] no/yes - until 20/12/2018</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="white">VIOLATIONS SINCE LAST YEAR:</p>
+        </div>
+        <div class="col-md-6">
+            <p class="white-text-center">3[from PHP] out of 4[from PHP] possible</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="white">TO PAY:</p>
+        </div>
+        <div class="col-md-6">
+            <p class="white-text-center">0[from PHP] or eg 8 GBP[from PHP]</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <button class="button-new">PAY BACK</button>
+        </div>
+    </div>
+
 
 
 
     <div class="row">
         <div class="col-md-12">
-            <p class="white">MEMBERS</p>
+            <p class="white-text-center">if: currently renting less than the limit & NOT banned & less violations than the limit & to pay == 0</p>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
-            <p class="white-text">find a member</p>
-            <div class="dropdown">
+        <div class="col-md-6">
+            <p class="white">pick a game to rent (from available)</p>
+        </div>
+        <div class="col-md-6">
+            <div class="dropdown padding">
                 <button onclick="myFunction()" class="dropbtn">FIND</button>
                 <div id="myDropdown" class="dropdown-content">
                     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                    <a href="member.html">Monica</a>
-                    <a href="member.html">Rachel</a>
-                    <a href="member.html">Ros</a>
-                    <a href="member.html">Chandler</a>
-                    <a href="member.html">Pheobe</a>
-                    <a href="member.html">Joey</a>
+                    <a href="#about">Monica</a>
+                    <a href="#base">Rachel</a>
+                    <a href="#blog">Ros</a>
+                    <a href="#contact">Chandler</a>
+                    <a href="#custom">Pheobe</a>
+                    <a href="#support">Joey</a>
                 </div>
             </div>
 
@@ -89,93 +130,58 @@
                 }
             </script>
         </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-5">
-            <p class="white-text">add a new member</p>
-            <a href="collection_add_member.html" class="button-new">NEW</a>
-        </div>
-    </div>
-
-    <div class="row py-3">
-        <div class="col-md-12"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <p class="white">GAMES</p>
-        </div>
     </div>
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
-            <p class="white-text">find a game</p>
-            <div class="dropdown">
-                <button onclick="myFunction2()" class="dropbtn">FIND</button>
-                <div id="myDropdown2" class="dropdown-content">
-                    <input type="text" placeholder="Search.." id="myInput2" onkeyup="filterFunction2()">
-                    <a href="product.html">Game1</a>
-                    <a href="product.html">Game2</a>
-                    <a href="product.html">Game3</a>
-                    <a href="product.html">Game4</a>
-                    <a href="product.html">Game5</a>
-                    <a href="product.html">Game6</a>
-                </div>
-            </div>
-
-            <script>
-                /* When the user clicks on the button,
-                toggle between hiding and showing the dropdown content */
-                function myFunction2() {
-                    document.getElementById("myDropdown2").classList.toggle("show");
-                }
-
-                function filterFunction2() {
-                    var input, filter, ul, li, a, i;
-                    input = document.getElementById("myInput2");
-                    filter = input.value.toUpperCase();
-                    div = document.getElementById("myDropdown2");
-                    a = div.getElementsByTagName("a");
-                    for (i = 0; i < a.length; i++) {
-                        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                            a[i].style.display = "";
-                        } else {
-                            a[i].style.display = "none";
-                        }
-                    }
-                }
-            </script>
+        <div class="col-md-3">
+            <p class="white">CURRENTLY RENTING:</p>
         </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-5">
-            <p class="white-text">add a new game</p>
-            <!--<button href="collection_add_game.html" class="button-new">NEW</button>-->
-            <a href="collection_add_game.html" class="button-new">NEW</a>
+        <div class="col-md-9">
         </div>
     </div>
-
-    <div class="row py-3">
-        <div class="col-md-12"></div>
-    </div>
-
     <div class="row">
         <div class="col-md-12">
-            <p class="white">MAKE CHANGES IN RULES AND LIMITATIONS</p>
+            <table id="customers">
+                <tr>
+                    <th>no</th>
+                    <th>name</th>
+                    <th>due</th>
+                    <th>extend</th>
+                    <th>faulty</th>
+                    <th>late</th>
+                    <th>return</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Game One</td>
+                    <td>12/12/2018</td>
+                    <td><button class="button-new">EXTEND</button></td>
+                    <td><button class="button-new">FAULTY</button></td>
+                    <td><button class="button-new">LATE</button></td>
+                    <td><button class="button-new">RETURN</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Game Two</td>
+                    <td>12/12/2018</td>
+                    <td><button class="button-new">EXTEND</button></td>
+                    <td><button class="button-new">FAULTY</button></td>
+                    <td><button class="button-new">LATE</button></td>
+                    <td><button class="button-new">RETURN</button></td>
+                </tr>
+            </table>
+
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-2">
-            <!--<button href="collection_changeRules.html" class="button-new">CHANGES</button>-->
-            <a href="collection_changeRules.html" class="button-new">CHANGES</a>
-        </div>
-        <div class="col-md-6"></div>
+
+
+
+
+
+
+    <div class="row py-5">
+        <div class="col-md-12"></div>
     </div>
-
-
-
-
-
     <div class="row py-5">
         <div class="col-md-12"></div>
     </div>
@@ -203,6 +209,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="js/include.js"></script>
+<script src="../../js/include.js"></script>
 </body>
 </html>
+
+
