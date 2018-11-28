@@ -1,39 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f14ca43e-0367-40f2-ae11-8b204b644259" name="Default" comment="">
+    <list default="true" id="4391828f-a261-40eb-9da4-80249fbe92b8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/add_game.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/secretary/add_game.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/add_member.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/add_member.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/changeRules.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/volunteer/changeRules.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/collection.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/collection.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/collection_add_game.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/secretary/collection_add_game.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/collection_add_member.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/collection_add_member.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/collection_changeRules.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/secretary/collection_changeRules.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/collection_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/collection_login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/collection_register.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/collection_register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/css/changeRules.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/changeRules.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/css/main_body.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main_body.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/css/selection.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/selection.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/home_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/home_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/js/include.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/include.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/js/jquery-1.12.4.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/jquery-1.12.4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/js/selection.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/selection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/main_body.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/main_body.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/member.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/member.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/pictures/Assassin.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/pictures/Assassin.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/pictures/COD.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/pictures/COD.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/pictures/HPmovies.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/pictures/HPmovies.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/pictures/HarryPotter.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/pictures/HarryPotter.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/pictures/home_page_image.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/pictures/home_page_image.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/secretary_platform.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/secretary/secretary_platform.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/volunteer_platform.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/volunteer/volunteer_platform.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/initialize.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/initialize.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,71 +13,42 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/collection.html">
+        <entry file="file://$PROJECT_DIR$/private/db_credentials.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="47" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="47" />
+            <state relative-caret-position="180">
+              <caret line="12" column="2" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/home_page.html">
+        <entry file="file://$PROJECT_DIR$/private/database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="29" column="86" selection-start-line="29" selection-start-column="86" selection-end-line="29" selection-end-column="86" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/main_body.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="866">
-              <caret line="62" column="22" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/product.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/register.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/staff/add_member.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/collection_login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="56" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
+            <state relative-caret-position="61">
+              <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/login.html">
+        <entry file="file://$PROJECT_DIR$/private/initialize.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="226">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
               <folding>
-                <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#6#88#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/private/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -140,7 +82,7 @@
           <entry type="REMOTE">
             <value>
               <list>
-                <branch-info repo="$PROJECT_DIR$" source="origin/website" />
+                <branch-info repo="$PROJECT_DIR$" source="origin/development" />
               </list>
             </value>
           </entry>
@@ -160,6 +102,11 @@
         </map>
       </branch-storage>
     </excluded-from-favorite>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -181,19 +128,26 @@
         <option value="$PROJECT_DIR$/website/product.php" />
         <option value="$PROJECT_DIR$/public/home_page.html" />
         <option value="$PROJECT_DIR$/public/collection.html" />
+        <option value="$PROJECT_DIR$/private/functions.php" />
+        <option value="$PROJECT_DIR$/private/db_credentials.php" />
+        <option value="$PROJECT_DIR$/private/database.php" />
+        <option value="$PROJECT_DIR$/private/initialize.php" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="28" />
-    <option name="width" value="1390" />
-    <option name="height" value="1019" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="658" />
+    <option name="y" value="23" />
+    <option name="width" value="708" />
+    <option name="height" value="677" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -221,17 +175,16 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -257,11 +210,27 @@
   <component name="RunManager">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="WIDTH" value="0" />
+      <option name="HEIGHT" value="0" />
+      <module />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" />
@@ -271,13 +240,17 @@
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="singleModule" />
       </option>
+      <envs />
       <patterns />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
@@ -290,12 +263,15 @@
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="singleModule" />
       </option>
       <option name="USE_DEFAULT_REPORTERS" value="false" />
       <option name="PROPERTIES_FILE" />
+      <envs />
       <properties />
       <listeners />
     </configuration>
@@ -310,7 +286,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f14ca43e-0367-40f2-ae11-8b204b644259" name="Default" comment="" />
+      <changelist id="4391828f-a261-40eb-9da4-80249fbe92b8" name="Default" comment="" />
       <created>1542233530760</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -321,6 +297,8 @@
       <workItem from="1542632281990" duration="402000" />
       <workItem from="1542800274110" duration="2318000" />
       <workItem from="1543232362644" duration="3271000" />
+      <workItem from="1543402865532" duration="147000" />
+      <workItem from="1543403180443" duration="2191000" />
     </task>
     <task id="LOCAL-00001" summary="add product.html">
       <created>1542234484063</created>
@@ -375,20 +353,21 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20484000" />
+    <option name="totallyTimeSpent" value="22923000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="28" width="3440" height="1378" extended-state="6" />
+    <frame x="658" y="23" width="708" height="677" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1040684" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17717718" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -396,9 +375,9 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.19401778" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32820514" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3298969" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -453,9 +432,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="added remaining pages" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/css/login.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2625">
@@ -476,15 +452,6 @@
           <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/private/initialize.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/private/functions.php">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/private/shared/footer.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -549,19 +516,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/register.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/staff/add_member.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
           <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/db_credentials.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="2" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/initialize.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#6#88#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

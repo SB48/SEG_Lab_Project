@@ -31,3 +31,8 @@
 <script src="../../js/include.js"></script>
 </body>
 </html>
+
+<?php
+    db_disconnect($db);
+?>
+
