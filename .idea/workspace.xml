@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4391828f-a261-40eb-9da4-80249fbe92b8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/initialize.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/initialize.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/shared/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/shared/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/collection.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/collection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/collection_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/collection_login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/collection_register.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/collection_register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/home_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/home_page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/staff/collection_add_member.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/collection_add_member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/staff/member.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/staff/secretary/collection_add_game.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/secretary/collection_add_game.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/staff/secretary/collection_changeRules.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/secretary/collection_changeRules.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/staff/secretary/secretary_platform.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/secretary/secretary_platform.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/staff/volunteer/changeRules.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/secretary/changeRules.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/staff/volunteer/volunteer_platform.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/volunteer/volunteer_platform.php" afterDir="false" />
-    </list>
+    <list default="true" id="4391828f-a261-40eb-9da4-80249fbe92b8" name="Default" comment="refactor the project - ready for php implementation" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/collection_register.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="48" column="41" lean-forward="true" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+            <state relative-caret-position="228">
+              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
             </state>
           </provider>
         </entry>
@@ -221,22 +204,6 @@
             <path>
               <item name="SEG_Lab_Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="SEG_Lab_Project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SEG_Lab_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SEG_Lab_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="private" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SEG_Lab_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SEG_Lab_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SEG_Lab_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SEG_Lab_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="staff" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -367,7 +334,7 @@
       <workItem from="1543232362644" duration="3271000" />
       <workItem from="1543402865532" duration="147000" />
       <workItem from="1543403180443" duration="2333000" />
-      <workItem from="1543533755350" duration="2878000" />
+      <workItem from="1543533755350" duration="3076000" />
     </task>
     <task id="LOCAL-00001" summary="add product.html">
       <created>1542234484063</created>
@@ -418,11 +385,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542802124513</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="refactor the project - ready for php implementation">
+      <created>1543537920557</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1543537920558</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25943000" />
+    <option name="totallyTimeSpent" value="26141000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="0" />
@@ -498,7 +472,8 @@
     <MESSAGE value="made changes" />
     <MESSAGE value="linked pages&#10;&#10;CSS in collection_login, collection_add_game, collection_add_membber, seems not to work" />
     <MESSAGE value="added remaining pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="added remaining pages" />
+    <MESSAGE value="refactor the project - ready for php implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor the project - ready for php implementation" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/public/css/style.css">
@@ -652,8 +627,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/collection_register.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="48" column="41" lean-forward="true" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+        <state relative-caret-position="228">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>
