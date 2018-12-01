@@ -164,9 +164,9 @@
             <p class="white-text">find a game</p>
             <div class="dropdown">
                 <form action="" method="post">
-                    <input onclick="myFunction2()" class="dropbtn" type="submit" name="button">FIND</input>
+                    <input onclick="myFunction2()" class="dropbtn" type="submit" name="button2">FIND</input>
                 <div id="myDropdown2" class="dropdown-content">
-                    <input type="text" placeholder="Search.." name="search" id="myInput2" onkeyup="filterFunction2()">
+                    <input type="text" placeholder="Search.." name="search2" id="myInput2" onkeyup="filterFunction2()">
                     <a href="../../product.php">Game1</a>
                     <a href="../../product.php">Game2</a>
                     <a href="../../product.php">Game3</a>
@@ -182,9 +182,9 @@
             $con->select_db('Game');
 
 
-            if(isset($_POST['button'])){    //trigger button click
+            if(isset($_POST['button2'])){    //trigger button click
 
-                $search=$_POST['search'];
+                $search=$_POST['search2'];
 
                 $query= $con->query("select * from Game where name like '%{$search}%'");
 
