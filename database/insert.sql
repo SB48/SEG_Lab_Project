@@ -26,7 +26,7 @@ VALUES
 ('Arya', 'Stark', '000000000003', default),
 ('Cersei', 'Lannister', '000000000004', 'Secretary');
 
-INSERT INTO Member(memberID, firstName, lastName, dob)
+INSERT INTO Member(firstName, lastName, dob)
 VALUES
 ('Sansa', 'Stark', 27-08-1990),
 ('Khal', 'Drogo', 01-10-1992),
@@ -34,7 +34,7 @@ VALUES
 ('Sandor', 'Clegane', 23-06-1988),
 ('Ramsay', 'Bolton', 18-04-1996);
 
-INSERT INTO Member(memberID, firstName, lastName, dob, damageBan, banBeginDate)
+INSERT INTO Member(firstName, lastName, dob, damageBan, banBeginDate)
 VALUES
 ('Petyr', 'Baelish', '13-12-1978', true, 05-12-2017),
 ('Oberyn', 'Martell', '12-03-1956', true, 02-08-2018),
