@@ -28,27 +28,31 @@ VALUES
 
 INSERT INTO Member(firstName, lastName, dob)
 VALUES
-('Sansa', 'Stark', 27-08-1990),
-('Khal', 'Drogo', 01-10-1992),
-('Joffrey', 'Baratheon', 08-01-1984),
-('Sandor', 'Clegane', 23-06-1988),
-('Ramsay', 'Bolton', 18-04-1996);
+('Sansa', 'Stark', '1990-08-27'),
+('Khal', 'Drogo', '1992-10-01'),
+('Joffrey', 'Baratheon', '1984-01-08'),
+('Sandor', 'Clegane', '1988-06-23'),
+('Ramsay', 'Bolton', '1996-04-18');
 
 INSERT INTO Member(firstName, lastName, dob, damageBan, banBeginDate)
 VALUES
-('Petyr', 'Baelish', '13-12-1978', true, 05-12-2017),
-('Oberyn', 'Martell', '12-03-1956', true, 02-08-2018),
-('Eddard', 'Stark', '23-07-1989', true, 06-03-2018);
+('Petyr', 'Baelish', '1978-12-13', true, '2017-12-05'),
+('Oberyn', 'Martell', '1956-03-12', true, '2018-08-02'),
+('Eddard', 'Stark', '1989-07-23', true, '2018-03-06');
+
+INSERT INTO Member(firstName, lastName, dob, normalBan, banBeginDate)
+VALUES
+('Ned', 'Stark', '1993-11-01', true, '2018-04-10');
 
 INSERT INTO Rental(gameID, memberID, returnDate, returned, extensions)
 VALUES
-(3, 2, 01-10-2018, true, 0),
-(2, 1, 04-12-2018, true, 1);
+(3, 2, '2018-10-01', true, 0),
+(2, 1, '2018-12-04', true, 1);
 
 INSERT INTO Actions(staffID, memberID, dateOfAction, actionTaken)
 VALUES
-(4, 1, 02-08-2018, 'ban');
+(4, 1, '2018-08-02', 'ban');
 
 INSERT INTO Violates (memberID, dateOfViolation, nullified)
 VALUES
-(3, 04-03-2014, true);
+(3, '2014-03-04', true);
