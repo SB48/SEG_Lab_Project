@@ -8,6 +8,7 @@ create table Member (
     fullName VARCHAR(100) AS (concat_ws(' ', firstName, lastName)),
     dob DATE NOT NULL CHECK (dob < CURDATE()),
     damageBan BOOLEAN DEFAULT FALSE,
+    normalBan BOOLEAN DEFAULT FALSE,
     banBeginDate DATE DEFAULT NULL
     );
     
@@ -16,7 +17,7 @@ create table Game (
     name VARCHAR(255) NOT NULL,
     ageRating ENUM('PG','3','7','12','16','18'),
     genre VARCHAR(20),
-    description VARCHAR(255),
+    description VARCHAR(1000),
     copies TINYINT,
     url VARCHAR(150),
     platform VARCHAR(50)
