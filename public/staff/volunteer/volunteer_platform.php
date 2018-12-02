@@ -1,5 +1,5 @@
 
-<?php require_once('../private/initialize.php'); ?>
+<?php require_once('../../../private/initialize.php'); ?>
 <?php require_once(SHARED_PATH . '/header.php'); ?>
 
 <div class="container">
