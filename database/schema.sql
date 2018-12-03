@@ -10,7 +10,7 @@ create table Member (
     damageBan BOOLEAN DEFAULT FALSE,
     normalBan BOOLEAN DEFAULT FALSE,
     banBeginDate DATE DEFAULT NULL,
-    amountDue TINYINT
+    amountDue TINYINT DEFAULT 0
     );
     
 create table Game (
