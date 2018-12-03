@@ -1,7 +1,7 @@
 INSERT INTO Rules
 VALUES ('rentalPeriod', 2),
     ('extensionTime', 2),
-    ('gracePeriod', 2),
+    ('gracePeriod', 52),
     ('numExtensions', 2),
     ('rentalLimit', 2),
     ('numViolationsForBan', 3),

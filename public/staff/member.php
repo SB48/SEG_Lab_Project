@@ -25,10 +25,37 @@
         </div>
     </nav>
 
+    <?php
+    //id as int (instead of string)
+    $id = (int) $_GET['id'];
+    $id = isset($_GET['id']) ? (int) $_GET['id'] : 1;
+
+    $memberNameSet = find_member_name($id);
+    $memberName = mysqli_fetch_assoc($memberNameSet)['id'];
+
+    $numberOfVideosPossibleSet = find_how_many_games_can_rent();
+    $numberOfVideosPossible = mysqli_fetch_assoc($numberOfVideosPossibleSet)['value'];
+
+    $isBannedSet = find_is_banned($id);
+    $isBanned = mysqli_fetch_assoc($isBannedSet)['normalBan'];
+
+    $violationsPossibleSet = find_violations_possible();
+    $violationsPossible = mysqli_fetch_assoc($violationsPossibleSet)['value'];
+
+    $gamesCurrentlyRented = find_how_many_games_are_rented($id);
+
+    $violationsInGracePeriod = find_violations_in_grace_period($id);
+
+    find_amount_due
+
+    ?>
+
+
+
     <div class="row white">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h1>member_name</h1>
+            <h1><?php echo $memberName ?></h1>
         </div>
         <div class="col-md-3"></div>
     </div>
@@ -37,7 +64,7 @@
             <p class="white">CURRENTLY RENTING:</p>
         </div>
         <div class="col-md-6">
-            <p class="white-text-center">2[from PHP] out of 5[from PHP] possible</p>
+            <p class="white-text-center"><?php echo $gamesCurrentlyRented ?> out of <?php echo $numberOfVideosPossible ?> possible</p>
         </div>
     </div>
     <div class="row">
@@ -45,7 +72,8 @@
             <p class="white">IS BANNED:</p>
         </div>
         <div class="col-md-6">
-            <p class="white-text-center">[from PHP] no/yes - until 20/12/2018</p>
+            <p class="white-text-center"><?php echo $isBanned?></p>
+<!--         we need to somehow get until when the member is banned   - until 20/12/2018-->
         </div>
     </div>
     <div class="row">
@@ -53,7 +81,7 @@
             <p class="white">VIOLATIONS SINCE LAST YEAR:</p>
         </div>
         <div class="col-md-6">
-            <p class="white-text-center">3[from PHP] out of 4[from PHP] possible</p>
+            <p class="white-text-center"><?php echo $violationsInGracePeriod ?> out of <?php echo $violationsPossible ?> possible</p>
         </div>
     </div>
     <div class="row">
@@ -71,8 +99,6 @@
             <button class="button-new">PAY BACK</button>
         </div>
     </div>
-
-
 
 
     <div class="row">
@@ -165,7 +191,7 @@
     </div>
 
 
-
+    <?php mysqli_free_result() ?>
 
 
 

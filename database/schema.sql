@@ -66,6 +66,5 @@ create table Violates (
     memberID INT(8) NOT NULL,
     dateOfViolation DATE NOT NULL,
     nullified BOOLEAN DEFAULT FALSE,
-    
     FOREIGN KEY (memberID) REFERENCES Member(memberID) ON DELETE RESTRICT ON UPDATE CASCADE
 );
