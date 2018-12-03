@@ -9,7 +9,8 @@ create table Member (
     dob DATE NOT NULL CHECK (dob < CURDATE()),
     damageBan BOOLEAN DEFAULT FALSE,
     normalBan BOOLEAN DEFAULT FALSE,
-    banBeginDate DATE DEFAULT NULL
+    banBeginDate DATE DEFAULT NULL,
+    amountDue TINYINT
     );
     
 create table Game (
