@@ -16,6 +16,7 @@ create table Member (
 create table Game (
     gameID INT(12) PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
+    price TINYINT NOT NULL,
     ageRating ENUM('PG','3','7','12','16','18'),
     genre VARCHAR(20),
     description VARCHAR(1000),
