@@ -35,7 +35,7 @@
 
     function find_all_rentals(){
         global $db;
-        $sql = "SELECT * FROM Rentals ";
+        $sql = "SELECT * FROM Rental ";
         $sql .= "ORDER BY name ASC";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
@@ -44,7 +44,7 @@
 
     function find_member_name($memberID){
         global $db;
-        $sql = "SELECT firstName, lastName FROM Member WHERE id = $memberID";
+        $sql = "SELECT firstName, lastName FROM Member WHERE memberID = $memberID";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -52,7 +52,7 @@
 
     function find_how_many_games_are_rented($memberID){
         global $db;
-        $sql = "SELECT COUNT(rentalID) FROM Member WHERE id = $memberID AND returned = false";
+        $sql = "SELECT COUNT(rentalID) FROM Member WHERE memberID = $memberID AND returned = false";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -69,7 +69,7 @@
 
     function find_is_banned($memberID){
         global $db;
-        $sql = "SELECT normalBan FROM Mebmber WHERE id = $memberID";
+        $sql = "SELECT normalBan FROM Member WHERE memberID = $memberID";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
