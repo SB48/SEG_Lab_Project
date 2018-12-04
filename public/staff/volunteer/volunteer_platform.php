@@ -48,12 +48,15 @@
                 <button onclick="myFunction()" class="dropbtn">FIND</button>
                 <div id="myDropdown" class="dropdown-content">
                     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                    <a href="../member.php">Monica</a>
-                    <a href="../member.php">Rachel</a>
-                    <a href="../member.php">Ros</a>
-                    <a href="../member.php">Chandler</a>
-                    <a href="../member.php">Pheobe</a>
-                    <a href="../member.php">Joey</a>
+                    <?php
+                    $sql = find_all_members();
+
+                    while ($row = $sql->fetch_assoc()){
+                        $id = $row['memberID'];
+                        $name = $row['firstName'];
+                        echo "<a href=/.$id.>" .$name. "</a>";
+                    }
+                    ?>
                 </div>
             </div>
 
@@ -106,12 +109,15 @@
                 <button onclick="myFunction2()" class="dropbtn">FIND GAME</button>
                 <div id="myDropdown2" class="dropdown-content">
                     <input type="text" placeholder="Search.." id="myInput2" onkeyup="filterFunction2()">
-                    <a href="../../product.php">Game1</a>
-                    <a href="../../product.php">Game2</a>
-                    <a href="../../product.php">Game3</a>
-                    <a href="../../product.php">Game4</a>
-                    <a href="../../product.php">Game5</a>
-                    <a href="../../product.php">Game6</a>
+                    <?php
+                    $sql = find_all_games();
+
+                    while ($row = $sql->fetch_assoc()){
+                        $id = $row['gameID'];
+                        $name = $row['name'];
+                        echo "<a href=/.$id.>" .$name. "</a>";
+                    }
+                    ?>
                 </div>
             </div>
 
