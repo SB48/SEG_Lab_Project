@@ -46,7 +46,10 @@
 
     $violationsInGracePeriod = find_violations_in_grace_period($id);
 
-    find_amount_due
+    $findAmountDueSet = find_amount_due($id);
+    $findAmountDue = mysqli_fetch_assoc($findAmountDueSet)['amountDue'];
+
+    $currentRentalsSet = find_current_rentals($id);
 
     ?>
 
@@ -89,7 +92,7 @@
             <p class="white">TO PAY:</p>
         </div>
         <div class="col-md-6">
-            <p class="white-text-center">0[from PHP] or eg 8 GBP[from PHP]</p>
+            <p class="white-text-center"><?php echo $findAmountDue ?></p>
         </div>
     </div>
 
@@ -100,19 +103,18 @@
         </div>
     </div>
 
-
-    <div class="row">
-        <div class="col-md-12">
-            <p class="white-text-center">if: currently renting less than the limit & NOT banned & less violations than the limit & to pay == 0</p>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-6">
             <p class="white">pick a game to rent (from available)</p>
         </div>
         <div class="col-md-6">
             <div class="dropdown padding">
-                <button onclick="myFunction()" class="dropbtn">FIND</button>
+                <!--                can rent only if not banned and renting less than the limit-->
+                <?php
+                $status = "";
+                if(($gamesCurrentlyRented >= $numberOfVideosPossible) || $isBanned || ($findAmountDue > 0)) {
+                    $status = "disabled";} ?>
+                <button onclick="myFunction()" class="dropbtn" <?php echo $status; ?> >FIND</button>
                 <div id="myDropdown" class="dropdown-content">
                     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
                     <a href="#about">Monica</a>
@@ -167,26 +169,19 @@
                     <th>late</th>
                     <th>return</th>
                 </tr>
+                <?php $no = 0 ?>
+                <?php while($currentRentals = mysqli_fetch_assoc($currentRentalsSet)) {?>
                 <tr>
-                    <td>1</td>
-                    <td>Game One</td>
-                    <td>12/12/2018</td>
+                    <td><?php echo ++$no; ?></td>
+                    <td><?php echo $currentRentals['name']; ?></td>
+                    <td><?php echo $currentRentals['returnDate']; ?></td>
                     <td><button class="button-new">EXTEND</button></td>
                     <td><button class="button-new">FAULTY</button></td>
                     <td><button class="button-new">LATE</button></td>
                     <td><button class="button-new">RETURN</button></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Game Two</td>
-                    <td>12/12/2018</td>
-                    <td><button class="button-new">EXTEND</button></td>
-                    <td><button class="button-new">FAULTY</button></td>
-                    <td><button class="button-new">LATE</button></td>
-                    <td><button class="button-new">RETURN</button></td>
-                </tr>
+                <?php } ?>
             </table>
-
         </div>
     </div>
 

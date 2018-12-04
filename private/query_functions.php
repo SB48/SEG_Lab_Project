@@ -82,7 +82,7 @@
         confirm_result_set($result);
         return $result;
     }
-    //current date
+
 
 
     function find_violations_in_grace_period($memberID){
@@ -96,6 +96,14 @@
     function find_amount_due($memberID){
         global $db;
         $sql = "SELECT amountDue FROM Member WHERE memberID = $memberID";
+        $result = mysqli_query($db,$sql);
+        confirm_result_set($result);
+        return $result;
+    }
+
+    function find_current_rentals($memberID){
+        global $db;
+        $sql ="SELECT gameID, name, returnDate FROM Rental, Game WHERE memberID = $memberID AND returned = false AND Rental.gameID = Game.gameID";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
