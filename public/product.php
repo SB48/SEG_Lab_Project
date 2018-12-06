@@ -41,6 +41,8 @@
     $gameGenre = $thisGame['genre']
     $gameDescription = $thisGame['description']
     $gameCopies = $thisGame['copies']
+    $gameURL = $thisGame['url']
+    $gamePicPath = $thisGame['path']
     $gamePlatform = $thisGame['platform']
 
     ?>
@@ -56,7 +58,7 @@
 
     <div class="row py-5">
         <div class="col-md-6">
-            <img src="https://pixel.nymag.com/imgs/fashion/daily/2018/03/02/magazine/how-to-raise-a-boy/05-video-game-dad-lede.w700.h700.jpg" alt="Minecraft" width="500" height="600">
+            <?php echo '<img src="'.$eachGame["path"]. '" width="100px" class="productImage">' ?>
         </div>
         <div class="col-md-6">
             <div class="row">
@@ -66,7 +68,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p class="white-text">Rating?</p>
+                    <p class="white-text">GetRatingFromAPI</p>
                 </div>
             </div>
             <div class="row">
