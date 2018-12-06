@@ -25,10 +25,31 @@
         </div>
     </nav>
 
+
+    <?php
+    //id as int (instead of string)
+    $id = (int) $_GET['id'];
+    $id = isset($_GET['id']) ? (int) $_GET['id'] : 1;
+
+    $thisGameSet = find_game($id);
+    $thisGame = mysqli_fetch_assoc($thisGameSet);
+
+    $gameID = $thisGame['id']
+    $gameName = $thisGame['name']
+    $gamePrice = $thisGame['price']
+    $gameAgeRating = $thisGame['ageRating']
+    $gameGenre = $thisGame['genre']
+    $gameDescription = $thisGame['description']
+    $gameCopies = $thisGame['copies']
+    $gamePlatform = $thisGame['platform']
+
+    ?>
+
+
     <div class="row white">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h1>PRODUCT NAME</h1>
+            <h1><?php echo $gameName ?></h1>
         </div>
         <div class="col-md-3"></div>
     </div>
@@ -40,27 +61,27 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p class="white"><?php echo $gameDescription ?></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p class="white-text">RATING FROM API</p>
+                    <p class="white-text">Rating?</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p class="white-text">STATUS: available (3)/out of stock</p>
+                    <p class="white-text">Available Copies: <?php echo $gameCopies ?> </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p class="white-text">AGE: 7+</p>
+                    <p class="white-text"><?php echo $gameAgeRating ?></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p class="white-text">PLATFORM: Play Station 4</p>
+                    <p class="white-text"><?php echo $gamePlatform ?></p>
                 </div>
             </div>
 
@@ -75,4 +96,3 @@
 
 
     <?php require_once(SHARED_PATH . '/footer.php'); ?>
-
