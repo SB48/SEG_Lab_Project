@@ -126,7 +126,7 @@
     //specific game
     function find_game($id) {
         global $db;
-        $thisGame = "SELECT * from Game WHERE gameID = ".$id" ;
+        $thisGame = "SELECT * from Game WHERE gameID = ".$id"";
         $thisGame .= "ORDER BY name ASC";
         $thisGame_set = mysqli_query($db, $thisGame);
         confirm_result_set($thisGame_set);
