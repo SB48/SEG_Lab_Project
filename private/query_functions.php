@@ -18,7 +18,7 @@
     function find_all_members(){
         global $db;
         $sql = "SELECT * FROM Member ";
-        $sql .= "ORDER BY name ASC";
+        $sql = "ORDER BY name ASC";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -27,7 +27,7 @@
     function find_all_staff(){
         global $db;
         $sql = "SELECT * FROM Staff ";
-        $sql .= "ORDER BY name ASC";
+        $sql = "ORDER BY name ASC";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -35,80 +35,93 @@
 
     function find_all_rentals(){
         global $db;
-        $sql = "SELECT * FROM Rental ";
-        $sql .= "ORDER BY name ASC";
+        $sql = "SELECT * FROM Rentals ";
+        $sql = "ORDER BY name ASC";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
     }
 
-    function find_member_name($memberID){
+    //allGames
+    function allGames() {
         global $db;
-        $sql = "SELECT firstName, lastName FROM Member WHERE memberID = $memberID";
-        $result = mysqli_query($db,$sql);
-        confirm_result_set($result);
-        return $result;
+        $allGames = "SELECT * from Game";
+        $allGames .= "ORDER BY name ASC";
+        $allGames_set = mysqli_query($db, $allGames);
+        confirm_result_set($allGames_set);
+        return $allGames_set;
     }
 
-    function find_how_many_games_are_rented($memberID){
+    //age rating less than 12
+    function ageUnder12() {
         global $db;
-        $sql = "SELECT COUNT(rentalID) FROM Member WHERE memberID = $memberID AND returned = false";
-        $result = mysqli_query($db,$sql);
-        confirm_result_set($result);
-        return $result;
+        $ageUnder12 = "SELECT * from Game ";
+        $ageUnder12 .= "WHERE ageRating='PG' OR ageRating='3' OR ageRating='7'";
+        $ageUnder12_set = mysqli_query($db, $ageUnder12);
+        return $ageUnder12_set;
     }
 
-    function find_how_many_games_can_rent(){
+    //age rating less than 18
+    function ageUnder18() {
         global $db;
-        $sql = "SELECT value FROM Rules WHERE rule = 'rentalLimit'";
-        $result = mysqli_query($db,$sql);
-        confirm_result_set($result);
-        return $result;
+        $ageUnder18 = "SELECT * from Game ";
+        $ageUnder18 .= "WHERE ageRating='PG' OR ageRating='3' ";
+        $ageUnder18 .= "OR ageRating='7' ageRating='12' OR ageRating='16' ";
+        $ageUnder18 .= "OR ageRating='16' ageRating='12'";
+        $ageUnder18_set = mysqli_query($db, $ageUnder18);
+        return $ageUnder18_set;
     }
-
-
-    function find_is_banned($memberID){
+    //age rating more than + equals to 18
+    function ageOver18() {
         global $db;
-        $sql = "SELECT normalBan FROM Member WHERE memberID = $memberID";
-        $result = mysqli_query($db,$sql);
-        confirm_result_set($result);
-        return $result;
+        $ageOver18 = "SELECT * from Game ";
+        $ageOver18 .= "WHERE ageRating='18'";
+        $ageOver18_set = mysqli_query($db, $ageOver18);
+        return $ageOver18_set;
     }
-
-    function find_violations_possible(){
+    //PC platform
+    function pc() {
         global $db;
-        $sql = "SELECT value FROM Rules WHERE rule = 'numViolationsForBan'";
-        $result = mysqli_query($db,$sql);
-        confirm_result_set($result);
-        return $result;
+        $pc = "SELECT * from Game ";
+        $pc .= "WHERE platform='PC'";
+        $pc_set = mysqli_query($db, $pc);
+        return $pc_set;
     }
-
-
-
-    function find_violations_in_grace_period($memberID){
+    //XBOX platform
+    function xbox() {
         global $db;
-        $sql = "SELECT COUNT(memberID) FROM Violates WHERE memberID = $memberID AND nullified = false";
-        $result = mysqli_query($db,$sql);
-        confirm_result_set($result);
-        return $result;
+        $xbox = "SELECT * from Game ";
+        $xbox .= "WHERE platform='XBOX'";
+        $xbox_set = mysqli_query($db, $xbox);
+        return $xbox_set;
     }
 
-    function find_amount_due($memberID){
+    //PS4 platform
+    function ps4() {
         global $db;
-        $sql = "SELECT amountDue FROM Member WHERE memberID = $memberID";
-        $result = mysqli_query($db,$sql);
-        confirm_result_set($result);
-        return $result;
+        $ps4 = "SELECT * from Game ";
+        $ps4 .= "WHERE platform='PS4'";
+        $ps4_set = mysqli_query($db, $ps4);
+        return $ps4_set;
     }
 
-    function find_current_rentals($memberID){
+    //all available games
+    function availableGames() {
         global $db;
-        $sql ="SELECT gameID, name, returnDate FROM Rental, Game WHERE memberID = $memberID AND returned = false AND Rental.gameID = Game.gameID";
-        $result = mysqli_query($db,$sql);
-        confirm_result_set($result);
-        return $result;
+        $availableGames = "SELECT * from Game ";
+        $availableGames .= "WHERE copies>0";
+        $availableGames_set = mysqli_query($db, $availableGames);
+        return $availableGames_set;
     }
 
+    //price
+    function priceAsc() {
+        global $db;
+        $priceAsc = "SELECT * from Game ";
+        $priceAsc .= "ORDER BY price ASC";
+        $priceAsc_set = mysqli_query($db, $priceAsc);
+        return $priceAsc_set;
+    }
 
 
 ?>

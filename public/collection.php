@@ -1,6 +1,8 @@
 
-<?php require_once(PRIVATE_PATH . '/initialize.php'); ?>
+<?php require_once('../private/initialize.php'); ?>
 <?php require_once(SHARED_PATH . '/header.php'); ?>
+
+
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,8 +34,13 @@
         <div class="col-md-3">
             <div class="center">
     <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type">
-    <option value="profile">Avilable</option>
-    <option value="word">ForKids</option>
+    <option value="profile">Available</option>
+    <option value="word">under12</option>
+    <option value="word">under18</option>
+    <option value="word">18+</option>
+    <option value="word">PC</option>
+    <option value="word">XBOX</option>
+    <option value="word">PS4</option>
     <option value="hashtag">Movie</option>
   </select>
 </div></div>
@@ -41,11 +48,38 @@
 
 
 
-    <div class="row">
 
-        <include src="main_body.html"></include>
-  
+<?php
+$allGames_set = allGames();
+while($eachGame = mysqli_fetch_assoc( $allGames_set )) {
+    ?>
+    <div class="categoryPageDiv">
+        <div class="categoryProducts">
+            <div class="productUnit">
+                <div class="productUnitFrame">
+                    <a href="product.php">
+                        <?php echo '<img src="'.$eachGame["path"]. '" width="100px" class="productImage">' ?>
+                    </a>
+                    <a href="product.php" class="productLink">
+                        <?php printf ($eachGame["name"]);?>
+                    </a>
+                    <span class="rentPrice">
+                        <span class="price ">Price:
+                        <?php printf ($eachGame["price"]);?></span>
+                    </span>
+                    <div class="show1 productInfo">
+                        <span class="category ">Genre: <span class="productcategory"><?php printf ($eachGame["genre"]);?></span></span>
+                        <span class="productStatus st">Copies:<br><span class="productStatusResult"><?php printf ($eachGame["copies"]);?></span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <?php   
+}
+
+?>
+
 
 <?php require_once(SHARED_PATH . '/footer.php'); ?>
 

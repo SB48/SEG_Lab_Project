@@ -6,7 +6,7 @@ create table Member (
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
     fullName VARCHAR(100) AS (concat_ws(' ', firstName, lastName)),
-    dob DATE NOT NULL CHECK (dob < CURDATE()),
+    dob DATE NOT NULL,
     damageBan BOOLEAN DEFAULT FALSE,
     normalBan BOOLEAN DEFAULT FALSE,
     banBeginDate DATE DEFAULT NULL,
@@ -21,7 +21,8 @@ create table Game (
     genre VARCHAR(20),
     description VARCHAR(1000),
     copies TINYINT,
-    url VARCHAR(150),
+    url VARCHAR(250),
+    path VARCHAR(155),
     platform VARCHAR(50)
 );
 
@@ -40,7 +41,7 @@ create table Rental (
     gameID INT(12) NOT NULL,
     memberID INT(8) NOT NULL,
     returnDate DATE NOT NULL,
-    returned BOOL DEFAULT FALSE,
+    returned BOOLEAN DEFAULT FALSE,
     extensions TINYINT,
     
     FOREIGN KEY (memberID) REFERENCES Member(memberID) ON DELETE RESTRICT ON UPDATE CASCADE,
