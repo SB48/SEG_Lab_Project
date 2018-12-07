@@ -47,6 +47,15 @@
     </div>
 
 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/main_body.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="../js/jquery-1.12.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 
 
 
@@ -54,6 +63,7 @@
 $allGames_set = find_all_games();
 while($eachGame = mysqli_fetch_assoc($allGames_set)) {
     ?>
+    
     <div class="categoryPageDiv">
         <div class="categoryProducts">
             <div class="productUnit">
@@ -81,6 +91,9 @@ while($eachGame = mysqli_fetch_assoc($allGames_set)) {
 
 ?>
 
+<div style="clear:both"></div>
+<div>
+</div>
 
 <?php require_once(SHARED_PATH . '/footer.php'); ?>
 
