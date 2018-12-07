@@ -1,6 +1,6 @@
 
 <?php require_once('../private/initialize.php'); ?>
-<?php require_once(SHARED_PATH . '/header.php'); ?>
+<?php require_once('../private/shared/header.php'); ?>
 
 
 
@@ -49,9 +49,10 @@
 
 
 
+
 <?php
-$allGames_set = allGames();
-while($eachGame = mysqli_fetch_assoc( $allGames_set )) {
+$allGames_set = find_all_games();
+while($eachGame = mysqli_fetch_assoc($allGames_set)) {
     ?>
     <div class="categoryPageDiv">
         <div class="categoryProducts">

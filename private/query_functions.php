@@ -5,7 +5,6 @@
  * Date: 11/29/18
  * Time: 12:28 AM
  */
-
     function find_all_games(){
         global $db;
         $sql = "SELECT * FROM Game ";
@@ -14,7 +13,6 @@
         confirm_result_set($result);
         return $result;
     }
-
     function find_all_members(){
         global $db;
         $sql = "SELECT * FROM Member ";
@@ -23,7 +21,6 @@
         confirm_result_set($result);
         return $result;
     }
-
     function find_all_staff(){
         global $db;
         $sql = "SELECT * FROM Staff ";
@@ -32,7 +29,6 @@
         confirm_result_set($result);
         return $result;
     }
-
     function find_all_rentals(){
         global $db;
         $sql = "SELECT * FROM Rentals ";
@@ -40,16 +36,6 @@
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
-    }
-
-    //allGames
-    function allGames() {
-        global $db;
-        $allGames = "SELECT * from Game";
-        $allGames .= "ORDER BY name ASC";
-        $allGames_set = mysqli_query($db, $allGames);
-        confirm_result_set($allGames_set);
-        return $allGames_set;
     }
 
     //age rating less than 12
@@ -60,7 +46,6 @@
         $ageUnder12_set = mysqli_query($db, $ageUnder12);
         return $ageUnder12_set;
     }
-
     //age rating less than 18
     function ageUnder18() {
         global $db;
@@ -95,7 +80,6 @@
         $xbox_set = mysqli_query($db, $xbox);
         return $xbox_set;
     }
-
     //PS4 platform
     function ps4() {
         global $db;
@@ -104,7 +88,6 @@
         $ps4_set = mysqli_query($db, $ps4);
         return $ps4_set;
     }
-
     //all available games
     function availableGames() {
         global $db;
@@ -113,7 +96,6 @@
         $availableGames_set = mysqli_query($db, $availableGames);
         return $availableGames_set;
     }
-
     //price
     function priceAsc() {
         global $db;
@@ -122,7 +104,6 @@
         $priceAsc_set = mysqli_query($db, $priceAsc);
         return $priceAsc_set;
     }
-
     //specific game
     function find_game($id) {
         global $db;
