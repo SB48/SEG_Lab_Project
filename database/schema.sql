@@ -50,7 +50,7 @@ create table Rental (
 
 create table Rules (
     rule VARCHAR(30) PRIMARY KEY, 
-    value TINYINT NOT NULL
+    ruleVal TINYINT NOT NULL
 );
 
 create table Actions (
