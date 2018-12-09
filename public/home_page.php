@@ -59,4 +59,4 @@
         <div class="col-md-4"></div>
     </div>
 
-    <?php require_once(SHARED_PATH . '/footer.php'); ?>
+<?php require_once('../private/shared/footer.php'); ?>
