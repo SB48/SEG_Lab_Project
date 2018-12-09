@@ -84,6 +84,7 @@
             <p class="white">VIOLATIONS SINCE LAST YEAR:</p>
         </div>
         <div class="col-md-6">
+            <?php update_nullification(); ?>
             <p class="white-text-center"><?php echo $violationsInGracePeriod ?> out of <?php echo $violationsPossible ?> possible</p>
         </div>
     </div>

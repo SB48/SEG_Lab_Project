@@ -129,7 +129,7 @@
     }
     function find_how_many_games_can_rent(){
         global $db;
-        $sql = "SELECT value FROM Rules WHERE rule = 'rentalLimit'";
+        $sql = "SELECT ruleVal FROM Rules WHERE rule = 'rentalLimit'";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -143,7 +143,7 @@
     }
     function find_violations_possible(){
         global $db;
-        $sql = "SELECT value FROM Rules WHERE rule = 'numViolationsForBan'";
+        $sql = "SELECT ruleVal FROM Rules WHERE rule = 'numViolationsForBan'";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
