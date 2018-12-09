@@ -16,7 +16,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Home</a>
-                        <a class="dropdown-item" href="collection.php">Collection</a>
+                        <a class="dropdown-item" href="collection.php?id=all">Collection</a>
                         <a class="dropdown-item" href="collection_login.php">Log In</a>
                     </div>
                 </li>
@@ -54,7 +54,7 @@
     <div class="row white smaller-padding">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <a href="collection.php" class="button">VIDEO GAMES</a>
+            <a href="collection.php?id=all" class="button">VIDEO GAMES</a>
         </div>
         <div class="col-md-4"></div>
     </div>

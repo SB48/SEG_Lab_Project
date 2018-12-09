@@ -58,18 +58,15 @@
 
 
 <?php
-if( defined('id')){$games_set = availableGames();}
-else{
-    $sort = $_GET['id'];
-    if($sort == "available") {$games_set = availableGames();}
-    else if($sort == "under12") {$games_set = ageUnder12();}
-    else if($sort == "under18") {$games_set = ageUnder18();}
-    else if($sort == "18") {$games_set = ageOver18();}
-    else if($sort == "pc") {$games_set = pc();}
-    else if($sort == "xbox") {$games_set = xbox();}
-    else if($sort == "ps4") {$games_set = ps4();}
-    else {$games_set = availableGames();}
-}
+$sort = $_GET['id'];
+if($sort == "available") {$games_set = availableGames();}
+else if($sort == "under12") {$games_set = ageUnder12();}
+else if($sort == "under18") {$games_set = ageUnder18();}
+else if($sort == "18") {$games_set = ageOver18();}
+else if($sort == "pc") {$games_set = pc();}
+else if($sort == "xbox") {$games_set = xbox();}
+else if($sort == "ps4") {$games_set = ps4();}
+else {$games_set = availableGames();}
 while($eachGame = mysqli_fetch_assoc($games_set)) {
     ?>
     

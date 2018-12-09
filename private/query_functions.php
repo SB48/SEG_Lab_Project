@@ -122,7 +122,7 @@
     }
     function find_how_many_games_are_rented($memberID){
         global $db;
-        $sql = "SELECT COUNT(rentalID) FROM Member WHERE memberID = $memberID AND returned = false";
+        $sql = "SELECT COUNT(rentalID) FROM Rental WHERE memberID = $memberID AND returned = false";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -164,7 +164,10 @@
     }
     function find_current_rentals($memberID){
         global $db;
-        $sql ="SELECT gameID, name, returnDate FROM Rental, Game WHERE memberID = $memberID AND returned = false AND Rental.gameID = Game.gameID";
+        $sql ="SELECT COUNT(Game.gameID), Game.gameID, Rental.gameID, Game.name, Rental.returnDate, Rental.returned ";
+        $sql .= "FROM Rental, Game.gameID ";
+        $sql .= "INNER JOIN Rental ON Rental.gameID = Game.gameID ";
+        $sql .= "WHERE Rental.memberID = $memberID AND Rental.returned = false";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
