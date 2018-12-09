@@ -115,7 +115,8 @@
                     while ($row = $sql->fetch_assoc()){
                         $id = $row['gameID'];
                         $name = $row['name'];
-                        echo "<a href=/.$id.>" .$name. "</a>";
+                        $platform = $row['platform'];
+                        echo "<a href=/.$id.>" .$name. "-" . $platform. "</a>";
                     }
                     ?>
                 </div>
