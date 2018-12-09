@@ -40,8 +40,46 @@
 
     <div class="row">
 
-        <include src="add_member.html"></include>
-  
+        <?php
+        $firstname=$_POST['firstName'];
+        $lastprice=$_POST['lastName'];
+        $dob=$_POST['dob'];
+
+        $sql = "Insert Into Game (firstName, lastName,dob)
+VALUES
+('$firstname','$lastprice','$dob')";
+
+        mysqli_query($db,$sql)
+        ?>
+        <form action="addm.php" method="post">
+            <div id="loginDiv">
+                <div class="loginSmallDiv" id="loginSmallDiv">
+
+                    <div class="loginInput ">
+				<span class="loginInputIcon ">
+					<span class="glyphicon glyphicon-eye-open"></span>
+				</span>
+                        <input type="text" placeholder="firstName" name="firstName" id="firstName">
+                    </div>
+                    <div class="loginInput ">
+				<span class="loginInputIcon ">
+					<span class="glyphicon glyphicon-eye-open"></span>
+				</span>
+                        <input type="text" placeholder="lastName" name="lastName" id="lastName">
+                    </div>
+                    <form action="/action_page.php"><p style="color: white">
+                            Birthday: </p><input type="date" name="dob">
+
+                    </form>
+
+                    <div style="margin-top:20px">
+                        <button type="submit" class="btn btn-block redButton">ADD</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
     </div>
 
 
