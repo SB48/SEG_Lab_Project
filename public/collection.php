@@ -33,15 +33,15 @@
         </div>
         <div class="col-md-3">
             <div class="center">
-    <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type">
-    <option value="profile">Available</option>
-    <option value="word">under12</option>
-    <option value="word">under18</option>
-    <option value="word">18+</option>
-    <option value="word">PC</option>
-    <option value="word">XBOX</option>
-    <option value="word">PS4</option>
-    <option value="hashtag">Movie</option>
+    <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type" onchange="window.location='collection.php?id='+ value;">
+    <option value="all">All</option>
+    <option value="available">Available</option>
+    <option value="under12">under12</option>
+    <option value="under18">under18</option>
+    <option value="18">18+</option>
+    <option value="pc">PC</option>
+    <option value="xbox">XBOX</option>
+    <option value="ps4">PS4</option>
   </select>
 </div></div>
     </div>
@@ -57,21 +57,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
-
-
 <?php
-$allGames_set = find_all_games();
-while($eachGame = mysqli_fetch_assoc($allGames_set)) {
+$sort = $_GET['id'];
+if($sort == "available") {$games_set = availableGames();}
+else if($sort == "under12") {$games_set = ageUnder12();}
+else if($sort == "under18") {$games_set = ageUnder18();}
+else if($sort == "18") {$games_set = ageOver18();}
+else if($sort == "pc") {$games_set = pc();}
+else if($sort == "xbox") {$games_set = xbox();}
+else if($sort == "ps4") {$games_set = ps4();}
+else {$games_set = availableGames();}
+while($eachGame = mysqli_fetch_assoc($games_set)) {
     ?>
     
     <div class="categoryPageDiv">
         <div class="categoryProducts">
             <div class="productUnit">
                 <div class="productUnitFrame">
-                    <a href="product.php">
+                    <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>">
                         <?php echo '<img src="'.$eachGame["path"]. '" width="100px" class="productImage">' ?>
                     </a>
-                    <a href="product.php" class="productLink">
+                    <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>" class="productLink">
                         <?php printf ($eachGame["name"]);?>
                     </a>
                     <span class="rentPrice">
@@ -95,7 +101,7 @@ while($eachGame = mysqli_fetch_assoc($allGames_set)) {
 <div>
 </div>
 
-    <?php require_once('../private/shared/footer.php'); ?>
+<?php require_once(SHARED_PATH . '/footer.php'); ?>
 
 
 

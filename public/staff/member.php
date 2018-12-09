@@ -31,16 +31,16 @@
     $id = isset($_GET['id']) ? (int) $_GET['id'] : 1;
 
     $memberNameSet = find_member_name($id);
-    $memberName = mysqli_fetch_assoc($memberNameSet)['id'];
+    $memberName = mysqli_fetch_assoc($memberNameSet)['firstName'];
 
     $numberOfVideosPossibleSet = find_how_many_games_can_rent();
-    $numberOfVideosPossible = mysqli_fetch_assoc($numberOfVideosPossibleSet)['value'];
+    $numberOfVideosPossible = mysqli_fetch_assoc($numberOfVideosPossibleSet)['ruleVal'];
 
     $isBannedSet = find_is_banned($id);
     $isBanned = mysqli_fetch_assoc($isBannedSet)['normalBan'];
 
     $violationsPossibleSet = find_violations_possible();
-    $violationsPossible = mysqli_fetch_assoc($violationsPossibleSet)['value'];
+    $violationsPossible = mysqli_fetch_assoc($violationsPossibleSet)['ruleVal'];
 
     $gamesCurrentlyRented = find_how_many_games_are_rented($id);
 
@@ -49,7 +49,8 @@
     $findAmountDueSet = find_amount_due($id);
     $findAmountDue = mysqli_fetch_assoc($findAmountDueSet)['amountDue'];
 
-    $currentRentalsSet = find_current_rentals($id);
+    //$currentRentalsSet = find_current_rentals($id);
+    //if (isset($currentRentalsSet)) {echo "current rental ok ";}
 
     ?>
 
