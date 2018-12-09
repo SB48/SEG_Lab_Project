@@ -45,8 +45,81 @@
 
     <div class="row">
 
-        <include src="add_game.html"></include>
-  
+           <?php
+        $name=$_POST['name'];
+        $price=$_POST['price'];
+        $copies=$_POST['copies'];
+        $URL=$_POST['URL'];
+        $age=$_POST['age'];
+        $platform=$_POST['platform'];
+
+        $sql = "Insert Into Game (name, price,copies,url,ageRating,platform)
+VALUES
+('$name','$price','$copies','$URL','$age','$platform')";
+
+        mysqli_query($db,$sql)
+        ?>
+
+
+        <form  action="collection_add_game.php" method="post">
+            <div id="loginDiv">
+                <div class="loginSmallDiv" id="loginSmallDiv">
+                    <div class="loginInput ">
+				<span class="loginInputIcon ">
+					<span class="
+glyphicon glyphicon-ice-lolly"></span>
+				</span>
+                        <input type="text" placeholder="GameName" name="name" id="name">
+                    </div>
+                    <div class="loginInput ">
+				<span class="loginInputIcon ">
+					<span class="glyphicon glyphicon-gbp"></span>
+				</span>
+                        <input type="text" placeholder="Price" name="price" id="price">
+                    </div>
+                    <div class="loginInput ">
+				<span class="loginInputIcon ">
+					<span class="glyphicon glyphicon-gbp"></span>
+				</span>
+                        <input type="text" placeholder="Copies" name="copies" id="copies">
+                    </div>
+                    <div class="loginInput ">
+				<span class="loginInputIcon ">
+					<span class="glyphicon glyphicon-picture"></span>
+				</span>
+                        <input type="url" placeholder="URL" name="URL" id="URL">
+                    </div>
+                    <div class="loginInput ">
+                        <select name="age" id="age" class="custom-select sources left" placeholder="Source Type">
+                            <option value="PG">PG</option>
+                            <option value="3">3</option>
+                            <option value="7">7</option>
+                            <option value="12">12</option>
+                            <option value="16">16</option>
+                            <option value="18">18</option>
+                        </select>
+                    </div>
+                    <div class="loginInput ">
+                        <select name="platform" id="platform" class="custom-select sources left" placeholder="Source Type">
+                            <option value="PS">PS</option>
+                            <option value="PS3">PS3</option>
+                            <option value="PS4">PS4</option>
+                            <option value="XBOX360">XBOX360</option>
+                            <option value="XBOXONE">XBOXONE</option>
+                            <option value="Switch">Switch</option>
+                            <option value="3DS">3DS</option>
+                            <option value="PC">PC</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <button type="submit" class="btn btn-block redButton">ADD</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
     </div>
 
 
