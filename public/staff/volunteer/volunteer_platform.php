@@ -49,12 +49,9 @@
                 <div id="myDropdown" class="dropdown-content">
                     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
                     <?php
-                    $sql = find_all_members();
-
-                    while ($row = $sql->fetch_assoc()){
-                        $id = $row['memberID'];
-                        $name = $row['firstName'];
-                        echo "<a href=/.$id.>" .$name. "</a>";
+                      $allMember_set = find_all_memfbers();
+                    while ($eachMember = mysqli_fetch_assoc($allMember_set)) {
+                     echo '<a href=/'.$eachMember["memberID"].';>'.$eachMember["firstName"].'</a>';
                     }
                     ?>
                 </div>
@@ -109,15 +106,11 @@
                 <button onclick="myFunction2()" class="dropbtn">FIND GAME</button>
                 <div id="myDropdown2" class="dropdown-content">
                     <input type="text" placeholder="Search.." id="myInput2" onkeyup="filterFunction2()">
-                    <?php
-                    $sql = find_all_games();
-
-                    while ($row = $sql->fetch_assoc()){
-                        $id = $row['gameID'];
-                        $name = $row['name'];
-                        $platform = $row['platform'];
-                        echo "<a href=/.$id.>" .$name. "-" . $platform. "</a>";
-                    }
+                       <?php
+                        $allGames_set = find_all_games();
+                        while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
+                            echo '<a href=/'.$eachGame["gameID"].';>'.$eachGame["name"].'</a>';
+                        }
                     ?>
                 </div>
             </div>
