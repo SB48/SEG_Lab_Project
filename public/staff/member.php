@@ -167,7 +167,6 @@
                     <th>due</th>
                     <th>extend</th>
                     <th>faulty</th>
-                    <th>late</th>
                     <th>return</th>
                 </tr>
                 <?php $no = 0 ?>
@@ -176,15 +175,40 @@
                     <td><?php echo ++$no; ?></td>
                     <td><?php echo $currentRentals['name']; ?></td>
                     <td><?php echo $currentRentals['returnDate']; ?></td>
-                    <td><button class="button-new">EXTEND</button></td>
-                    <td><button class="button-new">FAULTY</button></td>
-                    <td><button class="button-new">LATE</button></td>
-                    <td><button class="button-new">RETURN</button></td>
+                    <td><input type="button" name="extend" class=button-new" value="EXTEND"/></td>
+                    <?php if(array_key_exists('extend',$_POST)){
+                        extension($currentRentals['rentalID'], $currentRentals['memberID']);}
+                    ?>
+                    <td><input type="button" name="late" class=button-new" value="LATE"/></td>
+                    <?php if(array_key_exists('faulty',$_POST)){
+                        late($currentRentals['memberID']);}
+                    ?>
+                    <td><input type="button" name="faulty" class=button-new" value="RETURN FAULTY"/></td>
+                    <?php if(array_key_exists('faulty',$_POST)){
+                        damagedReturn($currentRentals['rentalID']);}
+                    ?>
+                    <td><input type="button" name="return" class=button-new" value="RETURN OK"/></td>
+                    <?php if(array_key_exists('return',$_POST)){
+                        normalReturn($currentRentals['rentalID']);}
+                    ?>
                 </tr>
                 <?php } ?>
             </table>
         </div>
     </div>
+
+    <input type="button" name="test" id="test" value="RUN" /><br/>
+
+    <?php
+
+    function testfun()
+    {
+        echo "Your test function on button click is working";
+    }
+    if(array_key_exists('test',$_POST)){
+        testfun();
+    }
+    ?>
 
 
     <?php mysqli_free_result() ?>
