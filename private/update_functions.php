@@ -1,7 +1,6 @@
 <?php
 
 function update_nullification(){
-
     global $db;
     $sql2 = "SELECT ruleVal FROM Rules WHERE rule = 'gracePeriod'";
     $sql = "UPDATE Violates SET nullified = true WHERE DATEDIFF(CURDATE(), dateOfViolation) > 7*($sql2)";
@@ -27,4 +26,9 @@ function insert_games($gameName, $price, $copies,$URL,$age,$platform){
     return "in";
 }
 
+function change_rule($ruleName, $newRuleVal){
+  global $db;
+  $sql = "UPDATE Rules SET ruleVal = '$newRuleVal' WHERE rule = '$ruleName'";
+  return isset($sql);
+}
 ?>
