@@ -14,7 +14,7 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../../home_page.php">Home</a>
+                        <a class="dropdown-item" href="../../../index.php">Home</a>
                         <a class="dropdown-item" href="../../collection.php?id=all">Collection</a>
                         <a class="dropdown-item" href="../../login.html">LogIn</a>
                     </div>

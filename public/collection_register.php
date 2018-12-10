@@ -13,7 +13,7 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="home_page.php">About</a>
+                        <a class="dropdown-item" href="../index.php">About</a>
                         <a class="dropdown-item" href="collection.php">Collection</a>
                         <a class="dropdown-item" href="collection_login.php">Log In</a>
                     </div>
