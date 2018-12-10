@@ -27,10 +27,52 @@
     </nav>
 
     <div class="row white">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <h1>Collection</h1>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h1>Collection</h1>
+    </div>
+    <div class="col-md-3"></div>>
+    </div>
+
+    <div class="row white">
+        <div class="col-md-3">
+            <div class="dropdown">
+                <button onclick="myFunction2()" class="dropbtn">FIND GAME</button>
+                <div id="myDropdown2" class="dropdown-content">
+                    <input type="text" placeholder="Search.." id="myInput2" onkeyup="filterFunction2()">
+                    <?php
+                    $allGames_set = find_all_games();
+                    while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
+                        echo '<a href=/'.$eachGame["gameID"].';>'.$eachGame["name"].'</a>';
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <script>
+                /* When the user clicks on the button,
+                toggle between hiding and showing the dropdown content */
+                function myFunction2() {
+                    document.getElementById("myDropdown2").classList.toggle("show");
+                }
+
+                function filterFunction2() {
+                    var input, filter, ul, li, a, i;
+                    input = document.getElementById("myInput2");
+                    filter = input.value.toUpperCase();
+                    div = document.getElementById("myDropdown2");
+                    a = div.getElementsByTagName("a");
+                    for (i = 0; i < a.length; i++) {
+                        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            a[i].style.display = "";
+                        } else {
+                            a[i].style.display = "none";
+                        }
+                    }
+                }
+            </script>
         </div>
+        <div class="col-md-6"></div>
         <div class="col-md-3">
             <div class="center">
     <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type" onchange="window.location='collection.php?id='+ value;">

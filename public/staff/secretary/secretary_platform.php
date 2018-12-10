@@ -45,18 +45,16 @@
         <div class="col-md-4">
             <p class="white-text">find a member</p>
             <div class="dropdown">
-                <form action="" method="post">
-                <input onclick="myFunction()" class="dropbtn" type="submit" name="button">FIND</input>
+                <input onclick="myFunction()" class="dropbtn" type="submit" name="button"></input>
                 <div id="myDropdown" class="dropdown-content">
                     <input type="text" name="search" onkeyup="filterFunction()"placeholder="Search.." id="myInput" >
                     <?php
                     $allMember_set = find_all_members();
                     while ($eachMember = mysqli_fetch_assoc($allMember_set)) {
-                        echo '<a href=/'.$eachMember["memberID"].';>'.$eachMember["firstName"].'</a>';
+                        echo '<a href="../member.php?id='.$eachMember["memberID"].'";>'.$eachMember["fullName"].'</a>';
                     }
                     ?>
                 </div>
-                </form>
             </div>
 
             <script>
@@ -104,13 +102,13 @@
             <p class="white-text">find a game</p>
             <div class="dropdown">
                
-                    <input onclick="myFunction2()" class="dropbtn" type="submit" name="button2">FIND</input>
+                    <input onclick="myFunction2()" class="dropbtn" type="submit" name="button2"></input>
                 <div id="myDropdown2" class="dropdown-content">
                     <input type="text" placeholder="Search.." name="search2" id="myInput2" onkeyup="filterFunction2()">
                      <?php
                     $allGames_set = find_all_games();
                     while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
-                        echo '<a href=/'.$eachGame["gameID"].';>'.$eachGame["name"].'</a>';
+                        echo ' <a href="../../product.php?id='.$eachGame["gameID"].'";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
                     }
                     ?>
                 </div>

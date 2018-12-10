@@ -23,7 +23,3 @@ require_once ('update_functions.php');
 require_once('member_buttons_functions.php');
 
 $db = db_connect();
-
-
-
-?>

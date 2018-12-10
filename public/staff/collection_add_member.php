@@ -1,18 +1,35 @@
-
-
 <?php require_once('../../private/initialize.php'); ?>
 <?php require_once('../../private/shared/header.php'); ?>
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST["firstName"]) && isset($_POST["lastName"])) {
+        $firstname = $_POST['firstName'];
+        $lastname = $_POST['lastName'];
+        $dob = $_POST['dob'];
+        $result = insert_member($firstname, $lastname, $dob);
+        echo "SUCCESS";
+    } else {
+        echo "ERROR";
+    }
+}
+
+?>
+
 
 <div class="container">
+    <link href="">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">CGS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -33,25 +50,15 @@
         </div>
         <div class="col-md-3">
             <div class="center">
-</div></div>
+            </div>
+        </div>
     </div>
-
 
 
     <div class="row">
 
-        <?php
-        $firstname=$_POST['firstName'];
-        $lastprice=$_POST['lastName'];
-        $dob=$_POST['dob'];
 
-        $sql = "Insert Into Game (firstName, lastName,dob)
-VALUES
-('$firstname','$lastprice','$dob')";
-
-        mysqli_query($db,$sql)
-        ?>
-        <form action="addm.php" method="post">
+        <form action="collection_add_member.php" method="post">
             <div id="loginDiv">
                 <div class="loginSmallDiv" id="loginSmallDiv">
 
@@ -67,22 +74,18 @@ VALUES
 				</span>
                         <input type="text" placeholder="lastName" name="lastName" id="lastName">
                     </div>
-                    <form action="/action_page.php"><p style="color: white">
-                            Birthday: </p><input type="date" name="dob">
 
-                    </form>
+                           <p>Birthday: </p><input type="date" name="dob">
 
-                    <div style="margin-top:20px">
-                        <button type="submit" class="btn btn-block redButton">ADD</button>
-                    </div>
+                    <input type="submit" value="Submit">
+
                 </div>
             </div>
         </form>
 
 
+
     </div>
-
-
 
 
     <div class="row py-5">
@@ -95,4 +98,4 @@ VALUES
         <div class="col-md-12"></div>
 
 
-<?php require_once('../../private/shared/footer.php'); ?>
+        <?php require_once('../../private/shared/footer.php'); ?>

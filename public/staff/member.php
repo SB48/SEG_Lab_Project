@@ -53,7 +53,7 @@
 
     $currentRentalsSet = find_current_rentals($id);
     $currentRentals = mysqli_fetch_assoc($currentRentalsSet)['num'];
-    
+
     ?>
 
 
