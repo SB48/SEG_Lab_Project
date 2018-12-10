@@ -14,10 +14,9 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">About</a>
-                        <a class="dropdown-item" href="education.html">Education</a>
-                        <a class="dropdown-item" href="career.html">Career</a>
-                        <a class="dropdown-item" href="skills.html">Skills</a>
+                        <a class="dropdown-item" href="../../home_page.php">Home</a>
+                        <a class="dropdown-item" href="../../collection.php?id=all">Collection</a>
+                        <a class="dropdown-item" href="../../login.html">LogIn</a>
                     </div>
                 </li>
             </ul>

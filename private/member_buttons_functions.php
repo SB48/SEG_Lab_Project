@@ -22,9 +22,7 @@ function normalReturn($rentalID){
 
 function closeTheRental($rentalID){
     global $db;
-    $sql = "UPDATE Rental 
-            SET returned = true 
-            WHERE rentalID = $rentalID";
+    $sql = "UPDATE Rental SET returned = true WHERE rentalID = $rentalID";
     $result = mysqli_query($db,$sql);
     confirm_result_set($result);
     return $result;
@@ -77,13 +75,14 @@ function damagedReturn($rentalID){
  */
 function payback($memberID){
     global $db;
-    $sql = "UPDATE Member 
-                  SET amountDue = 0, damageBan = false    
-                    WHERE memberID = $memberID";
+    $sql = "UPDATE Member ";
+    $sql .= "SET amountDue = 0, damageBan = false ";
+    $sql .= "WHERE memberID = $memberID";
     $result = mysqli_query($db,$sql);
     confirm_result_set($result);
     return $result;
 }
+
 
 function extension($rentalID, $memberID){
     global $db;

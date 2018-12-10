@@ -16,8 +16,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="../../home_page.php">Home</a>
-                        <a class="dropdown-item" href="../../collection.php">Collection</a>
-                        <a class="dropdown-item" href="#">Dummy</a>
+                        <a class="dropdown-item" href="../../collection.php?id=all">Collection</a>
                         <a class="dropdown-item" href="../../login.html">Log In</a>
                     </div>
                 </li>
@@ -49,9 +48,9 @@
                 <div id="myDropdown" class="dropdown-content">
                     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
                     <?php
-                      $allMember_set = find_all_memfbers();
+                    $allMember_set = find_all_members();
                     while ($eachMember = mysqli_fetch_assoc($allMember_set)) {
-                     echo '<a href=/'.$eachMember["memberID"].';>'.$eachMember["firstName"].'</a>';
+                        echo '<a href="../member.php?id='.$eachMember["memberID"].'";>'.$eachMember["fullName"].'</a>';
                     }
                     ?>
                 </div>
@@ -106,11 +105,11 @@
                 <button onclick="myFunction2()" class="dropbtn">FIND GAME</button>
                 <div id="myDropdown2" class="dropdown-content">
                     <input type="text" placeholder="Search.." id="myInput2" onkeyup="filterFunction2()">
-                       <?php
-                        $allGames_set = find_all_games();
-                        while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
-                            echo '<a href=/'.$eachGame["gameID"].';>'.$eachGame["name"].'</a>';
-                        }
+                    <?php
+                    $allGames_set = find_all_games();
+                    while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
+                        echo ' <a href="../../product.php?id='.$eachGame["gameID"].'";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
+                    }
                     ?>
                 </div>
             </div>

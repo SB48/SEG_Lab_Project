@@ -116,7 +116,7 @@
     }
     function find_member_name($memberID){
         global $db;
-        $sql = "SELECT firstName, lastName FROM Member WHERE memberID = $memberID";
+        $sql = "SELECT fullName FROM Member WHERE memberID = $memberID";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -167,6 +167,14 @@
         global $db;
         $sql ="SELECT COUNT(Game.gameID) AS num FROM Rental INNER JOIN Game ON Rental.gameID = Game.gameID ";
         $sql .= "WHERE Rental.memberID = $memberID AND Rental.returned = false";
+        $result = mysqli_query($db,$sql);
+        confirm_result_set($result);
+        return $result;
+    }
+
+    function find_all_current_rentals($memberID){
+        global $db;
+        $sql ="SELECT rentalID, gameID, memberID, returnDate, returned, extensions  FROM Rental WHERE memberID = $memberID AND returned = false";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;

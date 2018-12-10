@@ -2,6 +2,8 @@
 <?php require_once('../../private/initialize.php'); ?>
 <?php require_once('../../private/shared/header.php'); ?>
 
+
+
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">CGS</a>
@@ -17,7 +19,6 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="../home_page.php">Home</a>
                         <a class="dropdown-item" href="../collection.php">Collection</a>
-                        <a class="dropdown-item" href="#">Dummy</a>
                         <a class="dropdown-item" href="../login.html">Log In</a>
                     </div>
                 </li>
@@ -31,7 +32,7 @@
     $id = isset($_GET['id']) ? (int) $_GET['id'] : 1;
 
     $memberNameSet = find_member_name($id);
-    $memberName = mysqli_fetch_assoc($memberNameSet)['firstName'];
+    $memberName = mysqli_fetch_assoc($memberNameSet)['fullName'];
 
     $numberOfVideosPossibleSet = find_how_many_games_can_rent();
     $numberOfVideosPossible = mysqli_fetch_assoc($numberOfVideosPossibleSet)['ruleVal'];
@@ -54,164 +55,160 @@
     $currentRentalsSet = find_current_rentals($id);
     $currentRentals = mysqli_fetch_assoc($currentRentalsSet)['num'];
 
-    ?>
+    $rentalTableSet = find_all_current_rentals($id);
 
-
+  ?>
+    <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
 
     <div class="row white">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h1><?php echo $memberName ?></h1>
+            <h1><?php echo $memberName; ?></h1>
         </div>
         <div class="col-md-3"></div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <p class="white">CURRENTLY RENTING:</p>
-        </div>
-        <div class="col-md-6">
-            <p class="white-text-center"><?php echo $gamesCurrentlyRented ?> out of <?php echo $numberOfVideosPossible ?> possible</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <p class="white">IS BANNED:</p>
-        </div>
-        <div class="col-md-6">
-            <p class="white-text-center"><?php echo $isBanned?></p>
-<!--         we need to somehow get until when the member is banned   - until 20/12/2018-->
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <p class="white">VIOLATIONS SINCE LAST YEAR:</p>
-        </div>
-        <div class="col-md-6">
-            <?php update_nullification(); ?>
-            <p class="white-text-center"><?php echo $violationsInGracePeriod ?> out of <?php echo $violationsPossible ?> possible</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <p class="white">TO PAY:</p>
-        </div>
-        <div class="col-md-6">
-            <p class="white-text-center"><?php echo $findAmountDue ?></p>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-8"></div>
-        <div class="col-md-4">
-            <button class="button-new">PAY BACK</button>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <p class="white">pick a game to rent (from available)</p>
-        </div>
-        <div class="col-md-6">
-            <div class="dropdown padding">
-                <!--                can rent only if not banned and renting less than the limit-->
-                <?php
-                $status = "";
-                if(($gamesCurrentlyRented >= $numberOfVideosPossible) || $isBanned || ($findAmountDue > 0)) {
-                    $status = "disabled";} ?>
-                <button onclick="myFunction()" class="dropbtn" <?php echo $status; ?> >FIND</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                    <a href="#about">Monica</a>
-                    <a href="#base">Rachel</a>
-                    <a href="#blog">Ros</a>
-                    <a href="#contact">Chandler</a>
-                    <a href="#custom">Pheobe</a>
-                    <a href="#support">Joey</a>
+    <div class="row user-menu-container square">
+        <div class="col-md-12 user-details">
+
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+                    <h3>VIOLATIONS</h3>
+                    <h4><?php echo $violationsInGracePeriod ?>/<?php echo $violationsPossible ?></h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>AMOUNT DUE</h3>
+                    <h4><?php echo $findAmountDue ?></h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>CURRENTLY RENTING</h3>
+                    <h4><?php echo $gamesCurrentlyRented ?>/<?php echo $numberOfVideosPossible ?></h4>
                 </div>
             </div>
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+                    <h3>RENT A GAME</h3>
+                    <div class="dropdown padding pt-2">
+                        <!--                can rent only if not banned and renting less than the limit-->
+                        <?php
+                        $status = "";
+                        if(($gamesCurrentlyRented >= $numberOfVideosPossible) || $isBanned || ($findAmountDue > 0)) {
+                            $status = "disabled";} ?>
+                        <input onclick="myFunction()" class="dropbtn" type="submit" name="button">
+                        <div id="myDropdown" class="dropdown-content">
+                            <input type="text" placeholder="Search.." name="search" id="myInput" onkeyup="filterFunction()">
+                            <?php
+                            $allGames_set = find_all_games();
+                            while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
+                                echo ' <a href="../product.php?id='.$eachGame["gameID"].'";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
+                            }
+                            ?>
+                        </div>
+                    </div>
 
-            <script>
-                /* When the user clicks on the button,
-                toggle between hiding and showing the dropdown content */
-                function myFunction() {
-                    document.getElementById("myDropdown").classList.toggle("show");
-                }
-
-                function filterFunction() {
-                    var input, filter, ul, li, a, i;
-                    input = document.getElementById("myInput");
-                    filter = input.value.toUpperCase();
-                    div = document.getElementById("myDropdown");
-                    a = div.getElementsByTagName("a");
-                    for (i = 0; i < a.length; i++) {
-                        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                            a[i].style.display = "";
-                        } else {
-                            a[i].style.display = "none";
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction() {
+                            document.getElementById("myDropdown").classList.toggle("show");
                         }
-                    }
-                }
-            </script>
+
+                        function filterFunction() {
+                            var input, filter, ul, li, a, i;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            div = document.getElementById("myDropdown");
+                            a = div.getElementsByTagName("a");
+                            for (i = 0; i < a.length; i++) {
+                                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    a[i].style.display = "";
+                                } else {
+                                    a[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>LIST OF RENTALS</h3>
+                    <h4>[scroll down]</h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>PAY BACK THE FINE</h3>
+                    <td><form action="member.php?id=<?php echo $id; ?>" method="post">
+                            <input type="submit" name="pay_back" value="PAY BACK" class="button-new"/>
+                        </form>
+                    </td>
+                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST["pay_back"]))
+                    {
+                        payback($id);
+                    }?>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <p class="white">CURRENTLY RENTING:</p>
-        </div>
-        <div class="col-md-9">
-        </div>
-    </div>
-    <div class="row">
+
+
+
+
+    <div class="row pt-5">
         <div class="col-md-12">
             <table id="customers">
                 <tr>
-                    <th>no</th>
-                    <th>name</th>
-                    <th>due</th>
-                    <th>extend</th>
-                    <th>faulty</th>
-                    <th>return</th>
+                    <th><h3>no</h3></th>
+                    <th><h3>name</h3></th>
+                    <th><h3>due</h3></th>
+                    <th><h3>extend</h3></th>
+                    <th><h3>late</h3></th>
+                    <th><h3>return faulty</h3></th>
+                    <th><h3>return ok</h3></th>
                 </tr>
-                <?php $no = 0 ?>
-                <?php while($currentRentals = mysqli_fetch_assoc($currentRentalsSet)) {?>
+                <?php
+                    $no = 0;
+                    while ($rental = mysqli_fetch_assoc($rentalTableSet)) { ?>
                 <tr>
-                    <td><?php echo ++$no; ?></td>
-                    <td><?php echo $currentRentals['name']; ?></td>
-                    <td><?php echo $currentRentals['returnDate']; ?></td>
-                    <td><input type="button" name="extend" class=button-new" value="EXTEND"/></td>
-                    <?php if(array_key_exists('extend',$_POST)){
-                        extension($currentRentals['rentalID'], $currentRentals['memberID']);}
-                    ?>
-                    <td><input type="button" name="late" class=button-new" value="LATE"/></td>
-                    <?php if(array_key_exists('faulty',$_POST)){
-                        late($currentRentals['memberID']);}
-                    ?>
-                    <td><input type="button" name="faulty" class=button-new" value="RETURN FAULTY"/></td>
-                    <?php if(array_key_exists('faulty',$_POST)){
-                        damagedReturn($currentRentals['rentalID']);}
-                    ?>
-                    <td><input type="button" name="return" class=button-new" value="RETURN OK"/></td>
-                    <?php if(array_key_exists('return',$_POST)){
-                        normalReturn($currentRentals['rentalID']);}
-                    ?>
+                    <td><h3><?php echo $no = $no + 1; ?></h3></td>
+                    <td><h3><?php echo $rental['gameID']; ?></h3></td>
+                    <td><h3><?php echo $rental['returnDate']; ?></h3></td>
+                    <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
+                            <input type="submit" name="extend" value="EXTEND" class="button-new"/>
+                        </form>
+                    </td>
+                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST["extend"]))
+                    {
+                        extension($rental['rentalID'], $rental['memberID']);
+                    }?>
+                    <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
+                            <input type="submit" name="late" value="LATE" class="button-new"/>
+                        </form>
+                    </td>
+                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['late']))
+                    {
+                        late($rental['memberID']);
+                    } ?>
+                    <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
+                            <input type="submit" name="faulty" value="RETURN FAULTY" class="button-new"/>
+                        </form>
+                    </td>
+                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['faulty']))
+                    {
+                        damagedReturn($rental['rentalID']);
+                    } ?>
+                    <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
+                            <input type="submit" name="ok" value="RETURN OK" class="button-new"/>
+                        </form>
+                    </td>
+                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['ok']))
+                    {
+                        normalReturn($rental['rentalID']);
+                    } ?>
                 </tr>
                 <?php } ?>
             </table>
         </div>
     </div>
 
-    <input type="button" name="test" id="test" value="RUN" /><br/>
-
-    <?php
-
-    function testfun()
-    {
-        echo "Your test function on button click is working";
-    }
-    if(array_key_exists('test',$_POST)){
-        testfun();
-    }
-    ?>
 
 
     <?php mysqli_free_result() ?>
@@ -219,4 +216,7 @@
 
 
     <?php require_once('../../private/shared/footer.php'); ?>
+</div>
+
+
 

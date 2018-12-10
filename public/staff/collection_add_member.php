@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <div class="container">
     <link href="">
@@ -33,10 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">About</a>
-                        <a class="dropdown-item" href="education.html">Education</a>
-                        <a class="dropdown-item" href="career.html">Career</a>
-                        <a class="dropdown-item" href="skills.html">Skills</a>
+                        <a class="dropdown-item" href="../home_page.php">Home</a>
+                        <a class="dropdown-item" href="../collection.php?id=all">Collection</a>
+                        <a class="dropdown-item" href="../collection_login.php">LogIn</a>
                     </div>
                 </li>
             </ul>
