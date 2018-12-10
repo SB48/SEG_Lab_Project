@@ -1,6 +1,25 @@
 <?php require_once('../../../private/initialize.php'); ?>
 <?php require_once('../../../private/shared/header.php'); ?>
+<?php
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (isset($_POST["gameName"])) {
+        $gameName=$_POST['gameName'];
+        $price=$_POST['price'];
+        $copies=$_POST['copies'];
+        $URL=$_POST['URL'];
+        $age=$_POST['age'];
+        $platform=$_POST['platform'];
+        $result = insert_games($gameName, $price, $copies,$URL,$age,$platform);
+        print "ssss";
+        echo "SUCCESS";
+    } else {
+        echo "ERROR";
+    }
+}
+
+?>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">CGS</a>
@@ -27,39 +46,13 @@
     <div class="row white">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h1>Register</h1>
+            <h1>Add Game</h1>
         </div>
         <div class="col-md-3">
             <div class="center">
-<!--
-    <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type">
-    <option value="profile">Avilable</option>
-    <option value="word">ForKids</option>
-    <option value="hashtag">Movie</option>
-  </select>
--->
 </div></div>
     </div>
-
-
-
     <div class="row">
-
-           <?php
-        $name=$_POST['name'];
-        $price=$_POST['price'];
-        $copies=$_POST['copies'];
-        $URL=$_POST['URL'];
-        $age=$_POST['age'];
-        $platform=$_POST['platform'];
-
-        $sql = "Insert Into Game (name, price,copies,url,ageRating,platform)
-VALUES
-('$name','$price','$copies','$URL','$age','$platform')";
-
-        mysqli_query($db,$sql)
-        ?>
-
 
         <form  action="collection_add_game.php" method="post">
             <div id="loginDiv">
@@ -69,7 +62,7 @@ VALUES
 					<span class="
 glyphicon glyphicon-ice-lolly"></span>
 				</span>
-                        <input type="text" placeholder="GameName" name="name" id="name">
+                        <input type="text" placeholder="GameName" name="gameName" id="gameName">
                     </div>
                     <div class="loginInput ">
 				<span class="loginInputIcon ">
@@ -113,7 +106,7 @@ glyphicon glyphicon-ice-lolly"></span>
                     </div>
 
                     <div style="margin-top:20px">
-                        <button type="submit" class="btn btn-block redButton">ADD</button>
+                        <input type="submit" value="Submit">
                     </div>
                 </div>
             </div>
