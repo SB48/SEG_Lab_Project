@@ -29,6 +29,7 @@ function insert_games($gameName, $price, $copies,$URL,$age,$platform){
 function change_rule($ruleName, $newRuleVal){
   global $db;
   $sql = "UPDATE Rules SET ruleVal = '$newRuleVal' WHERE rule = '$ruleName'";
-  return isset($sql);
+  $result = mysqli_query($db, $sql);
+  return isset($result);
 }
 ?>
