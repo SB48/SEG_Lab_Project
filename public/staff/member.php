@@ -42,16 +42,18 @@
     $violationsPossibleSet = find_violations_possible();
     $violationsPossible = mysqli_fetch_assoc($violationsPossibleSet)['ruleVal'];
 
-    $gamesCurrentlyRented = find_how_many_games_are_rented($id);
+    $gamesCurrentlyRentedSet = find_how_many_games_are_rented($id);
+    $gamesCurrentlyRented =  mysqli_fetch_assoc($gamesCurrentlyRentedSet)['num'];
 
-    $violationsInGracePeriod = find_violations_in_grace_period($id);
+    $violationsInGracePeriodSet = find_violations_in_grace_period($id);
+    $violationsInGracePeriod = mysqli_fetch_assoc($violationsInGracePeriodSet)['num'];
 
     $findAmountDueSet = find_amount_due($id);
     $findAmountDue = mysqli_fetch_assoc($findAmountDueSet)['amountDue'];
 
-    //$currentRentalsSet = find_current_rentals($id);
-    //if (isset($currentRentalsSet)) {echo "current rental ok ";}
-
+    $currentRentalsSet = find_current_rentals($id);
+    $currentRentals = mysqli_fetch_assoc($currentRentalsSet)['num'];
+    
     ?>
 
 
