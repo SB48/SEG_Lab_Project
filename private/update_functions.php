@@ -18,5 +18,13 @@ function insert_member($firstname, $lastname, $dob){
     return "ELO";
 }
 
+function insert_games($gameName, $price, $copies,$URL,$age,$platform){
+    global $db;
+
+    $stmt = $db->prepare("INSERT INTO Game (gameName, price, copies,URL,age,platform)  VALUES (?,?,?,?,?,?)");
+    $stmt->bind_param("siisss", $gameName, $price, $copies,$URL,$age,$platform);
+    $stmt->execute();
+    return "in";
+}
 
 ?>
