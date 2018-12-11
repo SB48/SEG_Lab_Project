@@ -34,111 +34,112 @@
 
 
 
-    <div class="row">
-        <div class="col-md-12">
-            <p class="white">MEMBERS</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
-            <p class="white-text">find a member</p>
-            <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">FIND</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                    <?php
-                    $allMember_set = find_all_members();
-                    while ($eachMember = mysqli_fetch_assoc($allMember_set)) {
-                        echo '<a href="../member.php?id='.$eachMember["memberID"].'";>'.$eachMember["fullName"].'</a>';
-                    }
-                    ?>
+    <div class="row user-menu-container square">
+        <div class="col-md-12 user-details">
+
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+                    <h3>FIND MEMBER</h3>
+                    <div class="dropdown">
+                        <input onclick="myFunction()" class="dropbtn" type="submit" name="button"></input>
+                        <div id="myDropdown" class="dropdown-content">
+                            <input type="text" name="search" onkeyup="filterFunction()"placeholder="Search.." id="myInput" >
+                            <?php
+                            $allMember_set = find_all_members();
+                            while ($eachMember = mysqli_fetch_assoc($allMember_set)) {
+                                echo '<a href="../member.php?id='.$eachMember["memberID"].'";>'.$eachMember["fullName"].'</a>';
+                            }
+                            ?>
+                        </div>
+                    </div>
+
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction() {
+                            document.getElementById("myDropdown").classList.toggle("show");
+                        }
+
+                        function filterFunction() {
+                            var input, filter, ul, li, a, i;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            div = document.getElementById("myDropdown");
+                            a = div.getElementsByTagName("a");
+                            for (i = 0; i < a.length; i++) {
+                                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    a[i].style.display = "";
+                                } else {
+                                    a[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3></h3>
+                    <h4></h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>FIND GAME</h3>
+                    <div class="dropdown">
+
+                        <input onclick="myFunction2()" class="dropbtn" type="submit" name="button2"></input>
+                        <div id="myDropdown2" class="dropdown-content">
+                            <input type="text" placeholder="Search.." name="search2" id="myInput2" onkeyup="filterFunction2()">
+                            <?php
+                            $allGames_set = find_all_games();
+                            while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
+                                echo ' <a href="../../product.php?id='.$eachGame["gameID"].'";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
+                            }
+                            ?>
+                        </div>
+
+                    </div>
+
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction2() {
+                            document.getElementById("myDropdown2").classList.toggle("show");
+                        }
+
+                        function filterFunction2() {
+                            var input, filter, ul, li, a, i;
+                            input = document.getElementById("myInput2");
+                            filter = input.value.toUpperCase();
+                            div = document.getElementById("myDropdown2");
+                            a = div.getElementsByTagName("a");
+                            for (i = 0; i < a.length; i++) {
+                                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    a[i].style.display = "";
+                                } else {
+                                    a[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
                 </div>
             </div>
-
-            <script>
-                /* When the user clicks on the button,
-                toggle between hiding and showing the dropdown content */
-                function myFunction() {
-                    document.getElementById("myDropdown").classList.toggle("show");
-                }
-
-                function filterFunction() {
-                    var input, filter, ul, li, a, i;
-                    input = document.getElementById("myInput");
-                    filter = input.value.toUpperCase();
-                    div = document.getElementById("myDropdown");
-                    a = div.getElementsByTagName("a");
-                    for (i = 0; i < a.length; i++) {
-                        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                            a[i].style.display = "";
-                        } else {
-                            a[i].style.display = "none";
-                        }
-                    }
-                }
-            </script>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-5">
-            <p class="white-text">add a new member</p>
-            <a href="../collection_add_member.php" class="button-new">NEW</a>
-        </div>
-    </div>
-
-    <div class="row py-3">
-        <div class="col-md-12"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-5"></div>
-        <div class="col-md-2">
-            <p class="white">GAMES</p>
-        </div>
-        <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-5"></div>
-        <div class="col-md-2">
-            <div class="dropdown">
-                <button onclick="myFunction2()" class="dropbtn">FIND GAME</button>
-                <div id="myDropdown2" class="dropdown-content">
-                    <input type="text" placeholder="Search.." id="myInput2" onkeyup="filterFunction2()">
-                    <?php
-                    $allGames_set = find_all_games();
-                    while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
-                        echo ' <a href="../../product.php?id='.$eachGame["gameID"].'";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
-                    }
-                    ?>
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+                    <h3></h3>
+                    <h4></h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>ADD MEMBER</h3>
+                    <form class="pt-3" action="../collection_add_member.php" method="post">
+                        <input type="submit" name="new_m" value="NEW" class="button-new"/>
+                    </form>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3></h3>
+                    <h2></h2>
                 </div>
             </div>
-
-            <script>
-                /* When the user clicks on the button,
-                toggle between hiding and showing the dropdown content */
-                function myFunction2() {
-                    document.getElementById("myDropdown2").classList.toggle("show");
-                }
-
-                function filterFunction2() {
-                    var input, filter, ul, li, a, i;
-                    input = document.getElementById("myInput2");
-                    filter = input.value.toUpperCase();
-                    div = document.getElementById("myDropdown2");
-                    a = div.getElementsByTagName("a");
-                    for (i = 0; i < a.length; i++) {
-                        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                            a[i].style.display = "";
-                        } else {
-                            a[i].style.display = "none";
-                        }
-                    }
-                }
-            </script>
         </div>
-        <div class="col-md-5"></div>
     </div>
+
 
     <div class="row py-3">
         <div class="col-md-12"></div>
