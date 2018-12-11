@@ -12,12 +12,21 @@
 /**
  * Used in the most common scenario that a member
  * correctly returns a game.
- * @param $rentalID
+ * @param $rentalID, $gameID
  * @return $result
  */
-function normalReturn($rentalID){
-    closeTheRental($rentalID);
-    incrementCopies($rentalID);
+function normalReturn($rentalID, $gameID){
+    global $db;
+    $sql1 = "UPDATE Rental SET returned = true WHERE rentalID = $rentalID";
+    $result1 = mysqli_query($db,$sql1);
+    confirm_result_set($result1);
+
+    $sql2 = "UPDATE Game ";
+    $sql2 .= "SET copies = copies + 1 ";
+    $sql2 .= "WHERE gameID =  $gameID";
+    $result2 = mysqli_query($db,$sql2);
+    confirm_result_set($result2);
+    return $result2;
 }
 
 function closeTheRental($rentalID){
@@ -30,7 +39,7 @@ function closeTheRental($rentalID){
 
 function late($memberID){
     global $db;
-    $sql = "INSERT INTO Violates (memberID, dateOfViolation, nullified) VALUES ($memberID, CURDATE(), false)";
+    $sql = "INSERT INTO Violates (memberID, dateOfViolation, nullified) VALUES ($memberID, CURDATE(), false);";
     $result = mysqli_query($db,$sql);
     confirm_result_set($result);
     return $result;
@@ -46,6 +55,8 @@ function incrementCopies($gameID){
     return $result;
 }
 
+
+
 /**
  * Used to issue a ban in the case of a damaged return, and update the
  * amount due for a member && closing the rental
@@ -53,14 +64,19 @@ function incrementCopies($gameID){
  * @param $memberID, $amountDue, $gameID
  * @return $result
  */
-function damagedReturn($memberID, $amountDue, $gameID){
+function damagedReturn($memberID, $amountDue, $gameID, $rentalID){
     global $db;
-    $sql = "UPDATE Member ";
-    $sql .= "SET damageBan = true,  amountDue = $amountDue + ";
-    $sql .= "(SELECT price FROM Game WHERE gameID = $gameID) WHERE memberID = $memberID";
-    $result = mysqli_query($db,$sql);
-    confirm_result_set($result);
-    return $result;
+    $sql1 = "UPDATE Member ";
+    $sql1 .= "SET damageBan = true,  amountDue = $amountDue + ";
+    $sql1 .= "(SELECT price FROM Game WHERE gameID = $gameID) WHERE memberID = $memberID";
+    $result1 = mysqli_query($db,$sql1);
+    confirm_result_set($result1);
+
+    //close the rental
+    $sql2 = "UPDATE Rental SET returned = true WHERE rentalID = $rentalID";
+    $result2 = mysqli_query($db,$sql2);
+    confirm_result_set($result2);
+    return $result2;
 }
 
 /**
@@ -80,17 +96,17 @@ function payback($memberID){
 }
 
 
-function extension($memberID, $memberID){
-    global $db;
-    $sql = " UPDATE Rental ";
-    $sql .= "SET ";
-    $sql .= "returnDate = CASE WHEN (SELECT COUNT(extensions) FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN DATE_ADD(week, (SELECT ruleVal FROM Rules WHERE rule = 'extensionTime'), returnDate) END, ";
-    $sql .= "extensions = CASE WHEN (SELECT COUNT(extensions) FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN extensions = extensions +1  END ";
-    $sql .= "WHERE rentalID = $memberID";
-    $result = mysqli_query($db,$sql);
-    confirm_result_set($result);
-    return $result;
-}
+//function extension($memberID, $memberID){
+//    global $db;
+//    $sql = " UPDATE Rental ";
+//    $sql .= "SET ";
+//    $sql .= "returnDate = CASE WHEN (SELECT COUNT(extensions) FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN DATE_ADD(week, (SELECT ruleVal FROM Rules WHERE rule = 'extensionTime'), returnDate) END, ";
+//    $sql .= "extensions = CASE WHEN (SELECT COUNT(extensions) FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN extensions = extensions +1  END ";
+//    $sql .= "WHERE rentalID = $memberID";
+//    $result = mysqli_query($db,$sql);
+//    confirm_result_set($result);
+//    return $result;
+//}
 
 /**
  * Create a rental, with memberID and gameID
@@ -98,18 +114,20 @@ function extension($memberID, $memberID){
  */
  function createRental($memberID, $gameID){
   global $db;
-  $sql = "INSERT INTO Rental(gameID, memberID, returnDate, returned, extensions) VALUES ($gameID, $memberID, (SELECT DATE_ADD(CURDATE(), INTERVAL (SELECT ruleVal FROM Rules WHERE rule = 'rentalPeriod') WEEK)), false, 0)";
+  $sql1 = "INSERT INTO Rental(gameID, memberID, returnDate, returned, extensions) ";
+  $sql1 .= "VALUES ($gameID, $memberID, (SELECT DATE_ADD(CURDATE(), INTERVAL (SELECT ruleVal ";
+  $sql1 .= "FROM Rules WHERE rule = 'rentalPeriod') WEEK)), false, 0)";
+  $result1 = mysqli_query($db,$sql1);
+     confirm_result_set($result1);
    //decrement the copies
   $sql2 = "UPDATE Game ";
   $sql2 .= "SET copies = copies -1 ";
   $sql2 .= "WHERE gameID =  $gameID";
   $result2 = mysqli_query($db,$sql2);
   confirm_result_set($result2);
-   $result = mysqli_query($db,$sql);
-  confirm_result_set($result);
-  return $result;
+  return $result2;
  }
- ?>
+
 
 
 

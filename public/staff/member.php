@@ -205,18 +205,18 @@
                     </td>
                     <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST[$faulty]))
                     {
-                        //damagedReturn($rental['memberID'], findAmountDue, $rental['gameID']);
-                        closeTheRental($rental['rentalID']);
+                        damagedReturn($rental['memberID'], $findAmountDue, $rental['gameID'], $rental['rentalID']);
+                        //closeTheRental($rental['rentalID']);
                     } ?>
-                    <?php $ok  = "faulty".$rental['rentalID'] ?>
+                    <?php $ok  = "ok".$rental['rentalID'] ?>
                     <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
                             <input type="submit" name=<?php echo $ok ?> value="RETURN OK" class="button-new"/>
                         </form>
                     </td>
                     <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST[$ok]))
                     {
-                        //incrementCopies($rental['gameID']);
-                        closeTheRental($rental['rentalID']);
+                        normalReturn($rental['rentalID'], $rental['gameID']);
+                        //closeTheRental($rental['rentalID']);
                     } ?>
                 </tr>
                 <?php } ?>
