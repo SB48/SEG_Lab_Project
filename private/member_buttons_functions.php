@@ -109,8 +109,7 @@ function decrementCopies($gameID){
  */
  function createRental($memberID, $gameID){
   global $db;
-  $sql = "INSERT INTO Rental(gameID, memberID, returnDate, returned, extensions) VALUES ($gameID, $memberID, DATE_ADD(weeks,
-    SELECT ruleVal FROM Rules WHERE rule = 'rental period' , CURDATE()) , false, 0)";
+  $sql = "INSERT INTO Rental(gameID, memberID, returnDate, returned, extensions) VALUES ($gameID, $memberID, (SELECT DATE_ADD(CURDATE(), INTERVAL (SELECT ruleVal FROM Rules WHERE rule = 'rentalPeriod') WEEK)), false, 0)";
   decrementCopies($gameID);
   $result = mysqli_query($db,$sql);
   confirm_result_set($result);
