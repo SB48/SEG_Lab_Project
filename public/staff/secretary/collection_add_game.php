@@ -52,37 +52,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="center">
 </div></div>
     </div>
-    <div class="row">
-
-        <form  action="collection_add_game.php" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+        <div  action="collection_add_game.php" method="post">
             <div id="loginDiv">
                 <div class="loginSmallDiv" id="loginSmallDiv">
-                    <div class="loginInput ">
-				<span class="loginInputIcon ">
-					<span class="
-glyphicon glyphicon-ice-lolly"></span>
-				</span>
+                    <div class="loginInput "style="padding-left: 35px">
+
                         <input type="text" placeholder="GameName" name="gameName" id="gameName">
                     </div>
-                    <div class="loginInput ">
-				<span class="loginInputIcon ">
-					<span class="glyphicon glyphicon-gbp"></span>
-				</span>
+                    <div class="loginInput "style="padding-left: 35px">
                         <input type="text" placeholder="Price" name="price" id="price">
                     </div>
-                    <div class="loginInput ">
-				<span class="loginInputIcon ">
-					<span class="glyphicon glyphicon-gbp"></span>
-				</span>
+                    <div class="loginInput "style="padding-left: 35px">
+
                         <input type="text" placeholder="Copies" name="copies" id="copies">
                     </div>
-                    <div class="loginInput ">
-				<span class="loginInputIcon ">
-					<span class="glyphicon glyphicon-picture"></span>
-				</span>
+                    <div class="loginInput "style="padding-left: 35px">
+
                         <input type="url" placeholder="URL" name="URL" id="URL">
                     </div>
-                    <div class="loginInput ">
+                    <div class="loginInput "style="padding-left: 35px">
                         <select name="age" id="age" class="custom-select sources left" placeholder="Source Type">
                             <option value="PG">PG</option>
                             <option value="3">3</option>
@@ -92,7 +83,7 @@ glyphicon glyphicon-ice-lolly"></span>
                             <option value="18">18</option>
                         </select>
                     </div>
-                    <div class="loginInput ">
+                    <div class="loginInput "style="padding-left: 35px">
                         <select name="platform" id="platform" class="custom-select sources left" placeholder="Source Type">
                             <option value="PS">PS</option>
                             <option value="PS3">PS3</option>
@@ -104,15 +95,17 @@ glyphicon glyphicon-ice-lolly"></span>
                             <option value="PC">PC</option>
                         </select>
                     </div>
-
-                    <div style="margin-top:20px">
+                    <br/>
+                    <br/>
+                    <div style="float:right;margin-left: 33px;margin-top: 35px">
                         <input type="submit" value="Submit">
                     </div>
                 </div>
             </div>
+        </div>
         </form>
 
-
+            </div></div></div>
     </div>
 
 
