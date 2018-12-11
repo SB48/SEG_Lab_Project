@@ -82,13 +82,37 @@ function payback($memberID){
 
 function extension($rentalID, $memberID){
     global $db;
-    $sql = "UPDATE Rental 
-        SET (returnDate, extensions) = IF (SELECT COUNT(extensions) 
-                              FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions'), 
-                                      (SELECT DATE_ADD(returnDate, INTERVAL (SELECT ruleVal FROM Rules 
+    $sql = "UPDATE Rental
+        SET (returnDate, extensions) = IF (SELECT COUNT(extensions)
+                              FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions'),
+                                      (SELECT DATE_ADD(returnDate, INTERVAL (SELECT ruleVal FROM Rules
                                           WHERE rule = 'extensionTime';) WEEK ), extensions +1 ), (returnDate, extensions)
-          WHERE rentalID = $rentalID";
+          WHERE rentalID = $rentalID)";
     $result = mysqli_query($db,$sql);
     confirm_result_set($result);
     return $result;
 }
+
+function decrementCopies($gameID){
+    global $db;
+    $sql = "UPDATE Game ";
+    $sql .= "SET copies = copies -1 ";
+    $sql .= "WHERE gameID =  $gameID";
+    $result = mysqli_query($db,$sql);
+    confirm_result_set($result);
+    return $result;
+}
+
+/**
+ * Create a rental, with memberID and gameID
+ * Due date is set to whatever it is in the rules
+ */
+ function createRental($memberID, $gameID){
+  global $db;
+  $sql = "INSERT INTO Rental(gameID, memberID, returnDate, returned, extensions) VALUES ($gameID, $memberID, DATE_ADD(weeks,
+    SELECT ruleVal FROM Rules WHERE rule = 'rental period' , CURDATE()) , false, 0)";
+  decrementCopies($gameID);
+  $result = mysqli_query($db,$sql);
+  confirm_result_set($result);
+  return $result;
+ }

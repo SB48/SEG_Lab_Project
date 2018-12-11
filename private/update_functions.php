@@ -30,6 +30,7 @@ function change_rule($ruleName, $newRuleVal){
   global $db;
   $sql = "UPDATE Rules SET ruleVal = '$newRuleVal' WHERE rule = '$ruleName'";
   $result = mysqli_query($db, $sql);
-  return isset($result);
+  confirm_result_set($result);
+  return $result;
 }
 ?>
