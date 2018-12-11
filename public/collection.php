@@ -86,10 +86,7 @@ while($eachGame = mysqli_fetch_assoc($games_set)) {
                     <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>" class="productLink">
                         <?php printf ($eachGame["name"]);?>
                     </a>
-                    <span class="rentPrice">
-                        <span class="price ">Price:
-                        <?php printf ($eachGame["price"]);?></span>
-                    </span>
+                    
                     <div class="show1 productInfo">
                         <span class="category ">Genre: <span class="productcategory"><?php printf ($eachGame["genre"]);?></span></span>
                         <span class="productStatus st">Platform:<br><span class="productStatusResult"><?php printf ($eachGame["platform"]);?></span></span>
