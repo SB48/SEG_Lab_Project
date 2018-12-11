@@ -37,7 +37,9 @@
 
     <div class="row">
 
-        <include src="changeRules.html"></include>
+       <?php
+            require_once('changeRules.html')
+            ?>
   
     </div>
 
