@@ -55,38 +55,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
 
+ <div class="container">
     <div class="row">
-
-
+        <div class="col-4">
         <form action="collection_add_member.php" method="post">
             <div id="loginDiv">
                 <div class="loginSmallDiv" id="loginSmallDiv">
 
-                    <div class="loginInput ">
-				<span class="loginInputIcon ">
-					<span class="glyphicon glyphicon-eye-open"></span>
-				</span>
+                    <div class="loginInput"style="padding-left: 30px">
                         <input type="text" placeholder="firstName" name="firstName" id="firstName">
                     </div>
-                    <div class="loginInput ">
-				<span class="loginInputIcon ">
-					<span class="glyphicon glyphicon-eye-open"></span>
-				</span>
+                    <div class="loginInput "style="padding-left: 30px" >
                         <input type="text" placeholder="lastName" name="lastName" id="lastName">
                     </div>
 
-                           <p>Birthday: </p><input type="date" name="dob">
-
-                    <input type="submit" value="Submit">
+                    <p style="color: white;padding-left: 30px">Birthday: </p><input style="margin-left: 33px" type="date" name="dob">
+                    <br/>
+                    <br/>
+                    <input style="float: left;margin-left: 33px" type="submit" value="Submit">
 
                 </div>
             </div>
         </form>
 
-
-
+        </div>
     </div>
 
+    </div>
 
     <div class="row py-5">
         <div class="col-md-12"></div>
@@ -96,6 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <div class="row py-5">
         <div class="col-md-12"></div>
-
+	</div>
 
         <?php require_once('../../private/shared/footer.php'); ?>
