@@ -9,7 +9,7 @@
         <a href="/games/{{$game->gameID}}/edit" class="btn btn-default"> Edit this game</a>
         {!!Form::open(['action' => ['GamesController@destroy', $game->gameID], 'method' => 'POST', 'class' => 'float-right'])!!}
             {{Form::hidden('_method', 'DELETE')}}
-            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+            {{Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick'=>"return confirm('Are you sure?')"])}}
         {!!Form::close()!!}
     @endif
 @endsection

@@ -12,9 +12,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-        <script>
-            CKEDITOR.replace( 'article-ckeditor' );
-        </script>
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

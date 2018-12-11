@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use App\Game;
 use DB;
 
@@ -54,7 +55,13 @@ class GamesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|max:255',
+            'price' => 'required|integer',
+            'ageRating' => Rule::in(['PG','3','7','12','16','18']),
+            'genre' => 'required|max:20',
+            'copies' => 'required|integer',
+            'description' => 'required|max:1000',
+            'platform' => 'required|max:50',
             'thumbnail' => 'image|nullable|max:1999'
         ]);
 
@@ -86,9 +93,17 @@ class GamesController extends Controller
         $game->url = $request->input('url');
         $game->thumbnail = $filenameToStore;
         $game->platform = $request->input('platform');
-        $game->save();
 
-        return redirect('/games')->with('success', 'Game Added Successfully');
+        $existGameCheck = Game::where('name', $game->name)->where('platform', $game->platform);
+        
+        if ($existGameCheck->count() > 0){
+            return redirect('/home')->with('error', 'That Game already exists, to edit it - please visit secretary dashboard');
+
+        }
+        else{
+            $game->save();
+            return redirect('/games')->with('success', 'Game Added Successfully');
+        }
     }
 
     /**
@@ -128,8 +143,14 @@ class GamesController extends Controller
     public function update(Request $request, $gameID)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'thumbnail' => 'image'
+            'name' => 'required|max:255',
+            'price' => 'required|integer',
+            'ageRating' => Rule::in(['PG','3','7','12','16','18']),
+            'genre' => 'required|max:20',
+            'copies' => 'required|integer',
+            'description' => 'required|max:1000',
+            'platform' => 'required|max:50',
+            'thumbnail' => 'image|nullable|max:1999'
         ]);
 
         // Handle File Upload
@@ -146,7 +167,7 @@ class GamesController extends Controller
             $path = $request->file('thumbnail')->storeAs('public/thumbnails', $filenameToStore);
         }
 
-        // Add a Game
+        // Edit the Game
         $game = Game::find($gameID);
         $game->name = $request->input('name');
         $game->price = $request->input('price');
@@ -159,9 +180,16 @@ class GamesController extends Controller
             $game->thumbnail = $filenameToStore;
         }
         $game->platform = $request->input('platform');
-        $game->save();
+        $existGameCheck = Game::where('name', $game->name)->where('platform', $game->platform);
+        
+        if ($existGameCheck->count() > 0){
+            return redirect('/home')->with('error', 'Either you made no changes, or you cannot morph this game into an existing one');
 
-        return redirect('/games')->with('success', 'Game Info Changed');
+        }
+        else{
+            $game->save();
+            return redirect('/games')->with('success', 'Game Edited Successfully');
+        }
     }
 
     /**
@@ -179,8 +207,9 @@ class GamesController extends Controller
 
         // Find the game
         $game = Game::find($gameID);
+        $copies = Game::where('name', $game->name)->count();
 
-        if($game->thumbnail != 'noimage.jpg'){
+        if($game->thumbnail != 'noimage.jpg' && $copies == 1){
             // Delete Image
             Storage::delete('public/thumbnails/'.$game->thumbnail);
         }

@@ -14,12 +14,20 @@
                         </div>
                     @endif
                     @if(Auth::user()->privilegeLevel == 'Secretary')
-                        Welcome Queen of Westeros
-                        You are the Secretary        
+                        <p>Welcome Queen of Westeros</p>
+                        <p>You are the Secretary</p>       
                         <a href="{{ route('register') }}" class="btn btn-primary">Register a Volunteer</a>
                         <a href="/games/create" class="btn btn-primary"> Add A New Game </a>
+                        <a href="/games" class="btn btn-primary"> Manage Games in Collection </a>
+                        <a href="/rules/edit" class="btn btn-primary"> TODO EDIT RULES </a>
+                        <a href="/members/edit" class="btn btn-primary"> TODO EDIT MEMBER </a>
                     @endif
-                    You are logged in!
+                    <br><br>
+                    <p> Default Actions </p>        
+                    <a href="/members" class="btn btn-primary">View Members</a>
+                    <a href="/members/create" class="btn btn-primary"> Register Member </a>
+                    <a href="/rentals" class="btn btn-primary"> TODO Active Rentals </a>
+                           
                 </div>
             </div>
         </div>
