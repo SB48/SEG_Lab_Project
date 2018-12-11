@@ -41,7 +41,9 @@
     </div>
     
     <div class="row">
-            <include src="login.html"></include>
+        <?php
+        require_once('login.html')
+        ?>
     </div>
 
     <?php require_once('../private/shared/footer.php'); ?>
