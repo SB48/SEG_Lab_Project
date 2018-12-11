@@ -36,11 +36,11 @@ function late($memberID){
     return $result;
 }
 
-function incrementCopies($rentalID){
+function incrementCopies($gameID){
     global $db;
-    $sql = "UPDATE Game 
-           SET copies = copies + 1 
-               WHERE gameID = (SELECT gameID FROM Rental WHERE rentalID = $rentalID)";
+    $sql = "UPDATE Game ";
+    $sql .= "SET copies = copies + 1 ";
+    $sql .= "WHERE gameID =  $gameID";
     $result = mysqli_query($db,$sql);
     confirm_result_set($result);
     return $result;
@@ -50,20 +50,16 @@ function incrementCopies($rentalID){
  * Used to issue a ban in the case of a damaged return, and update the
  * amount due for a member && closing the rental
  * No incrementing of copies
- * @param $rentalID
+ * @param $memberID, $amountDue, $gameID
  * @return $result
  */
-function damagedReturn($rentalID){
+function damagedReturn($memberID, $amountDue, $gameID){
     global $db;
-    $sql = "UPDATE Member 
-              SET damageBan = true,  amountDue = amountDue + 
-                  (SELECT price FROM Game WHERE gameID = (
-                      SELECT gameID FROM Rental WHERE rentalID = $rentalID);),
-                    banBeginDate = IF (banBeginDate IS NULL, CURDATE(), banBeginDate)   
-                WHERE memberID = (SELECT memberID FROM Rental WHERE rentalID = $rentalID)";
+    $sql = "UPDATE Member ";
+    $sql .= "SET damageBan = true,  amountDue = $amountDue + ";
+    $sql .= "(SELECT price FROM Game WHERE gameID = $gameID) WHERE memberID = $memberID";
     $result = mysqli_query($db,$sql);
     confirm_result_set($result);
-    closeTheRental($rentalID);
     return $result;
 }
 

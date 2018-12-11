@@ -135,9 +135,17 @@
         confirm_result_set($result);
         return $result;
     }
-    function find_is_banned($memberID){
+    function find_is_normal_banned($memberID){
         global $db;
         $sql = "SELECT normalBan FROM Member WHERE memberID = $memberID";
+        $result = mysqli_query($db,$sql);
+        confirm_result_set($result);
+        return $result;
+    }
+
+    function find_is_demage_banned($memberID){
+        global $db;
+        $sql = "SELECT damageBan FROM Member WHERE memberID = $memberID";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;

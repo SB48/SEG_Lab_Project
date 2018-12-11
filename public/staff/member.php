@@ -17,7 +17,7 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../../index.php">Home</a>
+                        <a class="dropdown-item" href="../index.php">Home</a>
                         <a class="dropdown-item" href="../collection.php">Collection</a>
                         <a class="dropdown-item" href="../login.html">Log In</a>
                     </div>
@@ -37,8 +37,11 @@
     $numberOfVideosPossibleSet = find_how_many_games_can_rent();
     $numberOfVideosPossible = mysqli_fetch_assoc($numberOfVideosPossibleSet)['ruleVal'];
 
-    $isBannedSet = find_is_banned($id);
-    $isBanned = mysqli_fetch_assoc($isBannedSet)['normalBan'];
+    $isBannedSetN = find_is_normal_banned($id);
+    $isBannedNormal = mysqli_fetch_assoc($isBannedSetN)['normalBan'];
+
+    $isBannedSetD = find_is_demage_banned($id);
+    $isBannedDamage = mysqli_fetch_assoc($isBannedSetD)['damageBan'];
 
     $violationsPossibleSet = find_violations_possible();
     $violationsPossible = mysqli_fetch_assoc($violationsPossibleSet)['ruleVal'];
@@ -89,6 +92,7 @@
             <div class="row overview">
                 <div class="col-md-4 user-pad text-center">
                     <h3>RENT A GAME</h3>
+
                     <div class="dropdown padding pt-2">
                         <!--                can rent only if not banned and renting less than the limit-->
                         <?php
@@ -131,8 +135,13 @@
                     </script>
                 </div>
                 <div class="col-md-4 user-pad text-center">
-                    <h3>LIST OF RENTALS</h3>
-                    <h4>[scroll down]</h4>
+                    <h3></h3>
+                    <h4><?php if($isBannedDamage = true || $isBannedNormal = true ){
+                        echo "BANNED";
+                    }else{
+                        echo "NOT BANNED";
+                        }
+                    ?></h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
                     <h3>PAY BACK THE FINE</h3>
@@ -171,37 +180,43 @@
                     <td><h3><?php echo $no = $no + 1; ?></h3></td>
                     <td><h3><?php echo $rental['gameID']; ?></h3></td>
                     <td><h3><?php echo $rental['returnDate']; ?></h3></td>
+                    <?php $extend = "extend".$rental['rentalID'] ?>
                     <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
-                            <input type="submit" name="extend" value="EXTEND" class="button-new"/>
+                            <input type="submit" name=<?php echo $extend ?> value="EXTEND" class="button-new"/>
                         </form>
                     </td>
-                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST["extend"]))
+                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST[$extend]))
                     {
                         extension($rental['rentalID'], $rental['memberID']);
                     }?>
+                    <?php $late = "late".$rental['rentalID'] ?>
                     <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
-                            <input type="submit" name="late" value="LATE" class="button-new"/>
+                            <input type="submit" name=<?php echo $late ?> value="LATE" class="button-new"/>
                         </form>
                     </td>
-                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['late']))
+                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST[$late]))
                     {
                         late($rental['memberID']);
                     } ?>
+                    <?php $faulty = "faulty".$rental['rentalID'] ?>
                     <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
-                            <input type="submit" name="faulty" value="RETURN FAULTY" class="button-new"/>
+                            <input type="submit" name=<?php echo $faulty ?> value="RETURN FAULTY" class="button-new"/>
                         </form>
                     </td>
-                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['faulty']))
+                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST[$faulty]))
                     {
-                        damagedReturn($rental['rentalID']);
+                        //damagedReturn($rental['memberID'], findAmountDue, $rental['gameID']);
+                        closeTheRental($rental['rentalID']);
                     } ?>
+                    <?php $ok  = "faulty".$rental['rentalID'] ?>
                     <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
-                            <input type="submit" name="ok" value="RETURN OK" class="button-new"/>
+                            <input type="submit" name=<?php echo $ok ?> value="RETURN OK" class="button-new"/>
                         </form>
                     </td>
-                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['ok']))
+                    <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST[$ok]))
                     {
-                        normalReturn($rental['rentalID']);
+                        //incrementCopies($rental['gameID']);
+                        closeTheRental($rental['rentalID']);
                     } ?>
                 </tr>
                 <?php } ?>
