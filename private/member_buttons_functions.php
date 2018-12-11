@@ -116,3 +116,5 @@ function decrementCopies($gameID){
   confirm_result_set($result);
   return $result;
  }
+
+?>
