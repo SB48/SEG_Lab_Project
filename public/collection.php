@@ -92,7 +92,7 @@ while($eachGame = mysqli_fetch_assoc($games_set)) {
                     </span>
                     <div class="show1 productInfo">
                         <span class="category ">Genre: <span class="productcategory"><?php printf ($eachGame["genre"]);?></span></span>
-                        <span class="productStatus st">Copies:<br><span class="productStatusResult"><?php printf ($eachGame["copies"]);?></span></span>
+                        <span class="productStatus st">Platform:<br><span class="productStatusResult"><?php printf ($eachGame["platform"]);?></span></span>
                     </div>
                 </div>
             </div>

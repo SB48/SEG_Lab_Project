@@ -46,7 +46,6 @@
 
     ?>
 
-
     <div class="row white">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -55,42 +54,52 @@
         <div class="col-md-3"></div>
     </div>
 
-    <div class="row py-5">
-        <div class="col-md-6">
-            <?php echo '<img src="'.$thisGame["path"]. '" width="100px" class="productImage">' ?>
+    <div class="row user-menu-container square">
+        <div class="col-md-12 user-details">
+
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+
+                    <h4 class="pt-2"><?php echo '<img src="'.$thisGame["path"]. '" width="100px" class="productImage">' ?></h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>GENRE</h3>
+                    <h4><?php echo $gameGenre ?></h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>AGE GROUP</h3>
+                    <h4><?php echo $gameAgeRating ?></h4>
+                </div>
+            </div>
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+                    <h3>COPIES AVAILABLE</h3>
+                    <h4><?php echo $gameCopies ?></h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>PLATFORM</h3>
+                    <h4><?php echo $gamePlatform ?></h4>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>RATING</h3>
+                    <h4>get IFrame</h4>
+                </div>
+            </div>
+            <div class="row overview">
+                <div class="col-md-12 user-pad text-center">
+                    <h3>SUMMARY</h3>
+                    <h4 class="pt-4"><?php echo $gameDescription ?></h4>
+                </div>
+
+            </div>
         </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="white"><?php echo $gameDescription ?></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="white-text">GetRatingFromAPI</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="white-text">Available Copies: <?php echo $gameCopies ?> </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="white-text"><?php echo $gameAgeRating ?></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="white-text"><?php echo $gamePlatform ?></p>
-                </div>
-            </div>
-
-
-
-        </div>
-
     </div>
+
+
+
+</div>
+
+
 
 
 
