@@ -92,6 +92,24 @@ function extension($memberID, $memberID){
     return $result;
 }
 
+/**
+ * Create a rental, with memberID and gameID
+ * Due date is set to whatever it is in the rules
+ */
+ function createRental($memberID, $gameID){
+  global $db;
+  $sql = "INSERT INTO Rental(gameID, memberID, returnDate, returned, extensions) VALUES ($gameID, $memberID, (SELECT DATE_ADD(CURDATE(), INTERVAL (SELECT ruleVal FROM Rules WHERE rule = 'rentalPeriod') WEEK)), false, 0)";
+   //decrement the copies
+  $sql2 = "UPDATE Game ";
+  $sql2 .= "SET copies = copies -1 ";
+  $sql2 .= "WHERE gameID =  $gameID";
+  $result2 = mysqli_query($db,$sql2);
+  confirm_result_set($result2);
+   $result = mysqli_query($db,$sql);
+  confirm_result_set($result);
+  return $result;
+ }
+ ?>
 
 
 
