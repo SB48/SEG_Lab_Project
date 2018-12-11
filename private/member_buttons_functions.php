@@ -80,47 +80,19 @@ function payback($memberID){
 }
 
 
-function extension($rentalID, $memberID){
+function extension($memberID, $memberID){
     global $db;
-    $sql = "UPDATE Rental
-        SET (returnDate, extensions) = IF (SELECT COUNT(extensions)
-                              FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions'),
-                                      (SELECT DATE_ADD(returnDate, INTERVAL (SELECT ruleVal FROM Rules
-                                          WHERE rule = 'extensionTime';) WEEK ), extensions +1 ), (returnDate, extensions)
-          WHERE rentalID = $rentalID)";
+    $sql = " UPDATE Rental ";
+    $sql .= "SET ";
+    $sql .= "returnDate = CASE WHEN (SELECT COUNT(extensions) FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN DATE_ADD(week, (SELECT ruleVal FROM Rules WHERE rule = 'extensionTime'), returnDate) END, ";
+    $sql .= "extensions = CASE WHEN (SELECT COUNT(extensions) FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN extensions = extensions +1  END ";
+    $sql .= "WHERE rentalID = $memberID";
     $result = mysqli_query($db,$sql);
     confirm_result_set($result);
     return $result;
 }
 
-function decrementCopies($gameID){
-    global $db;
-    $sql2 = "UPDATE Game ";
-    $sql2 .= "SET copies = copies -1 ";
-    $sql2 .= "WHERE gameID =  $gameID";
-    $result2 = mysqli_query($db,$sql2);
-    confirm_result_set($result2);
-    return $result;
-}
 
-/**
- * Create a rental, with memberID and gameID
- * Due date is set to whatever it is in the rules
- */
- function createRental($memberID, $gameID){
-  global $db;
-  $sql = "INSERT INTO Rental(gameID, memberID, returnDate, returned, extensions) VALUES ($gameID, $memberID, (SELECT DATE_ADD(CURDATE(), INTERVAL (SELECT ruleVal FROM Rules WHERE rule = 'rentalPeriod') WEEK)), false, 0)";
 
-  //decrement the copies
-  $sql2 = "UPDATE Game ";
-  $sql2 .= "SET copies = copies -1 ";
-  $sql2 .= "WHERE gameID =  $gameID";
-  $result2 = mysqli_query($db,$sql2);
-  confirm_result_set($result2);
 
-  $result = mysqli_query($db,$sql);
-  confirm_result_set($result);
-  return $result;
- }
 
-?>
