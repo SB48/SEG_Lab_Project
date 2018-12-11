@@ -95,11 +95,11 @@ function extension($rentalID, $memberID){
 
 function decrementCopies($gameID){
     global $db;
-    $sql = "UPDATE Game ";
-    $sql .= "SET copies = copies -1 ";
-    $sql .= "WHERE gameID =  $gameID";
-    $result = mysqli_query($db,$sql);
-    confirm_result_set($result);
+    $sql2 = "UPDATE Game ";
+    $sql2 .= "SET copies = copies -1 ";
+    $sql2 .= "WHERE gameID =  $gameID";
+    $result2 = mysqli_query($db,$sql2);
+    confirm_result_set($result2);
     return $result;
 }
 
@@ -110,7 +110,14 @@ function decrementCopies($gameID){
  function createRental($memberID, $gameID){
   global $db;
   $sql = "INSERT INTO Rental(gameID, memberID, returnDate, returned, extensions) VALUES ($gameID, $memberID, (SELECT DATE_ADD(CURDATE(), INTERVAL (SELECT ruleVal FROM Rules WHERE rule = 'rentalPeriod') WEEK)), false, 0)";
-  decrementCopies($gameID);
+
+  //decrement the copies
+  $sql2 = "UPDATE Game ";
+  $sql2 .= "SET copies = copies -1 ";
+  $sql2 .= "WHERE gameID =  $gameID";
+  $result2 = mysqli_query($db,$sql2);
+  confirm_result_set($result2);
+
   $result = mysqli_query($db,$sql);
   confirm_result_set($result);
   return $result;
