@@ -17,9 +17,9 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="index.php">Home</a>
+                        <a class="dropdown-item" href="home_page.php">Home</a>
                         <a class="dropdown-item" href="collection.html">Collection</a>
-                        <a class="dropdown-item" href="collection_login.php">Log In</a>
+                        <a class="dropdown-item" href="login.html">Log In</a>
                     </div>
                 </li>
             </ul>
@@ -27,30 +27,23 @@
     </nav>
 
     <div class="row white">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <h1>Collection</h1>
-    </div>
-    <div class="col-md-3"></div>
-    </div>
-
-    <div class="row white">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1>Collection</h1>
+        </div>
         <div class="col-md-3">
             <div class="center">
-                <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type" onchange="window.location='collection.php?id='+ value;">
-                    <option value="all">All</option>
-                    <option value="available">Available</option>
-                    <option value="under12">under12</option>
-                    <option value="under18">under18</option>
-                    <option value="18">18+</option>
-                    <option value="pc">PC</option>
-                    <option value="xbox">XBOX</option>
-                    <option value="ps4">PS4</option>
-                </select>
-        </div>
-        <div class="col-md-6"></div>
-        <div class="col-md-3"></div>
-        </div>
+    <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type" onchange="window.location='collection.php?id='+ value;">
+    <option value="all">All</option>
+    <option value="available">Available</option>
+    <option value="under12">under12</option>
+    <option value="under18">under18</option>
+    <option value="18">18+</option>
+    <option value="pc">PC</option>
+    <option value="xbox">XBOX</option>
+    <option value="ps4">PS4</option>
+  </select>
+</div></div>
     </div>
 
 
@@ -74,28 +67,34 @@ else if($sort == "pc") {$games_set = pc();}
 else if($sort == "xbox") {$games_set = xbox();}
 else if($sort == "ps4") {$games_set = ps4();}
 else {$games_set = availableGames();}
-while($eachGame = mysqli_fetch_assoc($games_set)) {
-    ?>
-    <div class="categoryPageDiv">
-        <div class="categoryProducts">
-            <div class="productUnit">
-                <div class="productUnitFrame">
-                    <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>">
-                        <?php echo '<img src="'.$eachGame["path"]. '" width="100px" class="productImage">' ?>
-                    </a>
-                    <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>" class="productLink">
-                        <?php printf ($eachGame["name"]);?>
-                    </a>
-                    
-                    <div class="show1 productInfo">
-                        <span class="category ">Genre: <span class="productcategory"><?php printf ($eachGame["genre"]);?></span></span>
-                        <span class="productStatus st">Platform:<br><span class="productStatusResult"><?php printf ($eachGame["platform"]);?></span></span>
+if (!is_bool($games_set)){
+    while($eachGame = mysqli_fetch_assoc($games_set)) {
+        ?>
+        
+        <div class="categoryPageDiv">
+            <div class="categoryProducts">
+                <div class="productUnit">
+                    <div class="productUnitFrame">
+                        <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>">
+                            <?php echo '<img src="'.$eachGame["path"]. '" width="100px" class="productImage">' ?>
+                        </a>
+                        <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>" class="productLink">
+                            <?php printf ($eachGame["name"]);?>
+                        </a>
+                        <span class="rentPrice">
+                            <span class="price ">Price:
+                            <?php printf ($eachGame["price"]);?></span>
+                        </span>
+                        <div class="show1 productInfo">
+                            <span class="category ">Genre: <span class="productcategory"><?php printf ($eachGame["genre"]);?></span></span>
+                            <span class="productStatus st">Copies:<br><span class="productStatusResult"><?php printf ($eachGame["copies"]);?></span></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <?php   
+        <?php   
+    }
 }
 
 ?>
