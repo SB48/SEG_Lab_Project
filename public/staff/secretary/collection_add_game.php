@@ -11,13 +11,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $URL=$_POST['URL'];
         $age=$_POST['age'];
         $platform=$_POST['platform'];
-        $result = insert_games($gameName, $price, $copies,$URL,$age,$platform);
+        $result = insert_games($gameName, $price, $copies, $URL, $age, $platform);
         print "ssss";
         echo "SUCCESS";
     } else {
         echo "ERROR";
     }
 }
+
+?>
 
 ?>
 <div class="container">
@@ -97,9 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <br/>
                     <br/>
-                    <div style="float:right;margin-left: 33px;margin-top: 35px">
-                        <input type="submit" value="Submit">
-                    </div>
+                    <input style="float: left;margin-left: 33px" type="submit" value="Submit">
                 </div>
             </div>
         </div>

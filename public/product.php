@@ -30,11 +30,12 @@
 
     <?php
     //id as int (instead of string)
+
+
     $id = (int) $_GET['id'];
     $id = isset($_GET['id']) ? (int) $_GET['id'] : 1;
     $thisGameSet = find_game($id);
     $thisGame = mysqli_fetch_assoc($thisGameSet);
-
 
     $gameID = $thisGame['gameID'];
     $gameName = $thisGame['name'];
@@ -46,6 +47,13 @@
     $gameURL = $thisGame['url'];
     $gamePicPath = $thisGame['path'];
     $gamePlatform = $thisGame['platform'];
+
+    $increment = $_GET['sec'];
+    if(isset($increment)){
+        if($increment = true) {
+            incrementCopies($id);
+        }
+    }
 
     ?>
 

@@ -57,7 +57,7 @@
                     <h4></h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
-                    <h3>FIND GAME</h3>
+                    <h3>INCREMENT COPIES</h3>
                     <div class="dropdown">
 
                         <input onclick="myFunction2()" class="dropbtn" type="submit" name="button2"></input>
@@ -66,7 +66,7 @@
                             <?php
                             $allGames_set = find_all_games();
                             while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
-                                echo ' <a href="../../product.php?id='.$eachGame["gameID"].'";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
+                                echo ' <a href="../../product.php?id='.$eachGame["gameID"].'&sec=true";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
                             }
                             ?>
                         </div>

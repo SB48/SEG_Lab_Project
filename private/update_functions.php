@@ -19,9 +19,8 @@ function insert_member($firstname, $lastname, $dob){
 
 function insert_games($gameName, $price, $copies,$URL,$age,$platform){
     global $db;
-
-    $stmt = $db->prepare("INSERT INTO Game (gameName, price, copies,URL,age,platform)  VALUES (?,?,?,?,?,?)");
-    $stmt->bind_param("siisss", $gameName, $price, $copies,$URL,$age,$platform);
+    $stmt = $db->prepare("INSERT INTO Game (name, price, copies, url, ageRating, platform)  VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("siisss", $gameName, $price, $copies, $URL, $age, $platform);
     $stmt->execute();
     return "in";
 }
