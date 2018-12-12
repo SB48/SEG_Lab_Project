@@ -41,13 +41,13 @@
 
 
 
-    <div class="row">
+     <div class="row">
         <div class="col-md-3"></div>
-        <div class="col-md-6">
 
-        <include src="register.html"></include>
+            <?php
+            require_once('register.html')
+            ?>
 
-        </div>
         <div class="col-md-3"></div>
     </div>
 
