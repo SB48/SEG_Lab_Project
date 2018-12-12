@@ -1,6 +1,6 @@
 
 <?php require_once('../private/initialize.php'); ?>
-<?php require_once('../private/shared/header.php'); ?>
+<?php require_once(SHARED_PATH . '/header.php'); ?>
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -44,7 +44,7 @@
     $gameGenre = $thisGame['genre'];
     $gameDescription = $thisGame['description'];
     $gameCopies = $thisGame['copies'];
-    $gameURL = $thisGame['url'];
+    $url = $thisGame['url'];
     $gamePicPath = $thisGame['path'];
     $gamePlatform = $thisGame['platform'];
 
@@ -53,6 +53,11 @@
         if($increment = true) {
             incrementCopies($id);
         }
+    }
+
+    $member = $_GET['member'];
+    if(isset($member) && $gameCopies>0){
+            createRental($member, $id);
     }
 
     ?>
@@ -92,9 +97,8 @@
                     <h4><?php echo $gamePlatform ?></h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
-<!--                    <h3>RATING</h3>-->
-<!--                    <script>$( "#rating" ).load( "https://www.metacritic.com/game/playstation-4/earth-defense-force-5 #section #product_scores" );</script>-->
-                    <iframe id="rating" sandbox="allow-forms allow-same-origin allow-scripts" src="https://www.metacritic.com/game/playstation-4/earth-defense-force-5"></iframe>
+                    <h3>REVIEW</h3>
+                    <a href="'<?php echo $url  ?>'"><img src='../public/pictures/star.jpg' width="82" height="86"></a>
                 </div>
             </div>
             <div class="row overview">
@@ -115,6 +119,4 @@
 
 
 
-
-
-<?php require_once('../private/shared/footer.php'); ?>
+<?php require_once(SHARED_PATH . '/footer.php'); ?>

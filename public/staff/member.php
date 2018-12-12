@@ -1,6 +1,6 @@
 
 <?php require_once('../../private/initialize.php'); ?>
-<?php require_once('../../private/shared/header.php'); ?>
+<?php require_once(SHARED_PATH . '/header.php'); ?>
 
 
 
@@ -30,18 +30,15 @@
     //id as int (instead of string)
     $id = (int) $_GET['id'];
     $id = isset($_GET['id']) ? (int) $_GET['id'] : 1;
+    update_nullification();
 
-    $memberNameSet = find_member_name($id);
-    $memberName = mysqli_fetch_assoc($memberNameSet)['fullName'];
+    $memberSet = find_member($id);
+    $memberName = mysqli_fetch_assoc($memberSet)['fullName'];
+    $isBannedNormal = mysqli_fetch_assoc($memberSet)['normalBan'];
+    $isBannedDamage = mysqli_fetch_assoc($memberSet)['damageBan'];
 
     $numberOfVideosPossibleSet = find_how_many_games_can_rent();
     $numberOfVideosPossible = mysqli_fetch_assoc($numberOfVideosPossibleSet)['ruleVal'];
-
-    $isBannedSetN = find_is_normal_banned($id);
-    $isBannedNormal = mysqli_fetch_assoc($isBannedSetN)['normalBan'];
-
-    $isBannedSetD = find_is_demage_banned($id);
-    $isBannedDamage = mysqli_fetch_assoc($isBannedSetD)['damageBan'];
 
     $violationsPossibleSet = find_violations_possible();
     $violationsPossible = mysqli_fetch_assoc($violationsPossibleSet)['ruleVal'];
@@ -59,6 +56,16 @@
     $currentRentals = mysqli_fetch_assoc($currentRentalsSet)['num'];
 
     $rentalTableSet = find_all_current_rentals($id);
+
+    if($violationsInGracePeriod > $violationsPossible && $isBannedNormal == false){
+        set_normal_ban($id);
+    }elseif($violationsInGracePeriod <= $violationsPossible && $isBannedNormal == true){
+        un_ban($id);
+    }
+
+    $memberSet = find_member($id);
+    $isBannedNormal = mysqli_fetch_assoc($memberSet)['normalBan'];
+
 
   ?>
     <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
@@ -95,18 +102,18 @@
 
                     <div class="dropdown padding pt-2">
                         <!--                can rent only if not banned and renting less than the limit-->
-                        <?php
-                        $status = "";
-                        if(($gamesCurrentlyRented >= $numberOfVideosPossible) || $isBanned || ($findAmountDue > 0)) {
-                            $status = "disabled";} ?>
+<!--                        --><?php
+//                        $status = "";
+//                        if(($gamesCurrentlyRented >= $numberOfVideosPossible) || $isBanned || ($findAmountDue > 0)) {
+//                            $status = "disabled";} ?>
                         <input onclick="myFunction()" class="dropbtn" type="submit" name="button">
                         <div id="myDropdown" class="dropdown-content">
                             <input type="text" placeholder="Search.." name="search" id="myInput" onkeyup="filterFunction()">
                             <?php
                             $allGames_set = find_all_games();
                             while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
-                                echo ' <a href="../product.php?id='.$eachGame["gameID"].'";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
-                            }
+                                echo ' <a href="../product.php?id='.$eachGame["gameID"].'&member='.$id.'";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
+                            }   echo ' <a href="../../product.php?id='.$eachGame["gameID"].'&sec=true";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
                             ?>
                         </div>
                     </div>
@@ -134,11 +141,15 @@
                         }
                     </script>
                 </div>
+
+
+
                 <div class="col-md-4 user-pad text-center">
                     <h3></h3>
-                    <h4><?php if($isBannedDamage = true || $isBannedNormal = true ){
+                    <h4><?php
+                        if($isBannedDamage == true || $isBannedNormal == true){
                         echo "BANNED";
-                    }else{
+                    }else {
                         echo "NOT BANNED";
                         }
                     ?></h4>
@@ -230,7 +241,7 @@
 
 
 
-    <?php require_once('../../private/shared/footer.php'); ?>
+    <?php require_once(SHARED_PATH . '/footer.php'); ?>
 </div>
 
 

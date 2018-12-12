@@ -1,5 +1,5 @@
 <?php require_once('../../../private/initialize.php'); ?>
-<?php require_once('../../../private/shared/header.php'); ?>
+<?php require_once(SHARED_PATH . '/header.php'); ?>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -123,4 +123,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="row py-5">
         <div class="col-md-12"></div>
     </div>
-<?php require_once('../../../private/shared/footer.php'); ?>
+<?php require_once(SHARED_PATH . '/footer.php'); ?>
