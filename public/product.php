@@ -2,6 +2,9 @@
 <?php require_once('../private/initialize.php'); ?>
 <?php require_once('../private/shared/header.php'); ?>
 
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">CGS</a>
@@ -81,8 +84,9 @@
                     <h4><?php echo $gamePlatform ?></h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
-                    <h3>RATING</h3>
-                    <h4>get IFrame</h4>
+<!--                    <h3>RATING</h3>-->
+<!--                    <script>$( "#rating" ).load( "https://www.metacritic.com/game/playstation-4/earth-defense-force-5 #section #product_scores" );</script>-->
+                    <iframe id="rating" sandbox="allow-forms allow-same-origin allow-scripts" src="https://www.metacritic.com/game/playstation-4/earth-defense-force-5"></iframe>
                 </div>
             </div>
             <div class="row overview">
