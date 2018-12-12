@@ -1,18 +1,17 @@
 <?php require_once('../../../private/initialize.php'); ?>
 <?php require_once('../../../private/shared/header.php'); ?>
 <?php
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST["gameName"])) {
         $gameName=$_POST['gameName'];
         $price=$_POST['price'];
         $copies=$_POST['copies'];
-        $URL=$_POST['URL'];
+        $PURL=$_POST['PURL'];
+        $RURL=$_POST['RURL'];
         $age=$_POST['age'];
         $platform=$_POST['platform'];
-        $result = insert_games($gameName, $price, $copies, $URL, $age, $platform);
-        print "ssss";
+        $result = insert_games($gameName, $price, $copies, $PURL,$RURL, $age, $platform);
         echo "SUCCESS";
     } else {
         echo "ERROR";
@@ -71,9 +70,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <input type="text" placeholder="Copies" name="copies" id="copies">
                     </div>
+                     <div class="loginInput "style="padding-left: 35px">
+
+                        <input type="url" placeholder="Picture URL" name="PURL" id="PURL">
+                    </div>
                     <div class="loginInput "style="padding-left: 35px">
 
-                        <input type="url" placeholder="URL" name="URL" id="URL">
+                        <input type="url" placeholder=" Rating URL" name="RURL" id="RURL">
                     </div>
                     <div class="loginInput "style="padding-left: 35px">
                         <select name="age" id="age" class="custom-select sources left" placeholder="Source Type">
@@ -99,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <br/>
                     <br/>
-                    <input style="float: left;margin-left: 33px" type="submit" value="Submit">
+                   <input style="float: right;margin-left: 33px" type="submit" value="Submit">
                 </div>
             </div>
         </div>
