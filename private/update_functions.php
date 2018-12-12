@@ -19,11 +19,16 @@ function insert_member($firstname, $lastname, $dob){
 
 function insert_games($gameName, $price, $copies,$URL,$age,$platform){
     global $db;
-    $stmt = $db->prepare("INSERT INTO Game (name, price, copies, url, ageRating, platform)  VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("siisss", $gameName, $price, $copies, $URL, $age, $platform);
+    $stmt = $db->prepare("INSERT INTO Game (name, price, copies, purl,rurl, ageRating, platform)  VALUES (?, ?,?, ?, ?, ?, ?)");
+    $stmt->bind_param("siissss", $gameName, $price, $copies, $PURL,$RURL, $age, $platform);
+    $content = file_get_contents($PURL);
+    $fp = fopen("public/pictures", "w");
+    fwrite($fp, $content);
+    fclose($fp);
     $stmt->execute();
-    return "in";
+    return "ss";
 }
+
 
 function change_rule($ruleName, $newRuleVal){
   global $db;
