@@ -17,7 +17,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="../../index.php">Home</a>
                         <a class="dropdown-item" href="../../collection.php?id=all">Collection</a>
-                        <a class="dropdown-item" href="../../login.html">Log In</a>
+                        <a class="dropdown-item" href="../../collection_login.php">Log In</a>
                     </div>
                 </li>
             </ul>
@@ -37,24 +37,6 @@
 
             <div class="row overview">
                 <div class="col-md-4 user-pad text-center">
-                    <h3>ADD MEMEBER</h3>
-                    <form class="pt-3" action="../collection_add_member.php" method="post">
-                            <input type="submit" name="new_m" value="NEW" class="button-new"/>
-                    </form>
-                </div>
-                <div class="col-md-4 user-pad text-center">
-                    <h3></h3>
-                    <h4></h4>
-                </div>
-                <div class="col-md-4 user-pad text-center">
-                    <h3>ADD GAME</h3>
-                    <form class="pt-3" action="collection_add_game.php" method="post">
-                        <input type="submit" name="new_m" value="NEW" class="button-new"/>
-                    </form>
-                </div>
-            </div>
-            <div class="row overview">
-                <div class="col-md-4 user-pad text-center">
                     <h3>FIND MEMBER</h3>
                     <div class="dropdown">
                         <input onclick="myFunction()" class="dropbtn" type="submit" name="button"></input>
@@ -67,36 +49,12 @@
                             }
                             ?>
                         </div>
+
                     </div>
-
-                    <script>
-                        /* When the user clicks on the button,
-                        toggle between hiding and showing the dropdown content */
-                        function myFunction() {
-                            document.getElementById("myDropdown").classList.toggle("show");
-                        }
-
-                        function filterFunction() {
-                            var input, filter, ul, li, a, i;
-                            input = document.getElementById("myInput");
-                            filter = input.value.toUpperCase();
-                            div = document.getElementById("myDropdown");
-                            a = div.getElementsByTagName("a");
-                            for (i = 0; i < a.length; i++) {
-                                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                                    a[i].style.display = "";
-                                } else {
-                                    a[i].style.display = "none";
-                                }
-                            }
-                        }
-                    </script>
                 </div>
                 <div class="col-md-4 user-pad text-center">
-                    <h3>RULES & LIMITATIONS</h3>
-                    <form class="pt-3" action="collection_changeRules.php" method="post">
-                        <input type="submit" name="new_r" value="CHANGE" class="button-new"/>
-                    </form>
+                    <h3></h3>
+                    <h4></h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
                     <h3>FIND GAME</h3>
@@ -137,6 +95,49 @@
                             }
                         }
                     </script>
+                </div>
+            </div>
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+                    <h3>ADD MEMEBER</h3>
+                    <form class="pt-3" action="../collection_add_member.php" method="post">
+                        <input type="submit" name="new_m" value="NEW" class="button-new"/>
+                    </form>
+
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction() {
+                            document.getElementById("myDropdown").classList.toggle("show");
+                        }
+
+                        function filterFunction() {
+                            var input, filter, ul, li, a, i;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            div = document.getElementById("myDropdown");
+                            a = div.getElementsByTagName("a");
+                            for (i = 0; i < a.length; i++) {
+                                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    a[i].style.display = "";
+                                } else {
+                                    a[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>RULES & LIMITATIONS</h3>
+                    <form class="pt-3" action="collection_changeRules.php" method="post">
+                        <input type="submit" name="new_r" value="CHANGE" class="button-new"/>
+                    </form>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>ADD GAME</h3>
+                    <form class="pt-3" action="collection_add_game.php" method="post">
+                        <input type="submit" name="new_m" value="NEW" class="button-new"/>
+                    </form>
                 </div>
             </div>
         </div>
