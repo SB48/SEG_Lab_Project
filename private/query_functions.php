@@ -203,4 +203,13 @@
         confirm_result_set($result);
         return $result;
     }
+
+    function checkAuthentication($staffID, $password){
+        global $db;
+        $sql ="SELECT staffID, password, privelegeLevel  FROM Staff ";
+        $sql .= "WHERE staffID = $staffID AND password = $password";
+        $result = mysqli_query($db,$sql);
+        confirm_result_set($result);
+        return $result;
+    }
 ?>
