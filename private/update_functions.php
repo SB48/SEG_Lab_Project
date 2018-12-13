@@ -17,17 +17,19 @@ function insert_member($firstname, $lastname, $dob){
     return "ELO";
 }
 
-function insert_games($gameName, $price, $copies,$URL,$age,$platform){
+
+function insert_games($gameName, $price, $copies,$PURL,$RURL,$age,$platform){
     global $db;
-    $stmt = $db->prepare("INSERT INTO Game (name, price, copies, purl,rurl, ageRating, platform)  VALUES (?, ?,?, ?, ?, ?, ?)");
-    $stmt->bind_param("siissss", $gameName, $price, $copies, $PURL,$RURL, $age, $platform);
+    $sql = "INSERT INTO Game (name, price, copies, purl,rurl, ageRating, platform)  VALUES ('$gameName','$price','$copies','$PURL','$RURL','$age', '$platform')";
     $content = file_get_contents($PURL);
+    echo $sql;
     $fp = fopen("public/pictures", "w");
     fwrite($fp, $content);
     fclose($fp);
-    $stmt->execute();
-    return "ss";
+    $res = mysqli_query($db, $sql);
+    return $res;
 }
+
 
 
 function change_rule($ruleName, $newRuleVal){
