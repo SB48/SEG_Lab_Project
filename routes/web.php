@@ -15,13 +15,20 @@ Route::get('/', 'PagesController@index');
 
 Route::get('/about', 'PagesController@about');
 
+Route::get('members/{member}/isbanned', 'MembersController@isBanned');
 Route::put('members/{member}/ban', 'MembersController@ban');
-
 Route::put('members/{member}/unban', 'MembersController@unban');
+Route::get('members/{member}/rent', 'RentalsController@create');
+Route::put('rentals/{rental}/extend', 'RentalsController@extend');
+Route::put('rentals/{rental}/return', 'RentalsController@returnGame');
 
 Route::resource('games', 'GamesController');
 
 Route::resource('members', 'MembersController');
+
+Route::resource('rentals', 'RentalsController');
+
+Route::resource('society_rules', 'SocietyRulesController');
 
 Auth::routes();
 

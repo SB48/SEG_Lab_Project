@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \Carbon\Carbon;
 use App\Member;
+use App\Rental;
+use App\SocietyRule;
 
 class MembersController extends Controller
 {
@@ -27,7 +29,7 @@ class MembersController extends Controller
     public function index()
     {
         {
-            $members = Member::orderBy('name', 'asc')->paginate(24);
+            $members = Member::orderBy('updated_at', 'desc')->paginate(24);
             return view('members.index')->with('members', $members);
         }
     }
@@ -62,13 +64,13 @@ class MembersController extends Controller
         $existMemberCheck = Member::where('name', $member->name)->where('dob', $member->dob);
         
         if ($existMemberCheck->count() > 0){
-            return redirect('/home')->with('error', 'That Member already exists');
+            return redirect('/members')->with('error', 'That Member already exists');
   
         }
 
         else{
             $member->save();
-            return redirect('/home')->with('success', 'Member Registered Successfully');
+            return redirect('/members')->with('success', 'Member Registered Successfully');
         }
     }
 
@@ -80,7 +82,18 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        //
+        $member = Member::find($id);
+        $rentals = Rental::where('memberID',$id)->where('returned', false)->get();
+        $numExtensions = SocietyRule::where('society_rule','numExtensions')->first()->ruleVal; 
+
+        $data = [
+            'rentals' => $rentals->toArray(),
+            'memberID' => $id,
+            'memberName' => $member->name,
+            'numExtensions' => $numExtensions
+        ];
+
+        return view('members.show')->with('data',$data);
     }
 
     /**
@@ -157,6 +170,8 @@ class MembersController extends Controller
     public function ban($id)
     {
         $member = Member::find($id);
+
+        if ($member == NULL){return redirect('/members')->with('error', 'Member does not exist');}
         $member->normalBan = true;
         $member->banBeginDate = Carbon::now();
         $member->save();
@@ -173,10 +188,26 @@ class MembersController extends Controller
     public function unban($id)
     {
         $member = Member::find($id);
+
+        if ($member == NULL){return redirect('/members')->with('error', 'Member does not exist');}
+
         $member->normalBan = false;
         $member->banBeginDate = NULL;
         $member->save();
         return redirect('/members')->with('success', 'User Unbanned');
+        
+    }
+
+    /**
+     * Check ban status.
+     *
+     * @param  int  $id
+     * @return boolean
+     */
+    public static function isBanned($id)
+    {
+        $member = Member::find($id);
+        return $member->damageBan || $member->normalBan;
         
     }
 }

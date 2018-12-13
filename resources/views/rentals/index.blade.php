@@ -1,34 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-    <p>Members Table</p>
-    @if(count($members) > 1)
+    <p>Active Rentals</p>
+    @if(count($rentals) > 1)
         <table class ="table table-striped">
             <tr>
-                <th>Member ID</th>
-                <th>Name</th>
-                <th>Date of Birth</th>
-                <th>Active Rentals</th>
-                <th>NormalBan?</th>
-                <th>DamageBan?</th>
-                <th>Ban Start Date</th>
-                <th>Amount Due</th>
+                <th>Rental ID</th>
+                <th>Member</th>
+                <th>Game</th>
+                <th>Platform</th>
+                <th>Return Date</th>
+                <th>Extensions</th>
             </tr>
         
-        @foreach($members as $member)
-            @php $currentlyRenting = \App\Http\Controllers\RentalsController::numOfActiveRentals($member->id)@endphp
+        @foreach($rentals as $rental)
+            @if(!$rental->returned)
             <tr>
                 <th>{{$member->id}}</th>
                 <th>{{$member->name}}</th>
                 <th>{{$member->dob}}</th>
-                <th>
-                    @if($currentlyRenting != 0)
-                    <a href="/members/{{$member->id}}">
-                        {{$currentlyRenting}}
-                    </a>
-                    @else 0
-                    @endif
-                </th>
                 <th>@if($member->normalBan)
                     Yes
                     @else No
@@ -41,11 +31,6 @@
                 </th>
                 <th>{{$member->banBeginDate}}</th>
                 <th>{{$member->amountDue}}</th>
-                @if(\App\Http\Controllers\MembersController::isBanned($member->id) || !\App\Http\Controllers\RentalsController::underRentalLimit($member->id) || \App\Http\Controllers\GamesController::numOfGames() == 0)
-                    <th><a class="btn btn-primary disabled">Rent Game</a></th>
-                @else
-                    <th><a href="/members/{{$member->id}}/rent" class="btn btn-primary">Rent Game</a></th>
-                @endif
                 @if(!$member->normalBan)
                 <th>
                     {!! Form::open(['action' => ['MembersController@ban', $member->id], 'method' => 'POST']) !!}
@@ -72,6 +57,7 @@
                     </th>
                 @endif
             </tr>
+            @endif
         @endforeach
     </table> 
         {{$members->links()}}
@@ -79,4 +65,3 @@
         <p>No Members found </p>
     @endif
 @endsection
-

@@ -216,4 +216,39 @@ class GamesController extends Controller
         $game->delete();
         return redirect('/games')->with('success', 'Game Removed'); 
     }
+
+    /**
+     * Number of games in our database.
+     *
+     * @param  int  $id
+     * @return int
+     */
+    public static function numOfGames()
+    {
+        return Game::all()->count();
+    }
+
+    /**
+     * Name of a game.
+     *
+     * @param  int  $id
+     * @return string
+     */
+    public static function getGameName($id)
+    {
+        return Game::where('gameID',$id)->first()->name;
+    }
+
+    /**
+     * Platform of a game.
+     *
+     * @param  int  $id
+     * @return string
+     */
+    public static function getGamePlatform($id)
+    {
+        return Game::where('gameID',$id)->first()->platform;
+    }
+
+
 }
