@@ -3,7 +3,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if (isset($_POST["gameName"])) {
+    if (isset($_POST["gameName"])&& isset($_POST["price"])&& isset($_POST["price"])&& isset($_POST["copies"])&& isset($_POST["PURL"])&& isset($_POST["RURL"])&& isset($_POST["age"])&& isset($_POST["platform"])) {
         $gameName=$_POST['gameName'];
         $price=$_POST['price'];
         $copies=$_POST['copies'];
@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "ERROR";
     }
 }
+
 
 ?>
 
