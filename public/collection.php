@@ -1,6 +1,6 @@
 
 <?php require_once('../private/initialize.php'); ?>
-<?php require_once(SHARED_PATH . '/header.php'); ?>
+<?php require_once('../private/shared/header.php'); ?>
 
 
 
@@ -17,9 +17,9 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="index.php">Home</a>
-                        <a class="dropdown-item" href="collection.php?id=all">Collection</a>
-                        <a class="dropdown-item" href="collection_login.php">Log In</a>
+                        <a class="dropdown-item" href="home_page.php">Home</a>
+                        <a class="dropdown-item" href="collection.html">Collection</a>
+                        <a class="dropdown-item" href="login.html">Log In</a>
                     </div>
                 </li>
             </ul>
@@ -81,7 +81,10 @@ if (!is_bool($games_set)){
                         <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>" class="productLink">
                             <?php printf ($eachGame["name"]);?>
                         </a>
-                        
+                        <span class="rentPrice">
+                            <span class="price ">Price:
+                            <?php printf ($eachGame["price"]);?></span>
+                        </span>
                         <div class="show1 productInfo">
                             <span class="category ">Genre: <span class="productcategory"><?php printf ($eachGame["genre"]);?></span></span>
                             <span class="productStatus st">Copies:<br><span class="productStatusResult"><?php printf ($eachGame["copies"]);?></span></span>

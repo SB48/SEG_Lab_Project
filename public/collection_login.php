@@ -1,5 +1,5 @@
 <?php require_once('../private/initialize.php'); ?>
-<?php require_once(SHARED_PATH . '/header.php'); ?>
+<?php require_once('../private/shared/header.php'); ?>
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,10 +41,8 @@
     </div>
     
     <div class="row">
-        <?php
-        require_once('login.html')
-        ?>
+            <?php require_once('login.php'); ?>
     </div>
 
-    <?php require_once(SHARED_PATH . '/footer.php'); ?>
+    <?php require_once('../private/shared/footer.php'); ?>
 
