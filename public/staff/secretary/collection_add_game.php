@@ -53,33 +53,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="center">
 </div></div>
     </div>
-    <div class="container">
+   <div class="container">
         <div class="row">
             <div class="col-4">
         <div  action="collection_add_game.php" method="post">
             <div id="loginDiv">
                 <div class="loginSmallDiv" id="loginSmallDiv">
-                    <div class="loginInput "style="padding-left: 35px">
-
-                        <input type="text" placeholder="GameName" name="gameName" id="gameName">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">GameName</span>
+                        </div>
+                        <input type="text" name="gameName" id="gameName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+                        </div>
+                        <input type="text" name="price" id="price" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Copies</span>
+                        </div>
+                        <input type="text"name="copies" id="copies"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Picture Url</span>
+                        </div>
+                        <input type="text" class="form-control" id="PURL" aria-describedby="basic-addon3"name="PURL">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Picture Url</span>
+                        </div>
+                        <input type="text" class="form-control" id="RURL" aria-describedby="basic-addon3"name="RURL">
                     </div>
                     <div class="loginInput "style="padding-left: 35px">
-                        <input type="text" placeholder="Price" name="price" id="price">
-                    </div>
-                    <div class="loginInput "style="padding-left: 35px">
-
-                        <input type="text" placeholder="Copies" name="copies" id="copies">
-                    </div>
-                     <div class="loginInput "style="padding-left: 35px">
-
-                        <input type="url" placeholder="Picture URL" name="PURL" id="PURL">
-                    </div>
-                    <div class="loginInput "style="padding-left: 35px">
-
-                        <input type="url" placeholder=" Rating URL" name="RURL" id="RURL">
-                    </div>
-                    <div class="loginInput "style="padding-left: 35px">
-                        <select name="age" id="age" class="custom-select sources left" placeholder="Source Type">
+                        <select name="age" id="age" class="custom-select custom-select-lg mb-3" placeholder="Source Type">
                             <option value="PG">PG</option>
                             <option value="3">3</option>
                             <option value="7">7</option>
@@ -89,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </select>
                     </div>
                     <div class="loginInput "style="padding-left: 35px">
-                        <select name="platform" id="platform" class="custom-select sources left" placeholder="Source Type">
+                        <select name="platform" id="platform" class="custom-select custom-select-lg mb-3" placeholder="Source Type">
                             <option value="PS">PS</option>
                             <option value="PS3">PS3</option>
                             <option value="PS4">PS4</option>
@@ -102,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <br/>
                     <br/>
-                   <input style="float: right;margin-left: 33px" type="submit" value="Submit">
+                    <button type="submit" value="Submit" class="btn btn-danger" style="float: right;">Submit</button>
                 </div>
             </div>
         </div>
