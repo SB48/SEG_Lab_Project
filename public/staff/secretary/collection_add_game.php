@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3">Picture Url</span>
+                            <span class="input-group-text" id="basic-addon3">Rating Url</span>
                         </div>
                         <input type="text" class="form-control" id="RURL" aria-describedby="basic-addon3"name="RURL">
                     </div>
