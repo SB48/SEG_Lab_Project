@@ -60,19 +60,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="col-4">
         <form action="collection_add_member.php" method="post">
             <div id="loginDiv">
-                <div class="loginSmallDiv" id="loginSmallDiv">
-
-                    <div class="loginInput"style="padding-left: 30px">
-                        <input type="text" placeholder="firstName" name="firstName" id="firstName">
+                <div class="loginSmallDiv" style="padding-left: 0; !important;" id="loginSmallDiv">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">First Name</span>
+                        </div>
+                        <input type="text" name="firstName" id="firstName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
-                    <div class="loginInput "style="padding-left: 30px" >
-                        <input type="text" placeholder="lastName" name="lastName" id="lastName">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Last Name</span>
+                        </div>
+                        <input type="text" name="lastName" id="lastName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Birthday</span>
+                        </div>
+                        <input type="date" name="dob" id="dob" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
 
-                    <p style="color: white;padding-left: 30px">Birthday: </p><input style="margin-left: 33px" type="date" name="dob">
-                    <br/>
-                    <br/>
-                    <input style="float: left;margin-left: 33px" type="submit" value="Submit">
+                    <button type="submit" value="Submit" class="btn btn-danger" style="float: right;">Submit</button>
+
 
                 </div>
             </div>
