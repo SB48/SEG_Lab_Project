@@ -75,13 +75,11 @@ if (!is_bool($games_set)){
             <div class="categoryProducts">
                 <div class="productUnit">
                     <div class="productUnitFrame">
-                        <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>">
-                            <?php echo '<img src="'.$eachGame["path"]. '" width="100px" class="productImage">' ?>
-                        </a>
+                        
                          <div class="row">
                             <div class="col">
                         <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>" class="productLink">
-                            <?php printf (substr($eachGame["gameName"],0,40));?>
+                            <?php printf (substr($eachGame["name"],0,40));?>
 
                         </a>
                                 </div>
