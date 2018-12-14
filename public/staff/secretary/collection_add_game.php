@@ -1,27 +1,27 @@
 <?php require_once('../../../private/initialize.php'); ?>
 <?php require_once(SHARED_PATH . '/header.php'); ?>
+
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    if (isset($_POST["gameName"])&& isset($_POST["price"])&& isset($_POST["price"])&& isset($_POST["copies"])&& isset($_POST["PURL"])&& isset($_POST["RURL"])&& isset($_POST["age"])&& isset($_POST["platform"])) {
-        $gameName=$_POST['gameName'];
+    if (isset($_POST["gameName"])&& isset($_POST["price"])&& isset($_POST["copies"])&& isset($_POST["PURL"])&& isset($_POST["RURL"]) && isset($_POST["age"]) && isset($_POST["platform"])) {
+        $name=$_POST['gameName'];
+        $gameName = str_replace(' ', '', $name);
         $price=$_POST['price'];
         $copies=$_POST['copies'];
-        $PURL=$_POST['PURL'];
+        copy($_POST['PURL'], '../../pictures/' . $gameName. '.jpeg');
+        $PURL = '/public/pictures/' . $gameName. '.jpeg';
         $RURL=$_POST['RURL'];
         $age=$_POST['age'];
         $platform=$_POST['platform'];
-        $result = insert_games($gameName, $price, $copies, $PURL,$RURL, $age, $platform);
-        echo "SUCCESS";
+        $result = insert_games($gameName, $price, $copies, $RURL, $PURL, $age, $platform);
     } else {
         echo "ERROR";
     }
 }
 
-
 ?>
 
-?>
+
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">CGS</a>
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    <div class="container">
         <div class="row">
             <div class="col-4">
-        <div  action="collection_add_game.php" method="post">
+        <form  action="collection_add_game.php" method="post">
             <div id="loginDiv">
                 <div class="loginSmallDiv" id="loginSmallDiv">
                     <div class="input-group mb-3">
@@ -82,13 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">Picture Url</span>
                         </div>
-                        <input type="text" class="form-control" id="PURL" aria-describedby="basic-addon3"name="PURL">
+                        <input type="text" name="PURL" class="form-control" id="PURL" aria-describedby="basic-addon3">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">Rating Url</span>
                         </div>
-                        <input type="text" class="form-control" id="RURL" aria-describedby="basic-addon3"name="RURL">
+                        <input type="text" name="RURL" class="form-control" id="RURL" aria-describedby="basic-addon3">
                     </div>
                     <div class="loginInput "style="padding-left: 35px">
                         <select name="age" id="age" class="custom-select custom-select-lg mb-3" placeholder="Source Type">
@@ -114,14 +114,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <br/>
                     <br/>
-                    <button type="submit" value="Submit" class="btn btn-danger" style="float: right;">Submit</button>
+                    <button type="submit" value="Submit" class="btn btn-danger" style="float: right;" >Submit</button>
                 </div>
             </div>
-        </div>
+        
         </form>
-
+<!--
+        <form class="pt-3" action="secretary_platform.php" method="post">
+                        <input type="Submit" name="back" value="Back" class="btn btn-danger"/>
+        </form>-->
+        <a type="Submit" href="secretary_platform.php" value="Back" class="btn btn-danger" style="float: right;" >Back</a>
             </div></div></div>
     </div>
+</div>
 
 
 

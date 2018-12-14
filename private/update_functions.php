@@ -18,15 +18,17 @@ function insert_member($firstname, $lastname, $dob){
 }
 
 
-function insert_games($gameName, $price, $copies,$PURL,$RURL,$age,$platform){
+function insert_games($gameName, $price, $copies, $RURL, $PURL, $age,$platform){
     global $db;
-    $sql = "INSERT INTO Game (name, price, copies, purl,rurl, ageRating, platform)  VALUES ('$gameName','$price','$copies','$PURL','$RURL','$age', '$platform')";
-    $content = file_get_contents($PURL);
-    $fp = fopen("public/pictures", "w");
-    fwrite($fp, $content);
-    fclose($fp);
-    $res = mysqli_query($db, $sql);
-    return $res;
+    $stmt =$db->prepare("INSERT INTO Game (name, price, copies, url, path, ageRating, platform)  VALUES (?,?,?,?,?,?,?)");
+    $stmt->bind_param("siissss", $gameName, $price, $copies, $RURL, $PURL, $age,$platform);
+    $stmt->execute();
+    //$content = file_get_contents($PURL);
+    //$fp = fopen("public/pictures", "w");
+    //fwrite($fp, $content);
+    //close($fp);
+    //$res = mysqli_query($db, $sql);
+    return "success";
 }
 
 
