@@ -1,6 +1,6 @@
 
 <?php require_once('../../../private/initialize.php'); ?>
-<?php require_once('../../../private/shared/header.php'); ?>
+<?php require_once(SHARED_PATH . '/header.php'); ?>
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,15 +15,15 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../../home_page.php">Home</a>
-                        <a class="dropdown-item" href="../../collection.php">Collection</a>
-                        <a class="dropdown-item" href="#">Dummy</a>
-                        <a class="dropdown-item" href="../../login.html">Log In</a>
+                        <a class="dropdown-item" href="../../index.php">Home</a>
+                        <a class="dropdown-item" href="../../collection.php?id=all">Collection</a>
+                        <a class="dropdown-item" href="../../collection_login.php">Log In</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
+    WW_ROOT
 
     <div class="row white">
         <div class="col-md-3"></div>
@@ -33,144 +33,117 @@
         <div class="col-md-3"></div>
     </div>
 
+    <div class="row user-menu-container square">
+        <div class="col-md-12 user-details">
 
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+                    <h3>FIND MEMBER</h3>
+                    <div class="dropdown">
+                        <input onclick="myFunction()" class="dropbtn" type="submit" name="button"></input>
+                        <div id="myDropdown" class="dropdown-content">
+                            <input type="text" name="search" onkeyup="filterFunction()"placeholder="Search.." id="myInput" >
+                            <?php
+                            $allMember_set = find_all_members();
+                            while ($eachMember = mysqli_fetch_assoc($allMember_set)) {
+                                echo '<a href="../member.php?id='.$eachMember["memberID"].'";>'.$eachMember["fullName"].'</a>';
+                            }
+                            ?>
+                        </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <p class="white">MEMBERS</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
-            <p class="white-text">find a member</p>
-            <div class="dropdown">
-                <form action="" method="post">
-                <input onclick="myFunction()" class="dropbtn" type="submit" name="button">FIND</input>
-                <div id="myDropdown" class="dropdown-content">
-                    <input type="text" name="search" onkeyup="filterFunction()"placeholder="Search.." id="myInput" >
-                    <?php
-                    $sql = find_all_members();
-
-                    while ($row = $sql->fetch_assoc()){
-                        $id = $row['memberID'];
-                        $name = $row['firstName'];
-                        echo "<a href=/.$id.>" .$name. "</a>";
-                    }
-                    ?>
+                    </div>
                 </div>
-                </form>
-            </div>
-
-            <script>
-                /* When the user clicks on the button,
-                toggle between hiding and showing the dropdown content */
-                function myFunction() {
-                    document.getElementById("myDropdown").classList.toggle("show");
-                }
-
-                function filterFunction() {
-                    var input, filter, ul, li, a, i;
-                    input = document.getElementById("myInput");
-                    filter = input.value.toUpperCase();
-                    div = document.getElementById("myDropdown");
-                    a = div.getElementsByTagName("a");
-                    for (i = 0; i < a.length; i++) {
-                        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                            a[i].style.display = "";
-                        } else {
-                            a[i].style.display = "none";
-                        }
-                    }
-                }
-            </script>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-5">
-            <p class="white-text">add a new member</p>
-            <a href="../collection_add_member.php" class="button-new">NEW</a>
-        </div>
-    </div>
-
-    <div class="row py-3">
-        <div class="col-md-12"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <p class="white">GAMES</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
-            <p class="white-text">find a game</p>
-            <div class="dropdown">
-                <form action="" method="post">
-                    <input onclick="myFunction2()" class="dropbtn" type="submit" name="button2">FIND</input>
-                <div id="myDropdown2" class="dropdown-content">
-                    <input type="text" placeholder="Search.." name="search2" id="myInput2" onkeyup="filterFunction2()">
-                    <?php
-                    $sql = find_all_games();
-
-                    while ($row = $sql->fetch_assoc()){
-                        $id = $row['gameID'];
-                        $name = $row['name'];
-                        $platform = $row['platform'];
-                        echo "<a href=/.$id.>" .$name. "-" . $platform. "</a>";
-                    }
-                    ?>
+                <div class="col-md-4 user-pad text-center">
+                    <h3></h3>
+                    <h4></h4>
                 </div>
-                </form>
-            </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>INCREMENT COPIES</h3>
+                    <div class="dropdown">
 
-            <script>
-                /* When the user clicks on the button,
-                toggle between hiding and showing the dropdown content */
-                function myFunction2() {
-                    document.getElementById("myDropdown2").classList.toggle("show");
-                }
+                        <input onclick="myFunction2()" class="dropbtn" type="submit" name="button2"></input>
+                        <div id="myDropdown2" class="dropdown-content">
+                            <input type="text" placeholder="Search.." name="search2" id="myInput2" onkeyup="filterFunction2()">
+                            <?php
+                            $allGames_set = find_all_games();
+                            while ($eachGame = mysqli_fetch_assoc($allGames_set)) {
+                                echo ' <a href="../../product.php?id='.$eachGame["gameID"].'&sec=true";>'.$eachGame["name"]." - ".$eachGame["platform"].'</a>';
+                            }
+                            ?>
+                        </div>
 
-                function filterFunction2() {
-                    var input, filter, ul, li, a, i;
-                    input = document.getElementById("myInput2");
-                    filter = input.value.toUpperCase();
-                    div = document.getElementById("myDropdown2");
-                    a = div.getElementsByTagName("a");
-                    for (i = 0; i < a.length; i++) {
-                        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                            a[i].style.display = "";
-                        } else {
-                            a[i].style.display = "none";
+                    </div>
+
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction2() {
+                            document.getElementById("myDropdown2").classList.toggle("show");
                         }
-                    }
-                }
-            </script>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-5">
-            <p class="white-text">add a new game</p>
-            <a href="collection_add_game.php" class="button-new">NEW</a>
+
+                        function filterFunction2() {
+                            var input, filter, ul, li, a, i;
+                            input = document.getElementById("myInput2");
+                            filter = input.value.toUpperCase();
+                            div = document.getElementById("myDropdown2");
+                            a = div.getElementsByTagName("a");
+                            for (i = 0; i < a.length; i++) {
+                                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    a[i].style.display = "";
+                                } else {
+                                    a[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+                    <h3>ADD MEMEBER</h3>
+                    <form class="pt-3" action="../collection_add_member.php" method="post">
+                        <input type="submit" name="new_m" value="NEW" class="button-new"/>
+                    </form>
+
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction() {
+                            document.getElementById("myDropdown").classList.toggle("show");
+                        }
+
+                        function filterFunction() {
+                            var input, filter, ul, li, a, i;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            div = document.getElementById("myDropdown");
+                            a = div.getElementsByTagName("a");
+                            for (i = 0; i < a.length; i++) {
+                                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    a[i].style.display = "";
+                                } else {
+                                    a[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>RULES & LIMITATIONS</h3>
+                    <form class="pt-3" action="collection_changeRules.php" method="post">
+                        <input type="submit" name="new_r" value="CHANGE" class="button-new"/>
+                    </form>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <h3>ADD GAME</h3>
+                    <form class="pt-3" action="collection_add_game.php" method="post">
+                        <input type="submit" name="new_m" value="NEW" class="button-new"/>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="row py-3">
-        <div class="col-md-12"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <p class="white">MAKE CHANGES IN RULES AND LIMITATIONS</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-2">
-            <a href="collection_changeRules.php" class="button-new">CHANGES</a>
-        </div>
-        <div class="col-md-6"></div>
-    </div>
 
 
-    <?php require_once('../../../private/shared/footer.php'); ?>
+    <?php require_once(SHARED_PATH . '/footer.php'); ?>

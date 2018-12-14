@@ -1,5 +1,6 @@
+
 <?php require_once('../private/initialize.php'); ?>
-<?php require_once('../private/shared/header.php'); ?>
+<?php require_once(SHARED_PATH . '/header.php'); ?>
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -14,35 +15,48 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="index.php">About</a>
+                        <a class="dropdown-item" href="#">Home</a>
                         <a class="dropdown-item" href="collection.php?id=all">Collection</a>
-                        <a class="dropdown-item" href="#">Log In</a>
+                        <a class="dropdown-item" href="collection_login.php">Log In</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
 
+    <div class="row text-header">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1>Computer Gaming Society Collection</h1>
+            <p>scroll to view more</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+
+    <div class="row py-5">
+        <div class="col-md-12"></div>
+    </div>
+
     <div class="row white">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h1>Login</h1>
+            <p class = "larger-text">Welcome to Computer Gaming Society's Collection.</p>
+            <p class="smaller-text">click on the link below to browse the games you could borrow</p>
+            <p></p>
+            <p></p>
         </div>
-        <div class="col-md-3">
-            <div class="center">
-                <!--
-                    <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type">
-                    <option value="profile">Avilable</option>
-                    <option value="word">ForKids</option>
-                    <option value="hashtag">Movie</option>
-                  </select>
-                -->
-            </div></div>
-    </div>
-    
-    <div class="row">
-            <?php require_once('login.php'); ?>
+        <div class="col-md-3"></div>
     </div>
 
-    <?php require_once('../private/shared/footer.php'); ?>
 
+
+    <div class="row white smaller-padding">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <a href="collection.php?id=all" class="button">VIDEO GAMES</a>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+<?php require_once(SHARED_PATH . '/footer.php'); ?>

@@ -1,5 +1,5 @@
 <?php require_once('../../../private/initialize.php'); ?>
-<?php require_once('../../../private/shared/header.php'); ?>
+<?php require_once(SHARED_PATH . '/header.php'); ?>
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -14,10 +14,9 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">About</a>
-                        <a class="dropdown-item" href="education.html">Education</a>
-                        <a class="dropdown-item" href="career.html">Career</a>
-                        <a class="dropdown-item" href="skills.html">Skills</a>
+                        <a class="dropdown-item" href="../../index.php">Home</a>
+                        <a class="dropdown-item" href="../../collection.php?id=all">Collection</a>
+                        <a class="dropdown-item" href="../../login.html">LogIn</a>
                     </div>
                 </li>
             </ul>
@@ -38,7 +37,9 @@
 
     <div class="row">
 
-        <include src="changeRules.html"></include>
+       <?php
+            require_once('changeRules.html')
+            ?>
   
     </div>
 
@@ -55,4 +56,4 @@
         <div class="col-md-12"></div>
     </div>
 
-    <?php require_once('../../../private/shared/footer.php'); ?>
+    <?php require_once(SHARED_PATH . '/footer.php'); ?>

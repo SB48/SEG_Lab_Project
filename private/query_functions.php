@@ -13,10 +13,11 @@
         confirm_result_set($result);
         return $result;
     }
+
     function find_all_members(){
         global $db;
         $sql = "SELECT * FROM Member ";
-        $sql = "ORDER BY name ASC";
+        $sql .= "ORDER BY firstName ASC";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -24,7 +25,7 @@
     function find_all_staff(){
         global $db;
         $sql = "SELECT * FROM Staff ";
-        $sql = "ORDER BY name ASC";
+        $sql .= "ORDER BY name ASC";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -32,7 +33,7 @@
     function find_all_rentals(){
         global $db;
         $sql = "SELECT * FROM Rentals ";
-        $sql = "ORDER BY name ASC";
+        $sql .= "ORDER BY name ASC";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -113,16 +114,16 @@
         confirm_result_set($thisGame_set);
         return $thisGame_set;
     }
-    function find_member_name($memberID){
+    function find_member($memberID){
         global $db;
-        $sql = "SELECT firstName, lastName FROM Member WHERE memberID = $memberID";
+        $sql = "SELECT fullName, damageBan, normalBan, amountDue FROM Member WHERE memberID = $memberID";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
     }
     function find_how_many_games_are_rented($memberID){
         global $db;
-        $sql = "SELECT COUNT(rentalID) FROM Rental WHERE memberID = $memberID AND returned = false";
+        $sql = "SELECT COUNT(rentalID) AS num FROM Rental WHERE memberID = $memberID AND returned = false";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -134,13 +135,21 @@
         confirm_result_set($result);
         return $result;
     }
-    function find_is_banned($memberID){
-        global $db;
-        $sql = "SELECT normalBan FROM Member WHERE memberID = $memberID";
-        $result = mysqli_query($db,$sql);
-        confirm_result_set($result);
-        return $result;
-    }
+//    function find_is_normal_banned($memberID){
+//        global $db;
+//        $sql = "SELECT normalBan FROM Member WHERE memberID = $memberID";
+//        $result = mysqli_query($db,$sql);
+//        confirm_result_set($result);
+//        return $result;
+//    }
+
+//    function find_is_demage_banned($memberID){
+//        global $db;
+//        $sql = "SELECT damageBan FROM Member WHERE memberID = $memberID";
+//        $result = mysqli_query($db,$sql);
+//        confirm_result_set($result);
+//        return $result;
+//    }
     function find_violations_possible(){
         global $db;
         $sql = "SELECT ruleVal FROM Rules WHERE rule = 'numViolationsForBan'";
@@ -150,7 +159,7 @@
     }
     function find_violations_in_grace_period($memberID){
         global $db;
-        $sql = "SELECT COUNT(memberID) FROM Violates WHERE memberID = $memberID AND nullified = false";
+        $sql = "SELECT COUNT(memberID) AS num FROM Violates WHERE memberID = $memberID AND nullified = false";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
@@ -164,13 +173,43 @@
     }
     function find_current_rentals($memberID){
         global $db;
-        $sql ="SELECT COUNT(Game.gameID), Game.gameID, Rental.gameID, Game.name, Rental.returnDate, Rental.returned ";
-        $sql .= "FROM Rental, Game.gameID ";
-        $sql .= "INNER JOIN Rental ON Rental.gameID = Game.gameID ";
+        $sql ="SELECT COUNT(Game.gameID) AS num FROM Rental INNER JOIN Game ON Rental.gameID = Game.gameID ";
         $sql .= "WHERE Rental.memberID = $memberID AND Rental.returned = false";
         $result = mysqli_query($db,$sql);
         confirm_result_set($result);
         return $result;
     }
-    
+
+    function find_all_current_rentals($memberID){
+        global $db;
+        $sql ="SELECT rentalID, gameID, memberID, returnDate, returned, extensions  FROM Rental WHERE memberID = $memberID AND returned = false";
+        $result = mysqli_query($db,$sql);
+        confirm_result_set($result);
+        return $result;
+    }
+
+    function set_normal_ban($memberId){
+        global $db;
+        $sql ="UPDATE Member SET normalBan = true WHERE memberID = $memberId";
+        $result = mysqli_query($db,$sql);
+        confirm_result_set($result);
+        return $result;
+    }
+
+    function un_ban($memberId){
+        global $db;
+        $sql ="UPDATE Member SET normalBan = false WHERE memberID = $memberId";
+        $result = mysqli_query($db,$sql);
+        confirm_result_set($result);
+        return $result;
+    }
+
+    function checkAuthentication($staffID, $password){
+        global $db;
+        $sql ="SELECT staffID, password, privelegeLevel  FROM Staff ";
+        $sql .= "WHERE staffID = $staffID AND password = $password";
+        $result = mysqli_query($db,$sql);
+        confirm_result_set($result);
+        return $result;
+    }
 ?>

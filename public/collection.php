@@ -67,32 +67,31 @@ else if($sort == "pc") {$games_set = pc();}
 else if($sort == "xbox") {$games_set = xbox();}
 else if($sort == "ps4") {$games_set = ps4();}
 else {$games_set = availableGames();}
-while($eachGame = mysqli_fetch_assoc($games_set)) {
-    ?>
-    
-    <div class="categoryPageDiv">
-        <div class="categoryProducts">
-            <div class="productUnit">
-                <div class="productUnitFrame">
-                    <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>">
-                        <?php echo '<img src="'.$eachGame["path"]. '" width="100px" class="productImage">' ?>
-                    </a>
-                    <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>" class="productLink">
-                        <?php printf ($eachGame["name"]);?>
-                    </a>
-                    <span class="rentPrice">
-                        <span class="price ">Price:
-                        <?php printf ($eachGame["price"]);?></span>
-                    </span>
-                    <div class="show1 productInfo">
-                        <span class="category ">Genre: <span class="productcategory"><?php printf ($eachGame["genre"]);?></span></span>
-                        <span class="productStatus st">Copies:<br><span class="productStatusResult"><?php printf ($eachGame["copies"]);?></span></span>
+if (!is_bool($games_set)){
+    while($eachGame = mysqli_fetch_assoc($games_set)) {
+        ?>
+        
+        <div class="categoryPageDiv">
+            <div class="categoryProducts">
+                <div class="productUnit">
+                    <div class="productUnitFrame">
+                        <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>">
+                            <?php echo '<img src="'.$eachGame["path"]. '" width="100px" class="productImage">' ?>
+                        </a>
+                        <a href="product.php?id=<?php echo $eachGame["gameID"]; ?>" class="productLink">
+                            <?php printf ($eachGame["name"]);?>
+                        </a>
+                        
+                        <div class="show1 productInfo">
+                            <span class="category ">Genre: <span class="productcategory"><?php printf ($eachGame["genre"]);?></span></span>
+                            <span class="productStatus st">Copies:<br><span class="productStatusResult"><?php printf ($eachGame["copies"]);?></span></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <?php   
+        <?php   
+    }
 }
 
 ?>
