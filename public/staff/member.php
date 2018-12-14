@@ -101,8 +101,11 @@
                     <h3>RENT A GAME</h3>
 
                     <div class="dropdown padding pt-2">
-
-
+                        <!--                can rent only if not banned and renting less than the limit-->
+<!--                        --><?php
+//                        $status = "";
+//                        if(($gamesCurrentlyRented >= $numberOfVideosPossible) || $isBanned || ($findAmountDue > 0)) {
+//                            $status = "disabled";} ?>
                         <input onclick="myFunction()" class="dropbtn" type="submit" name="button">
                         <div id="myDropdown" class="dropdown-content">
                             <input type="text" placeholder="Search.." name="search" id="myInput" onkeyup="filterFunction()">
@@ -183,10 +186,13 @@
                 </tr>
                 <?php
                     $no = 0;
-                    while ($rental = mysqli_fetch_assoc($rentalTableSet)) { ?>
+                    while ($rental = mysqli_fetch_assoc($rentalTableSet)) { 
+                    $gameSet = find_game($rental['gameID']);
+                    $game = mysqli_fetch_assoc($gameSet);
+                    ?>
                 <tr>
                     <td><h3><?php echo $no = $no + 1; ?></h3></td>
-                    <td><h3><?php echo $rental['gameID']; ?></h3></td>
+                    <td><h3><?php echo $game['name']; ?></h3></td>
                     <td><h3><?php echo $rental['returnDate']; ?></h3></td>
                     <?php $extend = "extend".$rental['rentalID'] ?>
                     <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
@@ -195,7 +201,8 @@
                     </td>
                     <?php if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST[$extend]))
                     {
-                        extension($rental['rentalID'], $rental['memberID']);
+                        extension($rental['memberID'], $rental['rentalID']);
+                        setExtensions($rental['memberID']);
                     }?>
                     <?php $late = "late".$rental['rentalID'] ?>
                     <td><form action="member.php?id=<?php echo $rental['memberID']; ?>" method="post">
@@ -234,7 +241,6 @@
 
 
 
-    <?php mysqli_free_result() ?>
 
 
 

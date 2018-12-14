@@ -96,17 +96,94 @@ function payback($memberID){
 }
 
 
-//function extension($memberID, $memberID){
-//    global $db;
-//    $sql = " UPDATE Rental ";
-//    $sql .= "SET ";
-//    $sql .= "returnDate = CASE WHEN (SELECT COUNT(extensions) FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN DATE_ADD(week, (SELECT ruleVal FROM Rules WHERE rule = 'extensionTime'), returnDate) END, ";
-//    $sql .= "extensions = CASE WHEN (SELECT COUNT(extensions) FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN extensions = extensions +1  END ";
-//    $sql .= "WHERE rentalID = $memberID";
-//    $result = mysqli_query($db,$sql);
-//    confirm_result_set($result);
-//    return $result;
-//}
+function extension2($memberID, $rentalID){
+    global $db;
+    $sql = " UPDATE Rental ";
+    $sql .= "SET ";
+    $sql .= "returnDate = CASE WHEN (SELECT COUNT(extensions) FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN DATE_ADD(week, (SELECT ruleVal FROM Rules WHERE rule = 'extensionTime'), returnDate) END, ";
+    $sql .= "extensions = CASE WHEN (SELECT COUNT(extensions) FROM Rental WHERE (memberID = $memberID) < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN extensions = extensions +1  END ";
+    $sql .= "WHERE rentalID = $memberID";
+    $result = mysqli_query($db,$sql);
+    confirm_result_set($result);
+    return $result;
+}
+
+function extension3($memberID, $rentalID){
+    global $db;
+    $sql = " UPDATE Rental ";
+    $sql .= "SET ";
+    $sql .= "returnDate = CASE WHEN ";
+    $sql .= "(SELECT extensions FROM Rental WHERE (memberID =". $memberID.") < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN DATE_ADD((SELECT returnDate FROM Rental WHERE memberID = $memberID), (SELECT ruleVal FROM Rules WHERE rule = 'extensionTime'), returnDate) END, ";
+    $sql .= "extensions = CASE WHEN (SELECT extensions FROM Rental WHERE (memberID =". $memberID.") < (SELECT ruleVal FROM Rules WHERE rule = 'numExtensions') THEN extensions = extensions +1  END ";
+    $sql .= "WHERE rentalID = $memberID";
+    $result = mysqli_query($db,$sql);
+    confirm_result_set($result);
+    return $result;
+}
+
+//returns the number of extensions currently allowed by the secretary
+function numExtensions() {
+    global $db;
+    $sql = "SELECT rule, ruleVal FROM Rules WHERE rule = 'numExtensions'";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $singleResult = mysqli_fetch_assoc($result);
+    return $singleResult;
+}
+
+function extensionTime() {
+    global $db;
+    $sql = "SELECT rule, ruleVal ";
+    $sql .= "FROM Rules ";
+    $sql .= "WHERE rule = 'extensionTime'";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $singleResult = mysqli_fetch_assoc($result);
+    return $singleResult;
+}
+
+function memberExtensions($memberID){
+    global $db;
+    $sql = "SELECT extensions, memberID FROM Rental WHERE memberID = $memberID";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $singleResult = mysqli_fetch_assoc($result);
+    return $singleResult;
+}
+
+function returnDate($memberID) {
+    global $db;
+    $sql = "SELECT returnDate, memberID FROM Rental ";
+    $sql .= "WHERE memberID = $memberID";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $singleResult = mysqli_fetch_assoc($result);
+    return $singleResult;
+}
+
+function extension($memberID, $rentalID){
+    global $db;
+    $sql = "UPDATE Rental SET returnDate = CASE WHEN ";
+    $sql .= "( ".memberExtensions($memberID)['extensions']." <= ".numExtensions()['ruleVal'] .") ";
+    $sql .= "THEN DATE_ADD(".returnDate($memberID)['returnDate'].", INTERVAL ".extensionTime()['ruleVal']." WEEK) ";
+    $sql .= "END WHERE memberID = $memberID";
+    $result = mysqli_query($db,$sql);
+    confirm_result_set($result);
+    return $result;
+}
+
+
+function setExtensions($memberID){
+    global $db;
+    $sql = "UPDATE Rental SET extensions = CASE WHEN ";
+    $sql .= "(".memberExtensions($memberID)['extensions']." <= ".numExtensions()['ruleVal']." ) ";
+    $sql .= "THEN (extensions = (extensions+1) ) ";
+    $sql .= "END WHERE memberID = $memberID";
+    $result = mysqli_query($db,$sql);
+    confirm_result_set($result);
+    return $result;
+
+}
 
 /**
  * Create a rental, with memberID and gameID

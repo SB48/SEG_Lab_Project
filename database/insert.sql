@@ -18,7 +18,7 @@ Values
 ('Air Hockey', '3', '36', 'Action','8','https://www.mobygames.com/game/air-hockey__','pictures/air-hockey.png','PC','In this simulation of the air hockey arcade game the player controls a mallet trying to hit he puck into the opponents goal. The game is played until seven goals are scored (Classic mode) or until the timer reaches zero (Timed mode). There are three difficulty settings. A variety of color choices for the playfield and the puck are available. The game supports two-player versus matches on a single device.'),
 ('The Arrival', '18', '16', 'Action','3','https://www.mobygames.com/game/arrival','pictures/the-arrival.jpg','XBOX','You have a first person view with complete freedom of movement. The puzzles have a science fiction theme, involving either object usage or looking for details. A hint system helps adventure game rookies to get used to the process of puzzle-solving. The game is non-linear and can come to several different endings.');
 
-INSERT INTO Staff(firstName, lastName, password, privelegeLevel)
+INSERT INTO STAFF(firstName, lastName, password, privelegeLevel)
 VALUES
 ('Daenerys', 'Targaryen', '000000000000', default),
 ('Jon', 'Snow', '000000000001', default),

@@ -2,9 +2,6 @@
 <?php require_once('../../../private/initialize.php'); ?>
 <?php require_once(SHARED_PATH . '/header.php'); ?>
 
-
-
-
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">CGS</a>
@@ -42,7 +39,42 @@
 
             <div class="row overview">
                 <div class="col-md-4 user-pad text-center">
-                    <?php require_once('../findMember.php'); ?>
+                    <h3>FIND MEMBER</h3>
+                    <div class="dropdown">
+                        <input onclick="myFunction()" class="dropbtn" type="submit" name="button"></input>
+                        <div id="myDropdown" class="dropdown-content">
+                            <input type="text" name="search" onkeyup="filterFunction()"placeholder="Search.." id="myInput" >
+                            <?php
+                            $allMember_set = find_all_members();
+                            while ($eachMember = mysqli_fetch_assoc($allMember_set)) {
+                                echo '<a href="../member.php?id='.$eachMember["memberID"].'";>'.$eachMember["fullName"].'</a>';
+                            }
+                            ?>
+                        </div>
+                    </div>
+
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction() {
+                            document.getElementById("myDropdown").classList.toggle("show");
+                        }
+
+                        function filterFunction() {
+                            var input, filter, ul, li, a, i;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            div = document.getElementById("myDropdown");
+                            a = div.getElementsByTagName("a");
+                            for (i = 0; i < a.length; i++) {
+                                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    a[i].style.display = "";
+                                } else {
+                                    a[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
                 </div>
                 <div class="col-md-4 user-pad text-center">
                     <h3></h3>
@@ -64,7 +96,29 @@
                         </div>
 
                     </div>
-                    <?php require_once('../gameScript.php'); ?>
+
+                    <script>
+                        /* When the user clicks on the button,
+                        toggle between hiding and showing the dropdown content */
+                        function myFunction2() {
+                            document.getElementById("myDropdown2").classList.toggle("show");
+                        }
+
+                        function filterFunction2() {
+                            var input, filter, ul, li, a, i;
+                            input = document.getElementById("myInput2");
+                            filter = input.value.toUpperCase();
+                            div = document.getElementById("myDropdown2");
+                            a = div.getElementsByTagName("a");
+                            for (i = 0; i < a.length; i++) {
+                                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    a[i].style.display = "";
+                                } else {
+                                    a[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
                 </div>
             </div>
             <div class="row overview">
