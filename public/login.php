@@ -15,7 +15,7 @@
 <div id="loginDiv">
 	<div class="loginSmallDiv" id="loginSmallDiv">
 
-		<form action="/SEG_Lab_Project-bug-fixing/public/login_redirect.php" method="post">
+		<form action="login_redirect.php" method="post">
 			<fieldset>
 				<div class="loginInput ">
 					<span class="loginInputIcon ">

@@ -101,11 +101,8 @@
                     <h3>RENT A GAME</h3>
 
                     <div class="dropdown padding pt-2">
-                        <!--                can rent only if not banned and renting less than the limit-->
-<!--                        --><?php
-//                        $status = "";
-//                        if(($gamesCurrentlyRented >= $numberOfVideosPossible) || $isBanned || ($findAmountDue > 0)) {
-//                            $status = "disabled";} ?>
+
+
                         <input onclick="myFunction()" class="dropbtn" type="submit" name="button">
                         <div id="myDropdown" class="dropdown-content">
                             <input type="text" placeholder="Search.." name="search" id="myInput" onkeyup="filterFunction()">
