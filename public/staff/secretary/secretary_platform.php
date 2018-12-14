@@ -100,7 +100,7 @@
             </div>
             <div class="row overview">
                 <div class="col-md-4 user-pad text-center">
-                    <h3>ADD MEMEBER</h3>
+                    <h3>ADD MEMBER</h3>
                     <form class="pt-3" action="../collection_add_member.php" method="post">
                         <input type="submit" name="new_m" value="NEW" class="button-new"/>
                     </form>
