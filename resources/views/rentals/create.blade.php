@@ -13,7 +13,7 @@
                 {{$tempGame = $game['name']}}    
                 <option value= "{{$tempGame}}">{{$tempGame}}</option>
                 @endforeach
-
+                
             </select>            
         </div>
 

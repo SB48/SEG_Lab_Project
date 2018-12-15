@@ -30,15 +30,15 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
-    /**
+    /** NEED TO REACTIVATE 
      * Create a new controller instance.
      *
      * @return void
+     *  public function __construct()
+     *  {
+     *       $this->middleware('auth');
+     *  }
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -62,7 +62,12 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {   
+        // REACTIVATE
+        //if(auth()->user()->privilegeLevel !== 'Secretary'){
+        //    return redirect('/home')->with('error', 'Unauthorized access');
+        //}
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

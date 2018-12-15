@@ -2,7 +2,10 @@
 
 @section('content')
     <p>Active Rentals</p>
-    @if(count($rentals) > 1)
+    @if(count($data) > 0)
+        @php 
+            $numExtensions = \App\SocietyRule::where('society_rule','numExtensions')->first()->ruleVal;
+        @endphp
         <table class ="table table-striped">
             <tr>
                 <th>Rental ID</th>
@@ -13,55 +16,42 @@
                 <th>Extensions</th>
             </tr>
         
-        @foreach($rentals as $rental)
-            @if(!$rental->returned)
+        @foreach($data as $rental)
             <tr>
-                <th>{{$member->id}}</th>
-                <th>{{$member->name}}</th>
-                <th>{{$member->dob}}</th>
-                <th>@if($member->normalBan)
-                    Yes
-                    @else No
-                    @endif
-                </th>
-                <th>@if($member->damageBan)
-                    Yes <a class="btn btn-success">Pay Back</a>
-                    @else No
-                    @endif
-                </th>
-                <th>{{$member->banBeginDate}}</th>
-                <th>{{$member->amountDue}}</th>
-                @if(!$member->normalBan)
+                <th>{{$rental['id']}}</th>
+                <th>{{$rental['memberName']}}</th>
+                <th>{{$rental['gameName']}}</th>
+                <th>{{$rental['platform']}}</th>
+                <th>{{$rental['returnDate']}}</th>
+                <th>{{$rental['extensions']}}</th>
+                @if($rental['extensions'] < $numExtensions)
                 <th>
-                    {!! Form::open(['action' => ['MembersController@ban', $member->id], 'method' => 'POST']) !!}
+                    {!! Form::open(['action' => ['RentalsController@extend', $rental['id']], 'method' => 'POST']) !!}
                     {{Form::hidden('_method', 'PUT')}}
-                    {{Form::submit('Ban Member', ['class' => 'btn btn-danger'])}}
+                    {{Form::submit('Extend Deadline', ['class' => 'btn btn-success'])}}
                     {!! Form::close() !!}
                 </th>
-                @else 
-                <th>
-                    {!! Form::open(['action' => ['MembersController@unban', $member->id], 'method' => 'POST']) !!}
-                    {{Form::hidden('_method', 'PUT')}}
-                    {{Form::submit('Unban Member', ['class' => 'btn btn-success'])}}
-                    {!! Form::close() !!}
-                </th>
+                @else <th><a class="btn btn-secondary" disabled>Can't Extend Further</a></th>
                 @endif
 
-                @if(Auth::user()->privilegeLevel == 'Secretary')
-                    <th><a href="/members/{{$member->id}}/edit" class="btn btn-default">Edit</a></th>
-                    <th>
-                    {!!Form::open(['action' => ['MembersController@destroy', $member->id], 'method' => 'POST'])!!}
+                <th>
+                    {!! Form::open(['action' => ['RentalsController@returnGame', $rental['id']], 'method' => 'POST']) !!}
+                    {{Form::hidden('_method', 'PUT')}}
+                    {{Form::submit('Return', ['class' => 'btn btn-success'])}}
+                    {!! Form::close() !!}
+                </th>
+
+                <th>
+                    {!!Form::open(['action' => ['RentalsController@destroy', $rental['id']], 'method' => 'POST'])!!}
                     {{Form::hidden('_method', 'DELETE')}}
-                    {{Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick'=>"return confirm('Are you sure?')"])}}
+                    {{Form::submit('Damaged Game', ['class' => 'btn btn-danger', 'onclick'=>"return confirm('This will ban the Member, and charge them. It will also remove this rental. Are you sure?')"])}}
                     {!!Form::close()!!}
-                    </th>
-                @endif
+                </th>
             </tr>
-            @endif
         @endforeach
     </table> 
-        {{$members->links()}}
+        {{$data->links()}}
     @else
-        <p>No Members found </p>
+        <p>No Rentals found </p>
     @endif
 @endsection

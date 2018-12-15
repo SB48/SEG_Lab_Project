@@ -11,4 +11,7 @@ class SocietyRule extends Model
 
     // Primary Key
     public $primaryKey = 'society_rule';
+
+    // Stop it from assuming primary key is autoincrement
+    public $incrementing = false;
 }

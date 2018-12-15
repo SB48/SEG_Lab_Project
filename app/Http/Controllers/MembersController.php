@@ -108,6 +108,8 @@ class MembersController extends Controller
             return redirect('/members')->with('error', 'Unauthorized access');
         }
         $member = Member::find($id);
+        if($member == Null){return redirect('/members')->with('error', 'Cannot find Member');
+        }
         return view('members.edit')->with('member',$member);
     }
 
@@ -136,10 +138,8 @@ class MembersController extends Controller
   
         }
 
-        else{
-            $member->save();
-            return redirect('/members')->with('success', 'Member edited Successfully');
-        }
+        $member->save();
+        return redirect('/members')->with('success', 'Member edited Successfully');
     }
 
     /**
@@ -175,7 +175,7 @@ class MembersController extends Controller
         $member->normalBan = true;
         $member->banBeginDate = Carbon::now();
         $member->save();
-        return redirect('/members')->with('success', 'User Banned');
+        return redirect('/members')->with('success', 'Member Banned');
         
     }
 
@@ -194,7 +194,7 @@ class MembersController extends Controller
         $member->normalBan = false;
         $member->banBeginDate = NULL;
         $member->save();
-        return redirect('/members')->with('success', 'User Unbanned');
+        return redirect('/members')->with('success', 'Member Unbanned');
         
     }
 
@@ -208,6 +208,24 @@ class MembersController extends Controller
     {
         $member = Member::find($id);
         return $member->damageBan || $member->normalBan;
+        
+    }
+
+    /**
+     * Let this Member pay off their debts.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function payback($id)
+    {
+        $member = Member::find($id);
+
+        if ($member == NULL){return redirect('/members')->with('error', 'Member does not exist');}
+        $member->damageBan = false;
+        $member->amountDue = 0;
+        $member->save();
+        return redirect('/members')->with('success', 'Member has paid back what is owed');
         
     }
 }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
+use Illuminate\Validation\SocietyRule;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Game;
 use DB;
 
@@ -56,10 +57,10 @@ class GamesController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'price' => 'required|integer',
-            'ageRating' => Rule::in(['PG','3','7','12','16','18']),
+            'price' => 'required|integer|gte:0',
+            'ageRating' => SocietyRule::in(['PG','3','7','12','16','18']),
             'genre' => 'required|max:20',
-            'copies' => 'required|integer',
+            'copies' => 'required|integer|gte:0',
             'description' => 'required|max:1000',
             'platform' => 'required|max:50',
             'thumbnail' => 'image|nullable|max:1999'
@@ -109,7 +110,7 @@ class GamesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $gameID
      * @return \Illuminate\Http\Response
      */
     public function show($gameID)
@@ -121,7 +122,7 @@ class GamesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $gameID
      * @return \Illuminate\Http\Response
      */
     public function edit($gameID)
@@ -137,17 +138,17 @@ class GamesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $gameID
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $gameID)
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'price' => 'required|integer',
-            'ageRating' => Rule::in(['PG','3','7','12','16','18']),
+            'price' => 'required|integer|gte:0',
+            'ageRating' => SocietyRule::in(['PG','3','7','12','16','18']),
             'genre' => 'required|max:20',
-            'copies' => 'required|integer',
+            'copies' => 'required|integer|gte:0',
             'description' => 'required|max:1000',
             'platform' => 'required|max:50',
             'thumbnail' => 'image|nullable|max:1999'
@@ -195,7 +196,7 @@ class GamesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $gameID
      * @return \Illuminate\Http\Response
      */
     public function destroy($gameID)
@@ -220,7 +221,6 @@ class GamesController extends Controller
     /**
      * Number of games in our database.
      *
-     * @param  int  $id
      * @return int
      */
     public static function numOfGames()
@@ -250,5 +250,92 @@ class GamesController extends Controller
         return Game::where('gameID',$id)->first()->platform;
     }
 
+
+    /**
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getGameAttributes()
+    {
+
+        $ageRatings = ['PG', '3','7','12','16','18'];
+        $genres = Game::select('genre')->distinct()->get();
+        $platforms = Game::select('platform')->distinct()->get();
+        $data = [
+            'ageRatings' => $ageRatings,
+            'genres' => $genres,
+            'platforms' => $platforms
+        ];
+
+        return $data;
+    }
+
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {   
+        $this->validate($request, [
+            'name' => 'max:255'
+        ]);
+        
+        // Gather the inputs
+        $name;
+        if($request->filled('name'))
+            {$name = $request->input('name');} 
+        else {$name = 'notSelected';} 
+
+        $ageRating = $request->input('ageRating');
+        $genre = $request->input('genre');
+        $platform = $request->input('platform');
+
+        // Find the games that match the criteria
+        $games = Game::all();
+
+        if($name != 'notSelected'){
+            $games = $games->where('name', $name);
+        }
+
+        if ($ageRating != NULL){
+            $games = $games->where('ageRating',$ageRating);
+        }
+
+        if ($genre != NULL){
+            $games = $games->where('genre',$genre);
+        }
+
+        if ($platform != NULL){
+            $games = $games->where('platform',$platform);
+        }
+
+        if(count($games) == 0){
+            return redirect('/games')->with('error', 'No games found');
+        }
+
+        // We need to manually paginate results
+
+         // Get current page form url e.x. &page=1
+         $currentPage = LengthAwarePaginator::resolveCurrentPage();
+ 
+         // Create a new Laravel collection from the array data
+         $dataCollection = collect($games);
+  
+         // Define how many items we want to be visible in each page
+         $perPage = 24;
+  
+         // Slice the collection to get the items to display in current page
+         $currentPageItems = $dataCollection->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
+  
+         // Create our paginator and pass it to the view
+         $paginatedItems= new LengthAwarePaginator($currentPageItems , count($dataCollection), $perPage);
+  
+         // set url path for generted links
+         $paginatedItems->setPath('games.index');
+ 
+         return view('games.index')->with('games', $paginatedItems);
+    }
 
 }

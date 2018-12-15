@@ -2,7 +2,7 @@
 
 @section('content')
     <p>Members Table</p>
-    @if(count($members) > 1)
+    @if(count($members) > 0)
         <table class ="table table-striped">
             <tr>
                 <th>Member ID</th>
@@ -35,7 +35,10 @@
                     @endif
                 </th>
                 <th>@if($member->damageBan)
-                    Yes <a class="btn btn-success">Pay Back</a>
+                        {!! Form::open(['action' => ['MembersController@payback', $member->id], 'method' => 'POST']) !!}
+                        {{Form::hidden('_method', 'PUT')}}
+                        {{Form::submit('Pay Back', ['class' => 'btn btn-success'])}}
+                        {!! Form::close() !!}
                     @else No
                     @endif
                 </th>

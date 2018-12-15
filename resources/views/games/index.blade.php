@@ -1,9 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($games) > 1)
-        @foreach($games as $game)
-        <div class="card" style="width: 12rem;">
+    @if(count($games) > 0)
+    @php 
+        $data = \App\Http\Controllers\GamesController::getGameAttributes();
+    @endphp
+    @include('inc.searchbar', $data)
+
+    <div class="row">
+    @foreach($games as $game)    
+    <div class="card" style="width: 12rem;">
                 <a href="/games/{{$game->gameID}}">
                 <img class="card-img-top" src="/storage/thumbnails/{{$game->thumbnail}}" alt="Could not display image">
                     <div class="card-body">
@@ -17,7 +23,12 @@
                     </div>
                 </a>
             </div>
+            @if ($loop->iteration % 4 == 0)
+            </div>
+            <div class="row">
+            @endif
         @endforeach
+            </div>
         {{$games->links()}}
     @else
         <p>No games found </p>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Rental;
 use App\Game;
 use App\Member;
+use App\Violation;
 use App\SocietyRule;
 use \Carbon\Carbon;
 
@@ -29,8 +31,48 @@ class RentalsController extends Controller
      */
     public function index()
     {
-        $rentals = Rental::orderBy('updated_at', 'asc')->paginate(24);
-        return view('rentals.index')->with('rentals', $rentals);
+        $members = Member::all();
+        $data = [];
+        
+        if (count($members) == 0){return view('rentals.index')->with('data', $data);}
+        
+        foreach($members as $member){
+            if (Self::numOfActiveRentals($member->id) > 0){
+                $rentals = $member->rentals->where('returned', false);
+                foreach($rentals as $rental){
+                    $memberName = $member->name;
+                    $game = Game::find($rental->gameID); 
+                    $data[] = [
+                        'id' => $rental->id, 
+                        'memberName' => $memberName, 
+                        'gameName' => $game->name, 
+                        'platform' => $game->platform, 
+                        'returnDate' => $rental->returnDate, 
+                        'extensions' => $rental->extensions 
+                    ];
+                }
+            }
+        }
+
+        // Get current page form url e.x. &page=1
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+ 
+        // Create a new Laravel collection from the array data
+        $dataCollection = collect($data);
+ 
+        // Define how many items we want to be visible in each page
+        $perPage = 15;
+ 
+        // Slice the collection to get the items to display in current page
+        $currentPageItems = $dataCollection->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
+ 
+        // Create our paginator and pass it to the view
+        $paginatedItems= new LengthAwarePaginator($currentPageItems , count($dataCollection), $perPage);
+ 
+        // set url path for generted links
+        $paginatedItems->setPath('rentals.index');
+
+        return view('rentals.index')->with('data', $paginatedItems);
     }
 
     /**
@@ -161,7 +203,7 @@ class RentalsController extends Controller
 
         Self::damagedGame($memberID,$rental->gameID);
         $rental->delete();
-        return redirect('/members/$memberID')->with('success', 'Member incurred a Damage ban');
+        return redirect('/members')->with('success', 'Member incurred a Damage ban');
     }
 
 
@@ -201,9 +243,6 @@ class RentalsController extends Controller
         
         // Update member - damage ban, date, amountDue
         $member->damageBan = true;
-        if(!$member->normalBan){
-            $member->banBeginDate = Carbon::now();
-        }
         $member->amountDue += $price;
         $member->save();
     }
@@ -237,7 +276,7 @@ class RentalsController extends Controller
         $rental->save();
 
         //$memberID = $rental->memberID;
-        return redirect('/members')->with('success', 'Extension Provided');
+        return redirect('/home')->with('success', 'Extension Provided');
         
     }
 
@@ -258,9 +297,39 @@ class RentalsController extends Controller
         // Did we return late
         $inducedViolation = ($rental->returnDate < Carbon::now());
 
+        $message = 'Member has returned a game';
+
         if($inducedViolation){
-            //violations++
-            //check if that has now reached numViolationsForBan
+            // Get the Member responsible
+            $member = Member::find($rental->memberID);
+
+            // Create a new violation
+            $violation = new Violation;
+            $violation->memberID = $member->id;
+            $violation->save();
+
+            $maxViolations = SocietyRule::select('ruleVal')->where('society_rule','numViolationsForBan')->first()->ruleVal;
+            $activeViolations = Violation::where('memberID', $member->id)->where('nullified', false)->get();
+            $memberNumberOfViolations = count($activeViolations);
+            
+            $message = 'Member has returned a game, and incurred a violation for lateness';
+
+            // Are they banned as a result
+            if($memberNumberOfViolations > $maxViolations){
+                
+                // Violations are used to create the ban, and are nullified
+                foreach($activeViolations as $activeViolation){
+                    $activeViolation->nullified = true;
+                    $activeViolation->save();
+                }
+
+                // Issue standard ban
+                $member->normalBan = true;
+                $member->banBeginDate = Carbon::now();
+                $member->save();
+
+                $message = 'Game has been returned, but Member has been banned; incurred too many violations ';
+            }
         }
         
         // Grab the game in question
@@ -274,7 +343,7 @@ class RentalsController extends Controller
         $game->save();
         
         //$memberID = $rental->memberID;
-        return redirect('/members')->with('success', 'Member has returned a game');
+        return redirect('/home')->with('success', $message);
         
     }
 
