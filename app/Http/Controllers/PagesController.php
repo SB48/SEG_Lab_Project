@@ -10,10 +10,4 @@ class PagesController extends Controller
         $title = 'The Gaming Rental Society';
         return view('pages.index')->with('title', $title);
     }
-
-    public function about(){
-        $title = 'About us';
-        return view('pages.about')->with('title', $title);
-    }
-    
 }

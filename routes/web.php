@@ -12,9 +12,6 @@
 */
 
 Route::get('/', 'PagesController@index');
-
-Route::get('/about', 'PagesController@about');
-
 Route::get('members/{member}/isbanned', 'MembersController@isBanned');
 Route::put('members/{member}/ban', 'MembersController@ban');
 Route::put('members/{member}/unban', 'MembersController@unban');
