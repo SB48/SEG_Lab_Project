@@ -42,10 +42,10 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'fdb24.awardspace.net'),
+            'host' => env('DB_HOST', 'db765877079.hosting-data.io'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', '2903896_gamesoc'),
-            'username' => env('DB_USERNAME', '2903896_gamesoc'),
+            'database' => env('DB_DATABASE', 'db765877079'),
+            'username' => env('DB_USERNAME', 'dbo765877079'),
             'password' => env('DB_PASSWORD', 'teammauve123'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
