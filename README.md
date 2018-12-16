@@ -9,4 +9,4 @@ Team Members:
 - Jay Macpherson - K1764023
 - Abdulqadir Safiyuddin - K1763516
 
-Our project was inspired by the Lynda.com tutorials linked from the SEG Lab Project page.
+Our project has borrowed ideas from the Lynda.com tutorials linked from the SEG Lab Project page.
