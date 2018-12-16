@@ -11,7 +11,7 @@
     @foreach($games as $game)    
     <div class="card" style="width: 12rem;">
                 <a href="/games/{{$game->gameID}}">
-                <img class="card-img-top" src="/storage/thumbnails/{{$game->thumbnail}}" alt="Could not display image">
+                <img class="card-img-top" style="height: 12rem;" src="/storage/thumbnails/{{$game->thumbnail}}" alt="Could not display image">
                     <div class="card-body">
                       <h5 class="card-title">{{$game->name}}</h5>
                       <p class="card-text">
