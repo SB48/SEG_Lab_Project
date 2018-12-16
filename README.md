@@ -13,6 +13,11 @@ Our project has borrowed ideas from the Lynda.com tutorials linked from the SEG 
 
 Furthermore, we used Laravel. 
 
+
+Project description:
+
+At the beginning we followed lynda.com tutorials and started creating the project without the PHP framework and building queries ourselves. As we continued working, we realised that using a framework would greatly improve our design and overall code cleanliness. It would make tasks such as password hashing and authentication a lot smoother. Through continued research, we decided to use Laravel. Later we realised the extent to which it would improve our design and reduce duplication. At this point, we made a democratic decision to take the risk and start working on the Laravel version of our project. As we did not have any experience using a framework we decided to be wary. As such, we decided to have some people focusing more on the framework version and some working on the more basic version - at least just to begin with. We still met as a group to work together and assist each other on either end of the project. Quickly we realised that Laravel was in fact very manageable to get to grips with and we became far more comfortable all working together on the framework version and decided to fully switch.
+
 Using Laravel:
 
 Using the Laravel framework greatly improved the quality of our project. It allowed us to utilise the MVC architecture, and separate different components of our system to ensure looser coupling between classes and ensure high cohesion in that each class is responsible for distinct roles. By taking care of the authentication system, all we had to was re-route the user to register a new volunteer if they had sufficient permissions such as the secretary. With password hashing and the ability to query the Auth model we were able to impact the security on a much higher level than achievable otherwise. 
