@@ -1,4 +1,4 @@
-#Team Mauve:
+Team Mauve:
 
 Link to our website: https://jay.dominicswaine.com/
 
